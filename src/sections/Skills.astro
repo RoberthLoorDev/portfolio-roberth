@@ -1,0 +1,16 @@
+---
+import { skillsArray } from '../assets/images'
+---
+
+<section class="mt-28">
+  <h3 class="text-4xl font-light">Skills</h3>
+  <div
+    class="bg-gradient-to-r from-[#090c1a] via-[#131934] to-[#090c1a] w-full h-36 mb-64 flex justify-between items-center mt-5"
+  >
+    {
+      skillsArray.map((imageSkill) => {
+        return <img src={imageSkill.src} class="w-auto h-28" alt="skiil" />
+      })
+    }
+  </div>
+</section>

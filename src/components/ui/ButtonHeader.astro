@@ -1,0 +1,29 @@
+---
+interface Props {
+  background: boolean
+  text: string
+}
+
+const { background, text } = Astro.props
+---
+
+<button
+  class:list={[
+    'rounded-full h-14 mb-10 mr-7',
+    {
+      'bg-gradient-to-r from-[#63A7F7] to-[#2D87F1] shadow-button': background,
+      'bg-transparent border-primary border-2': !background,
+    },
+  ]}
+>
+  <span class="px-10 text-base font-semibold flex justify-center items-center">
+    {text}
+    <slot />
+  </span>
+</button>
+
+<style>
+  .shadow-button {
+    box-shadow: 0rem 0rem 5rem #2d8efc91;
+  }
+</style>

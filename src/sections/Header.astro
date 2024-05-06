@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets'
+import ButtonHeader from '../components/ui/ButtonHeader.astro'
+import { arrowHeader, email, github, linkedin, headerBackground } from '../assets/images'
+---
+
+<section class="relative mt-20 flex">
+  <div>
+    <span class="text-lg text-primary font-semibold">Welcome to my portfolio</span>
+    <h2 class="text-7xl font-bold mt-7 leading-[5.5rem]">
+      Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
+    </h2>
+    <p class="text-textGray font-semibold text-start mt-5">
+      <span class="text-white">Frontend developer</span> and <span class="text-white"
+        >web designer.</span
+      >
+      <br /> focused on creating quality digital experiences.
+    </p>
+
+    <div class="flex mt-10">
+      <ButtonHeader background={true} text="Download CV" />
+      <ButtonHeader background={false} text="See my work">
+        <Image class="w-auto h-2 ml-5" src={arrowHeader} alt={'image-button'} />
+      </ButtonHeader>
+    </div>
+
+    <div class="flex items-center h-10">
+      <span> Contact me </span>
+      <Image class="w-auto h-8 -mb-2 ml-8" alt="Linkedin" , src={linkedin} />
+      <Image class="w-auto h-8 -mb-2 ml-8" alt="Github" , src={github} />
+      <Image class="w-auto h-8 -mb-2 ml-8" alt="Email" , src={email} />
+    </div>
+  </div>
+
+  <img
+    class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-50"
+    src={headerBackground.src}
+  />
+</section>
+
+<style></style>
