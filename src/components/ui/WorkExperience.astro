@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets'
+import { work } from '../../assets/images'
+
+interface Props {
+  title: string
+  date: string
+  description: string
+  isLast?: boolean
+}
+
+const { isLast, date, description, title } = Astro.props
+---
+
+<div class="flex mb-16 relative">
+  <Image class="w-auto h-6 mb-24 mt-6" alt="Work Experience" src={work} />
+
+  <!-- Line -->
+  {
+    isLast ? (
+      ''
+    ) : (
+      <div class="absolute w-[2px] h-[9.2rem] bg-primary top-16 left-3 rounded-lg" />
+    )
+  }
+
+  <div class="ml-5">
+    <span class="text-base text-textGray">{date}</span>
+    <h4 class="">{title}</h4>
+    <p class="mt-4 text-base">
+      {description}
+    </p>
+  </div>
+</div>

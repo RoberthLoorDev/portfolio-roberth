@@ -11,8 +11,9 @@ import javascript from './javascript.png'
 import react from './react.png'
 import typescript from './typescript.png'
 import vue from './vue.png'
+import work from './work.png'
 
-export { arrowHeader, email, github, linkedin, headerBackground }
+export { arrowHeader, email, github, linkedin, headerBackground, work }
 
 export const skillsArray = [
   react,

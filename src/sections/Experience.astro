@@ -1,0 +1,35 @@
+---
+import WorkExperience from '../components/ui/WorkExperience.astro'
+---
+
+<section class="mt-20 mb-52 flex flex-col">
+  <h3>Experience</h3>
+  <div class="flex justify-between">
+    <div class="mt-10 w-[65%]">
+      <WorkExperience
+        title="Software developer - Public Water Company of the City of Manta"
+        description="I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces"
+        date="Sep 2023 - Jan 2024"
+      />
+      <WorkExperience
+        title="Software developer - Public Water Company of the City of Manta"
+        description="Developed an IoT system to monitor temperature and humidity in EPAM laboratories. I integrated IoT hardware with Wi-Fi connection to collect environmental data in real time and display it in a web and mobile application."
+        date="Nov 2022 - Feb 2023"
+        isLast={true}
+      />
+    </div>
+    <div class="w-[20rem]">
+      <WorkExperience
+        title="Bachelor's degree in Computer Science"
+        description="Bachelor's degree focused on computer science and systems."
+        date="2015 - 2019"
+      />
+      <WorkExperience
+        title="University degree in Information Technology Engineering"
+        description="Create and manage computer systems to solve business and social problems."
+        date="2019 - 2024"
+        isLast={true}
+      />
+    </div>
+  </div>
+</section>
