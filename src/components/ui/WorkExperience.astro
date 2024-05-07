@@ -1,19 +1,24 @@
 ---
 import { Image } from 'astro:assets'
-import { work } from '../../assets/images'
+import { work, education } from '../../assets/images'
 
 interface Props {
   title: string
   date: string
   description: string
   isLast?: boolean
+  isEducation?: boolean
 }
 
-const { isLast, date, description, title } = Astro.props
+const { isLast, date, description, title, isEducation } = Astro.props
 ---
 
 <div class="flex mb-16 relative">
-  <Image class="w-auto h-6 mb-24 mt-6" alt="Work Experience" src={work} />
+  <Image
+    class="w-auto h-6 mb-24 mt-6"
+    alt="Work Experience"
+    src={isEducation ? education : work}
+  />
 
   <!-- Line -->
   {
