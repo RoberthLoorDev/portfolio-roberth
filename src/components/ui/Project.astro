@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets'
+import { project1, project1capture } from '../../assets/images'
+import Tags from '../../components/ui/Tags.astro'
+---
+
+<div
+  class="p-7 rounded-xl relative box-border hover:border-3 hover:outline outline-[1px] outline-primary hover:bg-[#0F1A30] transition duration-300 hover:cursor-pointer"
+>
+  <div class="flex justify-between">
+    <div class="flex items-center">
+      <Image
+        class="w-auto p-[7px] bg-[#1A354C] rounded-lg mr-3"
+        src={project1}
+        alt="Project 1"
+      />
+      <h4>Litelnk</h4>
+    </div>
+
+    <div class="flex items-center">
+      <Tags title="Vue" />
+      <Tags title="MongoDB" />
+      <Tags title="Express" />
+      <Tags title="React Native" />
+    </div>
+  </div>
+
+  <p class="my-5 opacity-80 text-base leading-5">
+    Site created with the purpose of being able to generate shortened links. Reinforced my
+    understanding of random link generation and redirection. Improved user experience with
+    responsive design and in-browser storage.
+  </p>
+  <div
+    class="absolute w-full h-full top-0 left-0 bg-primary rounded-xl -z-10 opacity-[0.03]"
+  >
+  </div>
+
+  <Image src={project1capture} alt="Project 1" />
+</div>
