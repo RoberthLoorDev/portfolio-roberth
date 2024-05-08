@@ -1,10 +1,28 @@
 ---
-console.log('nabvar')
+//aqui va el jabascript
+console.log('hola')
 ---
 
-<section class="flex justify-end w-full mt-7">
-  <span class="text-base font-semibold ml-12 drop-shadow-lg text-primary">Skills</span>
-  <span class="text-base font-semibold ml-12 drop-shadow-lg">Experience</span>
-  <span class="text-base font-semibold ml-12 drop-shadow-lg">Projects</span>
-  <span class="text-base font-semibold ml-12 drop-shadow-lg">About me</span>
-</section>
+<nav class="flex justify-center w-full fixed left-0 h-16 items-center z-20 bg-background">
+  <a href="#skill_section" class="text-white text-base font-semibold ml-12 drop-shadow-lg"
+    >Skills</a
+  >
+  <a
+    href="#experience_section"
+    class="text-white text-base font-semibold ml-12 drop-shadow-lg">Experience</a
+  >
+  <a
+    href="#projects_section"
+    class="text-white text-base font-semibold ml-12 drop-shadow-lg">Projects</a
+  >
+  <a
+    href="#about_me_section"
+    class="text-white text-base font-semibold ml-12 drop-shadow-lg">About me</a
+  >
+</nav>
+
+<style>
+  section [id] {
+    scroll-margin-top: 50px; /* Ajusta este valor según el tamaño de tu barra de navegación */
+  }
+</style>
