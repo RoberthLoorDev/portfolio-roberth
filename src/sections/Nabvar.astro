@@ -1,28 +1,66 @@
 ---
-//aqui va el jabascript
-console.log('hola')
+export const prerender = false
 ---
 
 <nav class="flex justify-center w-full fixed left-0 h-16 items-center z-20 bg-background">
-  <a href="#skill_section" class="text-white text-base font-semibold ml-12 drop-shadow-lg"
-    >Skills</a
+  <a
+    id="id_section_1"
+    href="#skill_section"
+    class="text-white text-base font-semibold ml-12 drop-shadow-lg">Skills</a
   >
   <a
+    id="id_section_2"
     href="#experience_section"
     class="text-white text-base font-semibold ml-12 drop-shadow-lg">Experience</a
   >
   <a
+    id="id_section_3"
     href="#projects_section"
     class="text-white text-base font-semibold ml-12 drop-shadow-lg">Projects</a
   >
   <a
+    id="id_section_4"
     href="#about_me_section"
     class="text-white text-base font-semibold ml-12 drop-shadow-lg">About me</a
   >
 </nav>
 
+<script>
+  const navLinks = document.querySelectorAll('nav a')
+
+  const handleScroll = () => {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop
+    const sectionsArray = document.querySelectorAll('section')
+    sectionsArray.forEach((section) => {
+      const sectionTop = section.offsetTop - 200
+      const sectionBottom = sectionTop + section.offsetHeight
+
+      console.log(sectionTop)
+
+      //verificar si la posicion actual esta dentro de la seccion
+      if (scrollPosition > sectionTop && scrollPosition < sectionBottom) {
+        const sectionId = section.getAttribute('id')
+
+        navLinks.forEach((link) => {
+          link.classList.remove('active')
+
+          //agregar el color azul
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active')
+          }
+        })
+      }
+    })
+  }
+
+  window.addEventListener('scroll', handleScroll)
+
+  //
+</script>
+
 <style>
-  section [id] {
-    scroll-margin-top: 50px; /* Ajusta este valor según el tamaño de tu barra de navegación */
+  .active {
+    color: #2d8cfc;
+    transition: color 0.3s ease; /* Transición de color con duración de 0.3 segundos y función de tiempo ease */
   }
 </style>
