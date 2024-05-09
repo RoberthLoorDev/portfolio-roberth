@@ -38,18 +38,22 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
       <span> Contact me </span>
 
       <a
-        class="ml-6 p-2"
+        class="ml-6 p-2 _ a-tag"
         href="https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US"
         target="_blank"
       >
         <Image class="w-auto h-8 -mb-2" alt="Linkedin" , src={linkedin} />
       </a>
 
-      <a class="ml-6 p-2" href="https://github.com/RoberthLoorDev" target="_blank">
+      <a
+        class="ml-6 p-2 _ a-tag"
+        href="https://github.com/RoberthLoorDev"
+        target="_blank"
+      >
         <Image class="w-auto h-8 -mb-2" alt="Github" , src={github} />
       </a>
 
-      <a class="ml-6 p-2" href="mailto:dayvidlife@gmail.com">
+      <a class="ml-6 p-2 _ a-tag" href="mailto:dayvidlife@gmail.com">
         <Image class="w-auto h-8 -mb-2" alt="Email" , src={email} />
       </a>
     </div>
@@ -61,4 +65,12 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
   />
 </section>
 
-<style></style>
+<style>
+  .a-tag {
+    transition: 500ms;
+  }
+
+  .a-tag:hover {
+    transform: scale(1.5);
+  }
+</style>
