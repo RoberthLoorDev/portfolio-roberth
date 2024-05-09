@@ -17,18 +17,41 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
       <br /> focused on creating quality digital experiences.
     </p>
 
+    <!-- button cv donwload -->
     <div class="flex mt-10">
-      <ButtonHeader background={true} text="Download CV" />
-      <ButtonHeader background={false} text="See my work">
-        <Image class="w-auto h-2 ml-5" src={arrowHeader} alt={'image-button'} />
-      </ButtonHeader>
+      <a
+        href="https://drive.google.com/file/d/1bAJFmA0CdttdE8HvcaupqYqCNPCsjUSq/view?usp=sharing"
+        target="_blank"
+      >
+        <ButtonHeader background={true} text="Download CV" />
+      </a>
+
+      <!-- button see portfolio -->
+      <a href="#projects_section">
+        <ButtonHeader background={false} text="See my work">
+          <Image class="w-auto h-2 ml-5" src={arrowHeader} alt={'image-button'} />
+        </ButtonHeader>
+      </a>
     </div>
 
     <div class="flex items-center h-10">
       <span> Contact me </span>
-      <Image class="w-auto h-8 -mb-2 ml-8" alt="Linkedin" , src={linkedin} />
-      <Image class="w-auto h-8 -mb-2 ml-8" alt="Github" , src={github} />
-      <Image class="w-auto h-8 -mb-2 ml-8" alt="Email" , src={email} />
+
+      <a
+        class="ml-6 p-2"
+        href="https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US"
+        target="_blank"
+      >
+        <Image class="w-auto h-8 -mb-2" alt="Linkedin" , src={linkedin} />
+      </a>
+
+      <a class="ml-6 p-2" href="https://github.com/RoberthLoorDev" target="_blank">
+        <Image class="w-auto h-8 -mb-2" alt="Github" , src={github} />
+      </a>
+
+      <a class="ml-6 p-2" href="mailto:dayvidlife@gmail.com">
+        <Image class="w-auto h-8 -mb-2" alt="Email" , src={email} />
+      </a>
     </div>
   </div>
 
