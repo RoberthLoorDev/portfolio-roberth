@@ -1,7 +1,3 @@
----
-export const prerender = false
----
-
 <nav class="flex justify-center w-full fixed left-0 h-16 items-center z-20 bg-background">
   <a
     id="id_section_1"
@@ -34,8 +30,6 @@ export const prerender = false
     sectionsArray.forEach((section) => {
       const sectionTop = section.offsetTop - 200
       const sectionBottom = sectionTop + section.offsetHeight
-
-      console.log(sectionTop)
 
       //verificar si la posicion actual esta dentro de la seccion
       if (scrollPosition > sectionTop && scrollPosition < sectionBottom) {
