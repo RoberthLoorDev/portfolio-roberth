@@ -1,4 +1,6 @@
-<nav class="flex justify-center w-full fixed left-0 h-16 items-center z-20 bg-background">
+<nav
+  class="justify-center w-full fixed left-0 h-16 items-center z-20 bg-background hidden lg:flex"
+>
   <a
     id="id_section_1"
     href="#skill_section"
@@ -21,9 +23,125 @@
   >
 </nav>
 
-<script>
-  const navLinks = document.querySelectorAll('nav a')
+<!-- Lateral navbar -->
+<nav
+  id="id_lateral_navbar"
+  class="lateral_navbar fixed h-full right-0 w-52 flex flex-col z-20 justify-center bg-background shadow-lateral-navbar lg:hidden"
+>
+  <a
+    id="id_section_1"
+    href="#skill_section"
+    class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="mr-2"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path><path
+        d="M13.5 6.5l4 4"></path></svg
+    >
+    Skills</a
+  >
+  <a
+    id="id_section_2"
+    href="#experience_section"
+    class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="mr-2"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 19l18 0"
+      ></path><path
+        d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z"
+      ></path></svg
+    >
+    Experience</a
+  >
+  <a
+    id="id_section_3"
+    href="#projects_section"
+    class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="mr-2"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 8l-4 4l4 4"
+      ></path><path d="M17 8l4 4l-4 4"></path><path d="M14 4l-4 16"></path></svg
+    >
+    Projects</a
+  >
+  <a
+    id="id_section_4"
+    href="#about_me_section"
+    class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="mr-2"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
+        d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg
+    >
 
+    About me</a
+  >
+</nav>
+
+<!-- button lateral navbar -->
+<button
+  id="id_toggleButton_navbar"
+  class="fixed bottom-5 right-5 bg-primary w-12 h-12 rounded-full z-50 flex justify-center items-center active:opacity-50 transition duration-100 lg:hidden"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 6l16 0"
+    ></path><path d="M4 12l16 0"></path><path d="M4 18l16 0"></path></svg
+  >
+</button>
+
+<script>
+  //navegar entre secciones
+
+  const navLinks = document.querySelectorAll('nav a')
   const handleScroll = () => {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop
     const sectionsArray = document.querySelectorAll('section')
@@ -46,15 +164,49 @@
       }
     })
   }
-
   window.addEventListener('scroll', handleScroll)
 
-  //
+  //mostrar navbar lateral
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('id_lateral_navbar')
+    const toggleButton = document.getElementById('id_toggleButton_navbar')
+
+    toggleButton?.addEventListener('click', () => {
+      if (navbar?.classList.contains('navbar_active')) {
+        navbar?.classList.remove('navbar_active')
+        return
+      }
+      navbar?.classList.add('navbar_active')
+    })
+  })
 </script>
 
 <style>
   .active {
     color: #2d8cfc;
     transition: color 0.3s ease; /* Transición de color con duración de 0.3 segundos y función de tiempo ease */
+  }
+  .shadow-lateral-navbar {
+    box-shadow: -1rem 0rem 10rem black;
+  }
+
+  /* navbar */
+  .lateral_navbar {
+    transform: translateX(150%);
+    transition: 250ms;
+  }
+
+  .navbar_active {
+    transform: translateX(0);
+  }
+
+  a {
+    transition: 200ms;
+  }
+
+  a:hover {
+    color: #2d8cfc;
+    transition: 200ms;
+    padding: 20px;
   }
 </style>

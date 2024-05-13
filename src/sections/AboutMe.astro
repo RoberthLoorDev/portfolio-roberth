@@ -3,20 +3,14 @@ import { Image } from 'astro:assets'
 import { me } from '../assets/images'
 ---
 
-<section class="mt-20 relative" id="about_me_section">
+<section class="mt-20 relative mx-4 lg:mx-20" id="about_me_section">
   <h3>About me</h3>
 
-  <div class="flex relative">
-    <!-- light backgound image -->
-    <div
-      class="absolute top-36 left-64 w-[5rem] rounded-full h-[5rem] bg-primary -z-30 _ shadow-background-me"
-    >
-    </div>
-
-    <Image class="w-auto h-[38rem] mx-8 -mt-20 me" src={me} alt="Me" />
+  <div class="flex flex-col lg:flex-row">
+    <Image class="w-auto lg:h-[32rem] mx-8 -mt-14 object-cover _ me" src={me} alt="Me" />
 
     <div>
-      <span class="text-[70px] font-semibold"
+      <span class="text-[2.5rem] lg:text-[70px] font-semibold"
         >I’m <span class="text-primary"> Roberth Loor</span></span
       >
       <p class="mt-5 text-lg">

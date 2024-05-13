@@ -4,10 +4,10 @@ import ButtonHeader from '../components/ui/ButtonHeader.astro'
 import { arrowHeader, email, github, linkedin, headerBackground } from '../assets/images'
 ---
 
-<section class="relative mt-20 flex" id="header_section">
+<section class="relative flex mt-10 lg:mt-28 mx-4 lg:mx-20" id="header_section">
   <div>
     <span class="text-lg text-primary font-semibold">Welcome to my portfolio</span>
-    <h2 class="text-7xl font-bold mt-7 leading-[5.5rem]">
+    <h2 class="font-bold mt-7 text-6xl lg:text-7xl lg:leading-[5.5rem]">
       Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
     </h2>
     <p class="text-textGray font-semibold text-start mt-5">
@@ -17,8 +17,8 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
       <br /> focused on creating quality digital experiences.
     </p>
 
-    <!-- button cv donwload -->
-    <div class="flex mt-10">
+    <!-- button section -->
+    <div class="flex mt-10 flex-col lg:flex-row">
       <a
         href="https://drive.google.com/file/d/1bAJFmA0CdttdE8HvcaupqYqCNPCsjUSq/view?usp=sharing"
         target="_blank"
@@ -26,7 +26,6 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
         <ButtonHeader background={true} text="Download CV" />
       </a>
 
-      <!-- button see portfolio -->
       <a href="#projects_section">
         <ButtonHeader background={false} text="See my work">
           <Image class="w-auto h-2 ml-5" src={arrowHeader} alt={'image-button'} />
@@ -34,7 +33,7 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
       </a>
     </div>
 
-    <div class="flex items-center h-10">
+    <div class="flex items-center h-10 mt-5 lg:mt-0">
       <span> Contact me </span>
 
       <a
@@ -60,7 +59,7 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
   </div>
 
   <img
-    class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-50"
+    class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-0 lg:opacity-50"
     src={headerBackground.src}
   />
 </section>
