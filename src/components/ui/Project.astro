@@ -2,6 +2,16 @@
 import { Image } from 'astro:assets'
 import { project1, project1capture } from '../../assets/images'
 import Tags from '../../components/ui/Tags.astro'
+
+interface Props {
+  title: string
+  tags: string[]
+  description: string
+  image: ImageMetadata
+  icon: ImageMetadata
+}
+
+const { title, description, image, tags, icon } = Astro.props
 ---
 
 <a
@@ -13,32 +23,26 @@ import Tags from '../../components/ui/Tags.astro'
     <div class="flex items-center">
       <Image
         class="w-auto p-[7px] bg-[#1A354C] rounded-lg mr-3"
-        src={project1}
+        src={icon}
         alt="Project 1"
       />
-      <h4>Litelnk</h4>
+      <h4>{title}</h4>
     </div>
   </div>
 
   <!-- tags -->
 
   <div class="flex flex-wrap items-center my-5 lg:mt-0">
-    <Tags title="Vue" />
-    <Tags title="MongoDB" />
-    <Tags title="Express" />
-
-    <Tags title="React Native" />
+    {tags.map((tag) => <Tags title={tag} />)}
   </div>
 
   <p class="opacity-80 text-sm leading-5">
-    Site created with the purpose of being able to generate shortened links. Reinforced my
-    understanding of random link generation and redirection. Improved user experience with
-    responsive design and in-browser storage.
+    {description}
   </p>
   <div
     class="absolute w-full h-full top-0 left-0 bg-primary rounded-xl -z-10 opacity-[0.03]"
   >
   </div>
 
-  <Image src={project1capture} alt="Project 1" class="mt-2" />
+  <Image src={image} alt="Project 1" class="mt-2" />
 </a>

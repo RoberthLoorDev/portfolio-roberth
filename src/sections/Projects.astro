@@ -1,12 +1,23 @@
 ---
 import LightShadow from '../components/styles/LightShadow.astro'
 import Project from '../components/ui/Project.astro'
+import { projectsArray } from '../data/data'
 ---
 
 <section class="mt-10 mx-4 lg:mx-20" id="projects_section">
   <h3>Projects</h3>
   <LightShadow position="right" />
   <div class="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-3">
-    <Project />
+    {
+      projectsArray.map((project) => (
+        <Project
+          title={project.title}
+          description={project.description}
+          icon={project.icon}
+          image={project.image}
+          tags={project.tags}
+        />
+      ))
+    }
   </div>
 </section>
