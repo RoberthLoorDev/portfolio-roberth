@@ -5,71 +5,76 @@ import { arrowHeader, email, github, linkedin, headerBackground } from '../asset
 ---
 
 <section class="relative flex mt-10 lg:mt-28 mx-4 lg:mx-20" id="header_section">
-  <div>
-    <span class="text-lg text-primary font-semibold">Welcome to my portfolio</span>
-    <h2 class="font-bold mt-7 text-6xl lg:text-7xl lg:leading-[5.5rem]">
-      Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
-    </h2>
-    <p class="text-textGray font-semibold text-start mt-5">
-      <span class="text-white">Frontend developer</span> and <span class="text-white"
-        >web designer.</span
-      >
-      <br /> focused on creating quality digital experiences.
-    </p>
+     <div>
+          <span class="text-lg text-primary font-semibold">Welcome to my portfolio</span>
+          <h2 class="font-bold mt-7 text-6xl lg:text-7xl lg:leading-[5.5rem]">
+               Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
+          </h2>
+          <p class="text-textGray font-normal text-start mt-5 max-w-96">
+               <strong class="text-white font-bold">Frontend developer</strong> with a passion
+               for <strong class="text-white font-bold">ui ux design</strong>
+               looking to create quality <strong class="text-white font-bold"
+                    >digital experiences.</strong
+               >
+          </p>
 
-    <!-- button section -->
-    <div class="flex mt-10 flex-col lg:flex-row">
-      <a
-        href="https://drive.google.com/file/d/1bAJFmA0CdttdE8HvcaupqYqCNPCsjUSq/view?usp=sharing"
-        target="_blank"
-      >
-        <ButtonHeader background={true} text="Download CV" />
-      </a>
+          <!-- button section -->
+          <div class="flex mt-10 flex-col lg:flex-row">
+               <a
+                    href="https://drive.google.com/file/d/1bAJFmA0CdttdE8HvcaupqYqCNPCsjUSq/view?usp=sharing"
+                    target="_blank"
+               >
+                    <ButtonHeader background={true} text="Download CV" />
+               </a>
 
-      <a href="#projects_section">
-        <ButtonHeader background={false} text="See my work">
-          <Image class="w-auto h-2 ml-5" src={arrowHeader} alt={'image-button'} />
-        </ButtonHeader>
-      </a>
-    </div>
+               <a href="#projects_section">
+                    <ButtonHeader background={false} text="See my work">
+                         <Image
+                              class="w-auto h-2 ml-5"
+                              src={arrowHeader}
+                              alt={'image-button'}
+                         />
+                    </ButtonHeader>
+               </a>
+          </div>
 
-    <div class="flex items-center h-10 mt-5 lg:mt-0">
-      <span> Contact me </span>
+          <div class="flex items-center h-10 mt-5 lg:mt-0">
+               <span> Contact me </span>
 
-      <a
-        class="ml-6 p-2 _ a-tag"
-        href="https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US"
-        target="_blank"
-      >
-        <Image class="w-auto h-8 -mb-2" alt="Linkedin" , src={linkedin} />
-      </a>
+               <a
+                    class="ml-6 p-2 _ a-tag"
+                    href="https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US"
+                    target="_blank"
+               >
+                    <Image class="w-auto h-8 -mb-2" alt="Linkedin" , src={linkedin} />
+               </a>
 
-      <a
-        class="ml-6 p-2 _ a-tag"
-        href="https://github.com/RoberthLoorDev"
-        target="_blank"
-      >
-        <Image class="w-auto h-8 -mb-2" alt="Github" , src={github} />
-      </a>
+               <a
+                    class="ml-6 p-2 _ a-tag"
+                    href="https://github.com/RoberthLoorDev"
+                    target="_blank"
+               >
+                    <Image class="w-auto h-8 -mb-2" alt="Github" , src={github} />
+               </a>
 
-      <a class="ml-6 p-2 _ a-tag" href="mailto:dayvidlife@gmail.com">
-        <Image class="w-auto h-8 -mb-2" alt="Email" , src={email} />
-      </a>
-    </div>
-  </div>
+               <a class="ml-6 p-2 _ a-tag" href="mailto:dayvidlife@gmail.com">
+                    <Image class="w-auto h-8 -mb-2" alt="Email" , src={email} />
+               </a>
+          </div>
+     </div>
 
-  <img
-    class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-0 lg:opacity-50"
-    src={headerBackground.src}
-  />
+     <img
+          class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-0 lg:opacity-50"
+          src={headerBackground.src}
+     />
 </section>
 
 <style>
-  .a-tag {
-    transition: 500ms;
-  }
+     .a-tag {
+          transition: 500ms;
+     }
 
-  .a-tag:hover {
-    transform: scale(1.5);
-  }
+     .a-tag:hover {
+          transform: scale(1.5);
+     }
 </style>
