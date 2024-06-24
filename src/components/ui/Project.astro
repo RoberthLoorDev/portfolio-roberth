@@ -9,20 +9,21 @@ interface Props {
   description: string
   image: ImageMetadata
   icon: ImageMetadata
+  link: string
 }
 
-const { title, description, image, tags, icon } = Astro.props
+const { title, description, image, tags, icon, link } = Astro.props
 ---
 
 <a
-  href="https://litelnk.vercel.app/"
+  href={link}
   target="_blank"
   class="p-5 lg:p-7 rounded-xl relative box-border hover:border-3 hover:outline outline-[1px] outline-primary hover:bg-[#0F1A30] transition duration-300 hover:cursor-pointer"
 >
   <div class="flex lg:flex-row flex-col lg:justify-between">
-    <div class="flex items-center">
+    <div class="flex items-center mb-2">
       <Image
-        class="w-auto p-[7px] bg-[#1A354C] rounded-lg mr-3"
+        class="w-auto h-[43px] p-[7px] bg-[#1A354C] rounded-lg mr-3"
         src={icon}
         alt="Project 1"
       />
@@ -44,5 +45,5 @@ const { title, description, image, tags, icon } = Astro.props
   >
   </div>
 
-  <Image src={image} alt="Project 1" class="mt-2" />
+  <Image src={image} alt="Project 1" class="mt-2 rounded-lg" />
 </a>
