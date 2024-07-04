@@ -16,22 +16,32 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                     <WorkExperience
                          title="Software developer - Public Water Company of the City of Manta"
                          date="Sep 2023 - Jan 2024"
-                    >
-                         I developed <f>
-                              modules to manage users, inventory, assets and costs.</f
-                         >
-                         I improved the user experience with friendly and robust interfaces
-                    </WorkExperience>
-                    <WorkExperience
-                         title="Software developer - Public Water Company of the City of Manta"
-                         date="Nov 2022 - Feb 2023"
-                         isLast={true}
+                         isLast={false}
+                         tags={[
+                              'React native',
+                              'Vue',
+                              'Express',
+                              'Arduino',
+                              'Extreme Programming',
+                              'Mongodb',
+                         ]}
                     >
                          Developed an <f>IoT system to monitor temperature and humidity</f
                          > in EPAM laboratories. I integrated IoT hardware with Wi-Fi connection
                          to collect environmental data in real time and display it <f
                               >in a web and mobile application.</f
                          >
+                    </WorkExperience>
+                    <WorkExperience
+                         tags={['React', 'Express', 'Scrum', 'Posgretsql']}
+                         isLast
+                         title="Software developer - Public Water Company of the City of Manta"
+                         date="Nov 2022 - Feb 2023"
+                    >
+                         I developed <f>
+                              modules to manage users, inventory, assets and costs.</f
+                         >
+                         I improved the user experience with friendly and robust interfaces
                     </WorkExperience>
                </div>
           </div>

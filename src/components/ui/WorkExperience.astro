@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets'
 import { work, education } from '../../assets/images'
+import Tags from '../ui/Tags.astro'
 
 interface Props {
      title: string
      date: string
      isLast?: boolean
      isEducation?: boolean
+     tags?: string[]
 }
 
-const { isLast, date, title, isEducation } = Astro.props
+const { isLast, date, title, isEducation, tags = [''] } = Astro.props
 ---
 
 <div class="flex mb-16 relative">
@@ -33,6 +35,10 @@ const { isLast, date, title, isEducation } = Astro.props
           <h4 class="-mt-[2px]">{title}</h4>
           <p class="mt-4 text-base font-light">
                <slot />
+
+               <div class="flex mt-1">
+                    {tags.map((tag) => <Tags title={tag} />)}
+               </div>
           </p>
      </div>
 </div>
