@@ -1,51 +1,51 @@
 ---
 interface Props {
-  background: boolean
-  text: string
+     background: boolean
+     text: string
 }
 
 const { background, text } = Astro.props
 ---
 
 <button
-  class="relative rounded-full h-14 mr-7 flex items-center border-[#2E8AFE] border-2 overflow-hidden mb-5 lg:mb-10"
+     class="relative rounded-full h-14 mr-7 flex items-center border-[#2E8AFE] border-2 overflow-hidden mb-5 lg:mb-10"
 >
-  <span class="px-10 text-base font-semibold flex justify-center items-center z-10">
-    {text}
-    <slot />
-  </span>
+     <span class="px-10 text-base font-semibold flex justify-center items-center z-10">
+          {text}
+          <slot />
+     </span>
 
-  <!-- normal background -->
-  <div
-    class="absolute w-full h-full rounded-full -z-20"
-    class:list={[
-      '',
-      {
-        'bg-primary': background,
-      },
-    ]}
-  >
-  </div>
+     <!-- normal background -->
+     <div
+          class="absolute w-full h-full rounded-full -z-20"
+          class:list={[
+               '',
+               {
+                    'bg-primary': background,
+               },
+          ]}
+     >
+     </div>
 
-  <!-- effect background -->
-  <div class="effect_background"></div>
+     <!-- effect background -->
+     <div class="effect_background"></div>
 </button>
 
 <style>
-  .effect_background {
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20rem;
-    background-color: #122d52;
+     .effect_background {
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 20rem;
+          background-color: #122d52;
 
-    top: 0;
-    left: -100%;
-    transition: 500ms;
-  }
+          top: 0;
+          left: -100%;
+          transition: 500ms;
+     }
 
-  button:hover .effect_background {
-    left: 0;
-  }
+     button:hover .effect_background {
+          left: 0;
+     }
 </style>
