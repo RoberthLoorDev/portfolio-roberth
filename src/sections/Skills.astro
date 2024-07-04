@@ -1,22 +1,25 @@
 ---
-import { skillsArray } from '../assets/images'
+import { Image } from 'astro:assets'
+import { arraySkills } from './../assets/skills/skillsImages'
 ---
 
 <section class="mt-28 mx-4 lg:mx-20" id="skill_section">
-  <h3>Skills</h3>
-  <div
-    class="flex flex-wrap justify-center bg-gradient-to-r from-[#090c1a] via-[#131934] to-[#090c1a] mt-5"
-  >
-    {
-      skillsArray.map((imageSkill) => {
-        return (
-          <img
-            src={imageSkill.src}
-            class="w-auto h-[6rem] mx-8 lg:h-[6rem] py-7 "
-            alt="skiil"
-          />
-        )
-      })
-    }
-  </div>
+     <h3>Skills</h3>
+
+     <div class="flex flex-wrap gap-2 lg:gap-4 justify-center mt-10">
+          {
+               arraySkills.map((imageSkill) => {
+                    return (
+                         <div class="bg-[#0e172e] lg:w-[8rem] h-[8rem] flex flex-col justify-center items-center rounded-xl hover:scale-110 duration-150 cursor-pointer">
+                              <Image
+                                   src={imageSkill.icon}
+                                   class="w-auto h-[3rem] mx-8 lg:h-[3rem]"
+                                   alt="skiil"
+                              />
+                              <p class="text-center w-full mt-2">{imageSkill.name}</p>
+                         </div>
+                    )
+               })
+          }
+     </div>
 </section>
