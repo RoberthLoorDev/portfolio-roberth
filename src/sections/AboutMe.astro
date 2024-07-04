@@ -4,44 +4,52 @@ import { me } from '../assets/images'
 ---
 
 <section class="mt-20 relative mx-4 lg:mx-20" id="about_me_section">
-  <h3>About me</h3>
+     <h3>About me</h3>
 
-  <div class="flex flex-col lg:flex-row">
-    <Image class="w-auto lg:h-[32rem] mx-8 -mt-14 object-cover _ me" src={me} alt="Me" />
+     <div class="flex flex-col lg:flex-row">
+          <Image
+               class="w-auto lg:h-[32rem] mx-8 -mt-14 object-cover _ me"
+               src={me}
+               alt="Me"
+          />
 
-    <div>
-      <span class="text-[2.5rem] lg:text-[70px] font-semibold"
-        >I’m <span class="text-primary"> Roberth Loor</span></span
-      >
-      <p class="mt-5 text-lg">
-        Passionate about solving problems, from the simplest to the most complex. I love
-        facing them as challenges
-      </p>
-      <p class="mt-5 text-lg">
-        I firmly believe that web development is a perfect combination of creativity and
-        logic, where every line of code is an opportunity to create something
-        extraordinary. My goal is to use my skills to build functional, digital
-        experiences that not only meet user needs, but far exceed them.
-      </p>
+          <div>
+               <span class="text-[2.5rem] lg:text-[70px] font-bold"
+                    >I’m <span class="text-primary"> Roberth Loor</span></span
+               >
+               <div class="max-w-[35rem]">
+                    <p class="mt-5 text-base">
+                         Passionate about <f>solving problems</f> , from the simplest to the
+                         most complex. I love facing them as challenges
+                    </p>
+                    <p class="mt-5 text-base">
+                         I firmly believe that web development is a perfect combination of
+                         <f>creativity and logic,</f>
+                         where every line of code is an opportunity to create something extraordinary.
+                         My goal is to use my skills to <f
+                              >build functional, digital experiences</f
+                         > that not only meet user needs, but far exceed them.
+                    </p>
 
-      <p class="mt-5 text-lg">
-        I'm excited to continue learning, growing, and facing new challenges in the
-        exciting world of web development!
-      </p>
-    </div>
-  </div>
+                    <p class="mt-5 text-base">
+                         I'm excited to continue <f>learning, growing, and facing</f> new challenges
+                         in the exciting world of web development!
+                    </p>
+               </div>
+          </div>
+     </div>
 </section>
 
 <style>
-  .me {
-    mask-image: linear-gradient(
-      to bottom,
-      black 70%,
-      transparent 100%
-    ); /* Máscara con degradado de negro a transparente */
-  }
+     .me {
+          mask-image: linear-gradient(
+               to bottom,
+               black 70%,
+               transparent 100%
+          ); /* Máscara con degradado de negro a transparente */
+     }
 
-  .shadow-background-me {
-    box-shadow: 0rem 0rem 20rem 5rem #2d8cfc;
-  }
+     .shadow-background-me {
+          box-shadow: 0rem 0rem 20rem 5rem #2d8cfc;
+     }
 </style>
