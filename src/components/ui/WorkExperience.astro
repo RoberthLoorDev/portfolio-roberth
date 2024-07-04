@@ -3,37 +3,36 @@ import { Image } from 'astro:assets'
 import { work, education } from '../../assets/images'
 
 interface Props {
-  title: string
-  date: string
-  description: string
-  isLast?: boolean
-  isEducation?: boolean
+     title: string
+     date: string
+     isLast?: boolean
+     isEducation?: boolean
 }
 
-const { isLast, date, description, title, isEducation } = Astro.props
+const { isLast, date, title, isEducation } = Astro.props
 ---
 
 <div class="flex mb-16 relative">
-  <Image
-    class="w-auto h-6 mb-24 mt-6"
-    alt="Work Experience"
-    src={isEducation ? education : work}
-  />
+     <Image
+          class="w-auto h-6 mb-24 mt-6"
+          alt="Work Experience"
+          src={isEducation ? education : work}
+     />
 
-  <!-- Line -->
-  {
-    isLast ? (
-      ''
-    ) : (
-      <div class="absolute w-[2px] h-[100%] bg-primary top-16 left-3 rounded-lg" />
-    )
-  }
+     <!-- Line -->
+     {
+          isLast ? (
+               ''
+          ) : (
+               <div class="absolute w-[2px] h-[100%] bg-primary top-16 left-3 rounded-lg" />
+          )
+     }
 
-  <div class="ml-5">
-    <span class="text-base text-textGray">{date}</span>
-    <h4 class="">{title}</h4>
-    <p class="mt-4 text-base">
-      {description}
-    </p>
-  </div>
+     <div class="ml-5">
+          <span class="text-base text-textGray">{date}</span>
+          <h4 class="-mt-[2px]">{title}</h4>
+          <p class="mt-4 text-base font-light">
+               <slot />
+          </p>
+     </div>
 </div>

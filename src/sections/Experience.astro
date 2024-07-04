@@ -3,47 +3,63 @@ import LightShadow from '../components/styles/LightShadow.astro'
 import WorkExperience from '../components/ui/WorkExperience.astro'
 ---
 
-<section class="mt-20 flex flex-col lg:flex-row mx-4 lg:mx-20" id="experience_section">
-  <LightShadow position="left" />
+<section
+     class="mt-20 flex flex-col gap-12 lg:flex-row mx-4 lg:mx-20"
+     id="experience_section"
+>
+     <LightShadow position="left" />
 
-  <div class="lg:w-[65%]">
-    <h3>Experience</h3>
-    <div class="flex justify-between">
-      <div class="mt-10">
-        <WorkExperience
-          title="Software developer - Public Water Company of the City of Manta"
-          description="I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces"
-          date="Sep 2023 - Jan 2024"
-        />
-        <WorkExperience
-          title="Software developer - Public Water Company of the City of Manta"
-          description="Developed an IoT system to monitor temperature and humidity in EPAM laboratories. I integrated IoT hardware with Wi-Fi connection to collect environmental data in real time and display it in a web and mobile application."
-          date="Nov 2022 - Feb 2023"
-          isLast={true}
-        />
-      </div>
-    </div>
-  </div>
+     <div class="lg:w-[65%]">
+          <h3>Experience</h3>
+          <div class="flex justify-between">
+               <div class="mt-10">
+                    <WorkExperience
+                         title="Software developer - Public Water Company of the City of Manta"
+                         date="Sep 2023 - Jan 2024"
+                    >
+                         I developed <f>
+                              modules to manage users, inventory, assets and costs.</f
+                         >
+                         I improved the user experience with friendly and robust interfaces
+                    </WorkExperience>
+                    <WorkExperience
+                         title="Software developer - Public Water Company of the City of Manta"
+                         date="Nov 2022 - Feb 2023"
+                         isLast={true}
+                    >
+                         Developed an <f>IoT system to monitor temperature and humidity</f
+                         > in EPAM laboratories. I integrated IoT hardware with Wi-Fi connection
+                         to collect environmental data in real time and display it <f
+                              >in a web and mobile application.</f
+                         >
+                    </WorkExperience>
+               </div>
+          </div>
+     </div>
 
-  <!-- Education -->
-  <div>
-    <h3>Education</h3>
-    <div>
-      <div class="w-[20rem]">
-        <WorkExperience
-          title="Bachelor's degree in Computer Science"
-          description="Bachelor's degree focused on computer science and systems."
-          date="2015 - 2019"
-          isEducation={true}
-        />
-        <WorkExperience
-          title="University degree in Information Technology Engineering"
-          description="Create and manage computer systems to solve business and social problems."
-          date="2019 - 2024"
-          isLast={true}
-          isEducation={true}
-        />
-      </div>
-    </div>
-  </div>
+     <!-- Education -->
+     <div>
+          <h3>Education</h3>
+          <div class="mt-10">
+               <div class="w-[20rem]">
+                    <WorkExperience
+                         title="Bachelor's degree in Computer Science"
+                         date="2015 - 2019"
+                         isEducation={true}
+                    >
+                         Bachelor's degree fed on <f>computer science and systems.</f>
+                    </WorkExperience>
+                    <WorkExperience
+                         title="University degree in Information Technology Engineering"
+                         date="2019 - 2024"
+                         isLast={true}
+                         isEducation={true}
+                    >
+                         Create and manage computer systems <f
+                              >to solve business and social problems.</f
+                         >
+                    </WorkExperience>
+               </div>
+          </div>
+     </div>
 </section>
