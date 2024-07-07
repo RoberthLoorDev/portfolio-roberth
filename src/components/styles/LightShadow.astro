@@ -1,23 +1,23 @@
 ---
 interface Props {
-  position: 'right' | 'left' // Esto limita los valores de position a 'derecha' o 'izquierda'
+     position: 'right' | 'left' // Esto limita los valores de position a 'derecha' o 'izquierda'
 }
 
 const { position } = Astro.props
 ---
 
 <div
-  class:list={[
-    'absolute mt-[14rem] w-[3rem] h-[3rem] bg-[#143561] rounded-full _ light border-none',
-    {
-      'left-3 ': position === 'left',
-      'right-3 ': position === 'right',
-    },
-  ]}
+     class:list={[
+          'absolute mt-[14rem] w-[3rem] h-[3rem] bg-[#143561] rounded-full -z-50 _ light border-none',
+          {
+               'left-3 ': position === 'left',
+               'right-3 ': position === 'right',
+          },
+     ]}
 >
 </div>
 <style>
-  .light {
-    box-shadow: 0rem 0rem 10rem 8rem #2d8efc5d;
-  }
+     .light {
+          box-shadow: 0rem 0rem 10rem 8rem #2d8efc5d;
+     }
 </style>
