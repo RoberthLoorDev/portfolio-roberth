@@ -36,7 +36,7 @@ const { isLast, date, title, isEducation, tags = [''] } = Astro.props
           <p class="mt-4 text-base font-light">
                <slot />
 
-               <div class="flex mt-1">
+               <div class="flex mt-1 flex-wrap">
                     {tags.map((tag) => <Tags title={tag} />)}
                </div>
           </p>
