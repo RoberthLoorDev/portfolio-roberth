@@ -1,14 +1,20 @@
 ---
 import { Image } from 'astro:assets'
-import ButtonHeader from '../components/ui/ButtonHeader.astro'
-import {
-     arrowHeader,
-     email,
-     github,
-     linkedin,
-     headerBackground,
-     instagram,
-} from '../assets/images'
+import { github, linkedin, headerBackground, instagram } from '../assets/images'
+
+const socials = [
+     {
+          name: 'Linkedin',
+          href: 'https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US',
+          icon: linkedin,
+     },
+     { name: 'Github', href: 'https://github.com/RoberthLoorDev', icon: github },
+     {
+          name: 'Instagram',
+          href: 'https://www.instagram.com/roberth.loor10/',
+          icon: instagram,
+     },
+]
 ---
 
 <section class="relative flex mt-10 lg:mt-28 mx-4 lg:mx-20" id="header_section">
@@ -30,7 +36,7 @@ import {
           </h1>
 
           <!-- button section -->
-          <div class="scanning-animation flex flex-col">
+          <div class="flex flex-col">
                <div class="flex gap-6 flex-col lg:flex-row my-12">
                     <a href="mailto:dayvidlife@gmail.com" target="_blank">
                          <button
@@ -88,32 +94,23 @@ import {
                <div class="flex items-center h-10">
                     <!-- <span class="font-bold text-lg"> Contact me: </span> -->
 
-                    <a
-                         class="p-5 flex justify-center items-center relative network"
-                         href="https://www.linkedin.com/in/roberth-loor-837744227/?locale=en_US"
-                         target="_blank"
-                    >
-                         <Image class="w-auto h-[19px]" alt="Linkedin" src={linkedin} />
-                         <span class="font-light text-lg ml-2">Linkedin</span>
-                    </a>
-
-                    <a
-                         class="p-5 flex justify-center items-center network"
-                         href="https://github.com/RoberthLoorDev"
-                         target="_blank"
-                    >
-                         <Image class="w-auto h-[19px]" alt="Github" src={github} />
-                         <span class="font-light text-lg ml-2">Github</span>
-                    </a>
-
-                    <a
-                         class="p-5 flex justify-center items-center network"
-                         href="https://www.instagram.com/roberth.loor10/"
-                         target="_blank"
-                    >
-                         <Image class="w-auto h-[16px]" alt="Github" src={instagram} />
-                         <span class="font-light text-lg ml-2">Instagram</span>
-                    </a>
+                    <!-- social media -->
+                    {
+                         socials.map(({ name, icon, href }) => (
+                              <a
+                                   class="p-5 flex justify-center items-center relative network"
+                                   href={href}
+                                   target="_blank"
+                              >
+                                   <Image
+                                        class="w-auto h-[19px]"
+                                        alt="Linkedin"
+                                        src={icon}
+                                   />
+                                   <span class="font-light text-lg ml-2">{name}</span>
+                              </a>
+                         ))
+                    }
                </div>
           </div>
 
