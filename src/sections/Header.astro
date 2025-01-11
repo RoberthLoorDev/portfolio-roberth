@@ -98,7 +98,7 @@ const socials = [
                     {
                          socials.map(({ name, icon, href }) => (
                               <a
-                                   class="p-5 flex justify-center items-center relative network"
+                                   class="p-5 flex justify-center items-center relative network line"
                                    href={href}
                                    target="_blank"
                               >
@@ -150,12 +150,14 @@ const socials = [
           }
      }
 
-     @keyframes show-image-header {
-          0% {
-               opacity: 0;
-          }
-          100% {
-               opacity: 0.5;
+     @media (min-width: 1024px) {
+          @keyframes show-image-header {
+               0% {
+                    opacity: 0;
+               }
+               100% {
+                    opacity: 0.5;
+               }
           }
      }
 
