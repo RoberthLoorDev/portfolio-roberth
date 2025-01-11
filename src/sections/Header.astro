@@ -14,19 +14,23 @@ import {
 <section class="relative flex mt-10 lg:mt-28 mx-4 lg:mx-20" id="header_section">
      <div>
           <span class="text-lg text-primary font-semibold">Welcome to my portfolio</span>
-          <h2 class="font-bold mt-7 text-6xl lg:text-7xl lg:leading-[5.5rem]">
+          <h2
+               class="title-presentation font-bold mt-7 text-6xl lg:text-7xl lg:leading-[5.5rem]"
+          >
                Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
           </h2>
-          <p class="text-textGray font-normal text-start mt-5 max-w-96">
+          <h1
+               class="description-presentation text-textGray font-normal text-start mt-5 max-w-96"
+          >
                <strong class="text-white font-bold">Frontend developer</strong> with a passion
                for <strong class="text-white font-bold">ui ux design</strong>
                looking to create quality <strong class="text-white font-bold"
                     >digital experiences.</strong
                >
-          </p>
+          </h1>
 
           <!-- button section -->
-          <div class="flex flex-col">
+          <div class="scanning-animation flex flex-col">
                <div class="flex gap-6 flex-col lg:flex-row my-12">
                     <a href="mailto:dayvidlife@gmail.com" target="_blank">
                          <button
@@ -119,6 +123,56 @@ import {
           />
      </div>
 </section>
+
+<style>
+     /* animations for header */
+     .shadow-image-header {
+          animation: show-image-header 1.5s ease-out;
+     }
+
+     .title-presentation {
+          animation: title-animation 1s forwards;
+     }
+
+     .description-presentation {
+          animation: description-animation 1s forwards;
+     }
+
+     @keyframes description-animation {
+          0% {
+               opacity: 0;
+               transform: translateY(-50px);
+          }
+
+          30% {
+               opacity: 0;
+          }
+          100% {
+               opacity: 1;
+               transform: translateY(0px);
+          }
+     }
+
+     @keyframes show-image-header {
+          0% {
+               opacity: 0;
+          }
+          100% {
+               opacity: 0.5;
+          }
+     }
+
+     @keyframes title-animation {
+          0% {
+               opacity: 0;
+               transform: translateY(100px);
+          }
+          100% {
+               opacity: 1;
+               transform: translateY(0px);
+          }
+     }
+</style>
 
 <style>
      .network {
