@@ -14,7 +14,7 @@ interface Props {
 const { isLast, date, title, isEducation, tags = [''] } = Astro.props
 ---
 
-<div class="flex mb-16 relative">
+<div class="flex mb-16 relative enter-animation">
      <Image
           class="w-auto h-6 mb-24 mt-6"
           alt="Work Experience"
@@ -42,3 +42,25 @@ const { isLast, date, title, isEducation, tags = [''] } = Astro.props
           </p>
      </div>
 </div>
+
+<style>
+     /* add animation */
+     .enter-animation {
+          animation: appear 5s linear;
+          animation-timeline: view();
+          animation-range: entry 0% cover 30%;
+     }
+
+     @keyframes appear {
+          0% {
+               opacity: 0;
+               transform: translateX(200px);
+          }
+
+          100% {
+               opacity: 1;
+               translatex: 0px;
+               transform: translateX(0px);
+          }
+     }
+</style>
