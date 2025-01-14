@@ -44,15 +44,16 @@ const {
 
 <Layout title={title}>
      <!-- header -->
-     <section class="mt-[60px] w-full flex flex-col mx-4">
+     <section class="mt-[60px] flex flex-col mx-4 md:mx-auto max-w-[850px] lg:mt-[100px]">
           <span class="text-center w-full text-[#4793FF] text-sm font-semibold"
                >{date}</span
           >
 
-          <h1 class="mt-[35px] text-[35px] font-bold">{title}</h1>
-          <p class="text-base font-light mt-[35px]">{description}</p>
+          <h1 class="mt-[35px] text-[35px] font-bold md:text-center">{title}</h1>
 
-          <ul class="flex flex-wrap gap-[13px] mt-[35px]">
+          <p class="text-base font-light mt-[35px] md:text-center">{description}</p>
+
+          <ul class="flex flex-wrap gap-[13px] mt-[35px] md:justify-center">
                {
                     tags.map((tag) => {
                          return (
@@ -73,18 +74,22 @@ const {
                }
           </ul>
      </section>
-     <div class="relative w-full h-[678px] mt-[57px] grid place-items-center">
+
+     <!-- image header -->
+     <div
+          class="relative min-w-full h-[678px] mt-[57px] grid place-items-center lg:max-h-[432px] lg:px-[60px] lg:w-full"
+     >
           <Image
                width={500}
                height={500}
                src={image}
-               class="shadow-image-header w-full h-full object-cover opacity-20"
+               class="shadow-image-header min-w-full h-full object-cover opacity-20 lg:max-h-[432px] lg:mx-auto lg:rounded-[20px]"
                alt={title}
           />
           <a
                href={buttonLink}
                target="_blank"
-               class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px]"
+               class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px] lg:-mt-[0px]"
           >
                <span class="text-base text-[#090C1A] font-bold">{buttonText}</span>
                <Image
@@ -97,8 +102,8 @@ const {
      </div>
 
      <!-- achievements -->
-     <section class="flex relative -mt-[130px]">
-          <div class="absolute h-full w-[10px] bg-[#161927] py-[10px]"></div>
+     <section class="flex relative -mt-[130px] md:mx-auto max-w-[850px] lg:-mt-[30px]">
+          <div class="absolute h-full w-[10px] bg-[#161927] py-[10px] rounded-full"></div>
 
           <div class="mx-[30px]">
                <h2 class="text-[26px] font-bold">Achievements and Results</h2>
@@ -107,31 +112,31 @@ const {
                     achievements.map((achievement) => (
                          <div class="text-white mt-[20px] text-sm flex gap-[10px]">
                               <span>●</span>
-                              <p class="leading-[24px]">{achievement}</p>
+                              <p class="leading-[24px] lg:text-base">{achievement}</p>
                          </div>
                     ))
                }
 
-               <p class="mt-[40px] text-sm leading-[24px]">
+               <p class="mt-[40px] text-sm leading-[24px] lg:text-base">
                     {conclusion}
                </p>
           </div>
      </section>
 
      <!-- projecyt description -->
-     <section class="mx-4 mt-[35px]">
+     <section class="mx-4 mt-[45px] md:mx-auto max-w-[850px]">
           <h2 class="text-[26px] font-bold">Project description</h2>
           <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
      </section>
 
      <!-- footer image -->
-     <section class="flex flex-col mx-4 mt-[35px] mb-[100px]">
+     <section class="flex flex-col mx-4 mt-[35px] mb-[100px] md:mx-auto max-w-[850px]">
           <Image
                src={footerImage}
                alt={footerCaption}
-               width={600}
+               width={750}
                height={600}
-               class="object-cover h-[220px] rounded-[20px]"
+               class="object-cover h-[220px] min-w-full rounded-[20px] lg:h-[320px]"
           />
           <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2"
                >{footerCaption}</span
