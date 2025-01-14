@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro'
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content'
-import { hexToRgb } from '../../utils/projectsUtils'
 import { Image } from 'astro:assets'
 import { imageDetails } from '../../assets/images'
 
@@ -53,7 +52,7 @@ const {
           <h1 class="mt-[35px] text-[35px] font-bold">{title}</h1>
           <p class="text-base font-light mt-[35px]">{description}</p>
 
-          <ul class="flex flex-wrap gap-[10px] mt-[35px]">
+          <ul class="flex flex-wrap gap-[13px] mt-[35px]">
                {
                     tags.map((tag) => {
                          return (
@@ -87,7 +86,7 @@ const {
                target="_blank"
                class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px]"
           >
-               <span class="text-base text-[#090C1A] font-bold">Visitar</span>
+               <span class="text-base text-[#090C1A] font-bold">{buttonText}</span>
                <Image
                     src={imageDetails.arrow}
                     width={24}
@@ -102,7 +101,7 @@ const {
           <div class="absolute h-full w-[10px] bg-[#161927] py-[10px]"></div>
 
           <div class="mx-[30px]">
-               <h2 class="text-[26px] font-bold">Logros y Resultados</h2>
+               <h2 class="text-[26px] font-bold">Achievements and Results</h2>
 
                {
                     achievements.map((achievement) => (
@@ -121,7 +120,7 @@ const {
 
      <!-- projecyt description -->
      <section class="mx-4 mt-[35px]">
-          <h2 class="text-[26px] font-bold">Descripción del proyecto</h2>
+          <h2 class="text-[26px] font-bold">Project description</h2>
           <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
      </section>
 
