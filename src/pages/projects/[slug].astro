@@ -1,0 +1,151 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import { hexToRgb } from '../../utils/projectsUtils'
+import { Image } from 'astro:assets'
+import { imageDetails } from '../../assets/images'
+
+export const getStaticPaths = (async () => {
+     const projects = await getCollection('projects')
+     return projects.map((project) => ({
+          params: { slug: project.slug },
+     }))
+}) satisfies GetStaticPaths
+
+const { slug } = Astro.params
+console.log(slug)
+
+const project = await getCollection('projects').then((collection) =>
+     collection.find((entry) => entry.slug === slug)
+)
+
+if (!project) {
+     throw new Error(`Project with slug ${slug} not found`)
+}
+
+const projectData = project.data
+
+const {
+     date,
+     title,
+     company,
+     description,
+     tags,
+     image,
+     buttonText,
+     buttonLink,
+     achievements,
+     conclusion,
+     body,
+     footerImage,
+     footerCaption,
+} = projectData
+---
+
+<Layout title={title}>
+     <!-- header -->
+     <section class="mt-[60px] w-full flex flex-col mx-4">
+          <span class="text-center w-full text-[#4793FF] text-sm font-semibold"
+               >{date}</span
+          >
+
+          <h1 class="mt-[35px] text-[35px] font-bold">{title}</h1>
+          <p class="text-base font-light mt-[35px]">{description}</p>
+
+          <ul class="flex flex-wrap gap-[10px] mt-[35px]">
+               {
+                    tags.map((tag) => {
+                         return (
+                              <li
+                                   class="py-[6px]  px-[15px] inline-block rounded-full text-sm font-medium shadow-[0px_0px_15px_0px_rgba(51,103,145,0.8)] border-[1px] border-[#61DAFB]"
+                                   class:list={{
+                                        [`
+                                        bg-[#61DAFB] 
+                                        bg-opacity-30 
+                                        text-[#4ba9c3] 
+                                        `]: true,
+                                   }}
+                              >
+                                   {tag.name}
+                              </li>
+                         )
+                    })
+               }
+          </ul>
+     </section>
+     <div class="relative w-full h-[678px] mt-[57px] grid place-items-center">
+          <Image
+               width={500}
+               height={500}
+               src={image}
+               class="shadow-image-header w-full h-full object-cover opacity-20"
+               alt={title}
+          />
+          <a
+               href={buttonLink}
+               target="_blank"
+               class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px]"
+          >
+               <span class="text-base text-[#090C1A] font-bold">Visitar</span>
+               <Image
+                    src={imageDetails.arrow}
+                    width={24}
+                    height={24}
+                    alt=`Visitar el sitio web`
+               />
+          </a>
+     </div>
+
+     <!-- achievements -->
+     <section class="flex relative -mt-[130px]">
+          <div class="absolute h-full w-[10px] bg-[#161927] py-[10px]"></div>
+
+          <div class="mx-[30px]">
+               <h2 class="text-[26px] font-bold">Logros y Resultados</h2>
+
+               {
+                    achievements.map((achievement) => (
+                         <div class="text-white mt-[20px] text-sm flex gap-[10px]">
+                              <span>●</span>
+                              <p class="leading-[24px]">{achievement}</p>
+                         </div>
+                    ))
+               }
+
+               <p class="mt-[40px] text-sm leading-[24px]">
+                    {conclusion}
+               </p>
+          </div>
+     </section>
+
+     <!-- projecyt description -->
+     <section class="mx-4 mt-[35px]">
+          <h2 class="text-[26px] font-bold">Descripción del proyecto</h2>
+          <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
+     </section>
+
+     <!-- footer image -->
+     <section class="flex flex-col mx-4 mt-[35px] mb-[200px]">
+          <Image
+               src={footerImage}
+               alt={footerCaption}
+               width={600}
+               height={600}
+               class="object-cover h-[220px] rounded-[20px]"
+          />
+          <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2"
+               >{footerCaption}</span
+          >
+     </section>
+</Layout>
+
+<style>
+     .shadow-image-header {
+          mask-image: linear-gradient(black 1%, transparent);
+     }
+
+     section {
+          overflow-x: hidden;
+     }
+</style>
