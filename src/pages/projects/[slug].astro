@@ -112,7 +112,10 @@ const {
                     achievements.map((achievement) => (
                          <div class="text-white mt-[20px] text-sm flex gap-[10px]">
                               <span>●</span>
-                              <p class="leading-[24px] lg:text-base">{achievement}</p>
+                              <p
+                                   class="leading-[24px] lg:text-base"
+                                   set:html={achievement}
+                              />
                          </div>
                     ))
                }
