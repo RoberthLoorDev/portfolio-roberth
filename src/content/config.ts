@@ -9,7 +9,6 @@ const projectsCollection = defineCollection({
           tags: z.array(
                z.object({
                     name: z.string(),
-                    color: z.string(),
                })
           ),
           image: z.string(),
