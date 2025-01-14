@@ -125,7 +125,7 @@ const {
      </section>
 
      <!-- footer image -->
-     <section class="flex flex-col mx-4 mt-[35px] mb-[200px]">
+     <section class="flex flex-col mx-4 mt-[35px] mb-[100px]">
           <Image
                src={footerImage}
                alt={footerCaption}
@@ -137,6 +137,23 @@ const {
                >{footerCaption}</span
           >
      </section>
+
+     <!-- back button -->
+     <div class="flex w-full justify-center items-center">
+          <a
+               href="/"
+               class="flex justify-center items-center gap-[20px] bg-transparent border-[1px] py-[21px] px-[32px] rounded-full border-[#328AF2] hover:bg-[#3288f215] duration-100 active:bg-[#3288f22c]"
+          >
+               <Image
+                    src={'/src/assets/details/arrow-icon.svg'}
+                    width={67}
+                    height={10}
+                    alt="Volver al inicio"
+               />
+
+               <span class="from-neutral-600">Go back </span>
+          </a>
+     </div>
 </Layout>
 
 <style>
