@@ -23,7 +23,6 @@ import instagram from './instagram.png'
 import arroba from './arroba.png'
 import epamBuilding from './details/epam-building.jpg'
 import arrow from './details/arrow.svg'
-import screenSensor from './details/screen-sensor.jpg'
 
 export {
      arrowHeader,
@@ -53,4 +52,4 @@ export const skillsArray = [
      javascript,
      css,
 ]
-export const imageDetails = { epamBuilding, arrow, screenSensor }
+export const imageDetails = { epamBuilding, arrow }
