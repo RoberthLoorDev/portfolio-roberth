@@ -24,6 +24,6 @@ export const projectsArray = [
                'This project has been developed for the streamer d0oppa, who requested a trading card management system for his followers.',
           image: captureProject2,
           icon: iconProject2,
-          link: 'https://bambuners-cards.vercel.app/',
+          link: '/projects/streamer-card-management',
      },
 ]
