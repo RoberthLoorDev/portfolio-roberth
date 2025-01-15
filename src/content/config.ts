@@ -14,6 +14,7 @@ const projectsCollection = defineCollection({
           image: z.string(),
           buttonText: z.string(),
           buttonLink: z.string(),
+          showRedirectButton: z.boolean(),
           achievements: z.array(z.string()),
           conclusion: z.string(),
           body: z.string(),

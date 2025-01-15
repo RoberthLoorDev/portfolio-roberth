@@ -34,6 +34,7 @@ const {
      image,
      buttonText,
      buttonLink,
+     showRedirectButton,
      achievements,
      conclusion,
      body,
@@ -91,6 +92,7 @@ const {
                href={buttonLink}
                target="_blank"
                class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px] lg:-mt-[0px]"
+               class:list={{ hidden: !showRedirectButton }}
           >
                <span class="text-base text-[#090C1A] font-bold">{buttonText}</span>
                <Image

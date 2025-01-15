@@ -17,6 +17,7 @@ tags:
 image: '/src/assets/details/epam-iot.png'
 buttonText: 'Test demo'
 buttonLink: 'https://google.com'
+showRedirectButton: false 
 
 achievements:
   - '<strong>Significant social impact:</strong>  Besides directly benefiting laboratories, the system indirectly improved service quality for the <strong class="focus">258,000 people</strong> depending on EPAM.'

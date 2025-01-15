@@ -14,6 +14,7 @@ tags:
 image: '/src/assets/details/epam-header-p1.png'
 buttonText: 'View Demo'
 buttonLink: 'https://google.com'
+showRedirectButton: false 
 
 achievements:
   - '<strong>Significant Impact:</strong> The implementation of the system eliminated the reliance on Excel spreadsheets, improving <strong class="focus">data organization and security</strong>.'
