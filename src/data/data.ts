@@ -5,6 +5,8 @@ import {
      captureProject2,
      captureCodecolibri,
      codecolibriIcon,
+     captureIoTEPAM,
+     epamIcon,
 } from '../assets/images'
 
 export const projectsArray = [
@@ -18,14 +20,21 @@ export const projectsArray = [
      },
 
      {
-          title: 'Litelnk',
-          tags: ['Vue', 'Express', 'MongoDB', 'Tailwind'],
-          description: `Site created with the purpose of being able to generate shortened links. Reinforced my
-                understanding of random link generation and redirection. Improved user experience with
-                responsive design and in-browser storage.`,
-          image: project1capture,
-          icon: iconProject1,
-          link: 'https://litelnk.vercel.app/',
+          title: 'EPAM IoT',
+          tags: [
+               'React Native',
+               'Vue',
+               'Arduino',
+               'ESP32',
+               'MongoDB',
+               'Express',
+               'IoT',
+               'DHT22 Sensor',
+          ],
+          description: `I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces.`,
+          image: captureIoTEPAM,
+          icon: epamIcon,
+          link: '/projects/environmental-monitoring-epam',
      },
 
      {
@@ -36,5 +45,16 @@ export const projectsArray = [
           image: captureProject2,
           icon: iconProject2,
           link: '/projects/streamer-card-management',
+     },
+
+     {
+          title: 'Litelnk',
+          tags: ['Vue', 'Express', 'MongoDB', 'Tailwind'],
+          description: `Site created with the purpose of being able to generate shortened links. Reinforced my
+                understanding of random link generation and redirection. Improved user experience with
+                responsive design and in-browser storage.`,
+          image: project1capture,
+          icon: iconProject1,
+          link: 'https://litelnk.vercel.app/',
      },
 ]

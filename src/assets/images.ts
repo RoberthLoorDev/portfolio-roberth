@@ -24,6 +24,8 @@ import arroba from './arroba.png'
 import arrow from './icons/arrow.svg'
 import captureCodecolibri from './projects/capture-codecolibri.png'
 import codecolibriIcon from './projects/icon-codecolibri.png'
+import captureIoTEPAM from './projects/capture-iot-epam.png'
+import epamIcon from './projects/icon-epam.png'
 
 export {
      arrowHeader,
@@ -43,6 +45,8 @@ export {
      arroba,
      captureCodecolibri,
      codecolibriIcon,
+     captureIoTEPAM,
+     epamIcon,
 }
 
 export const skillsArray = [
