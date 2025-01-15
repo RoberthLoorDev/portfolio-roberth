@@ -30,18 +30,18 @@ body: |
   This project focused on designing and developing a <strong class="focus">comprehensive management system</strong> for the Specialized Water Treatment Laboratory of the Public Water Company of Manta (EPAM). <br/><br/>
   Faced with dependency on Excel spreadsheets and excessive paper usage, the need for a centralized system to manage multiple aspects of the laboratory—such as supplies, clients, assets, costs, and users—was identified.
 
-  The system's development followed the <strong class="focus">Extreme Programming (XP) methodology,</strong> enabling quick feedback cycles and continuous deliveries.
+  The system's development followed the <strong class="focus">Scrum methodology,</strong> enabling quick feedback cycles and continuous deliveries.
   <br/><br/>
   Key implemented functionalities include:
-
+  <br/><br/>
   <strong>User Management:</strong> A dedicated module was developed to manage user roles and define custom permissions, ensuring controlled and secure access to each area of the system.
-
+  <br/><br/>
   <strong>Inventory:</strong> An advanced system for tracking chemical supplies was implemented, with features for detailed queries, report generation, and notifications about critical inventory levels.
-
+  <br/><br/>
   <strong>Client Management:</strong> This module facilitates the detailed registration of clients and services provided, offering a complete history of interactions and private transactions.
-
+  <br/><br/>
   <strong>Document Management:</strong> A central tool that organizes all critical documents, ensuring their backup and accessibility to prevent information loss.
-
+  <br/><br/>
   <strong>Costs and Assets:</strong> Designed to precisely calculate and monitor operational costs while managing laboratory assets to optimize resource utilization.
 
   The system was developed with <strong class="focus">modern technologies</strong> such as React for the frontend, TypeScript for static typing, Express for the backend, and PostgreSQL as the database. Additionally, Bootstrap was used for responsive design, along with advanced data security techniques.
