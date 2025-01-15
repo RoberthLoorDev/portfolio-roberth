@@ -3,6 +3,8 @@ interface Props {
      title: string
 }
 
+import GetInTouchMe from '../sections/GetInTouchMe.astro'
+
 const { title } = Astro.props
 ---
 
@@ -54,8 +56,9 @@ const { title } = Astro.props
           />
      </head>
      <body class="flex justify-center">
-          <div class="max-w-[80rem] w-full">
+          <div class="">
                <slot />
+               <GetInTouchMe />
           </div>
      </body>
 </html>
@@ -91,6 +94,11 @@ const { title } = Astro.props
 
      /* Focus text */
      f {
+          color: #67abff;
+          font-weight: 700;
+     }
+
+     strong.focus {
           color: #67abff;
           font-weight: 700;
      }

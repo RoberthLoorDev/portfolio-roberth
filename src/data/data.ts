@@ -3,9 +3,20 @@ import {
      iconProject1,
      iconProject2,
      captureProject2,
+     captureCodecolibri,
+     codecolibriIcon,
 } from '../assets/images'
 
 export const projectsArray = [
+     {
+          title: 'codecolibri',
+          tags: ['Astro', 'TypeScript', 'Tailwind', 'Vercel', 'EmailJS'],
+          description: `Developed a modern and functional landing page for a newly established software development company, focusing on clear communication and brand identity representation.`,
+          image: captureCodecolibri,
+          icon: codecolibriIcon,
+          link: '/projects/codecolibri-landing-page',
+     },
+
      {
           title: 'Litelnk',
           tags: ['Vue', 'Express', 'MongoDB', 'Tailwind'],
@@ -24,6 +35,6 @@ export const projectsArray = [
                'This project has been developed for the streamer d0oppa, who requested a trading card management system for his followers.',
           image: captureProject2,
           icon: iconProject2,
-          link: 'https://bambuners-cards.vercel.app/',
+          link: '/projects/streamer-card-management',
      },
 ]

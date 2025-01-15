@@ -1,0 +1,178 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+import { imageDetails } from '../../assets/images'
+
+export const getStaticPaths = (async () => {
+     const projects = await getCollection('projects')
+     return projects.map((project) => ({
+          params: { slug: project.slug },
+     }))
+}) satisfies GetStaticPaths
+
+const { slug } = Astro.params
+console.log(slug)
+
+const project = await getCollection('projects').then((collection) =>
+     collection.find((entry) => entry.slug === slug)
+)
+
+if (!project) {
+     throw new Error(`Project with slug ${slug} not found`)
+}
+
+const projectData = project.data
+
+const {
+     date,
+     title,
+     company,
+     description,
+     tags,
+     image,
+     buttonText,
+     buttonLink,
+     showRedirectButton,
+     achievements,
+     conclusion,
+     body,
+     footerImage,
+     footerCaption,
+} = projectData
+---
+
+<Layout title={title}>
+     <!-- header -->
+     <section class="mt-[60px] flex flex-col mx-4 md:mx-auto max-w-[850px] lg:mt-[100px]">
+          <span class="text-center w-full text-[#4793FF] text-sm font-semibold"
+               >{date}</span
+          >
+
+          <h1 class="mt-[35px] text-[35px] font-bold md:text-center">{title}</h1>
+          <strong class="text-[#61DAFB] font-light md:text-center">{company}</strong>
+
+          <p class="text-base font-light mt-[35px] md:text-center">{description}</p>
+
+          <ul class="flex flex-wrap gap-[13px] mt-[35px] md:justify-center">
+               {
+                    tags.map((tag) => {
+                         return (
+                              <li
+                                   class="py-[6px]  px-[15px] inline-block rounded-full text-sm font-medium shadow-[0px_0px_15px_0px_rgba(51,103,145,0.8)] border-[1px] border-[#61DAFB]"
+                                   class:list={{
+                                        [`
+                                        bg-[#61DAFB] 
+                                        bg-opacity-30 
+                                        text-[#4ba9c3] 
+                                        `]: true,
+                                   }}
+                              >
+                                   {tag.name}
+                              </li>
+                         )
+                    })
+               }
+          </ul>
+     </section>
+
+     <!-- image header -->
+     <div
+          class="relative min-w-full h-[678px] mt-[57px] grid place-items-center lg:max-h-[732px] lg:px-[60px] lg:w-full"
+     >
+          <Image
+               width={500}
+               height={500}
+               src={image}
+               class="shadow-image-header min-w-full h-full object-cover opacity-70 lg:max-h-[732px] lg:mx-auto lg:rounded-[20px]"
+               alt={title}
+          />
+          <a
+               href={buttonLink}
+               target="_blank"
+               class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px] lg:-mt-[0px]"
+               class:list={{ hidden: !showRedirectButton }}
+          >
+               <span class="text-base text-[#090C1A] font-bold">{buttonText}</span>
+               <Image
+                    src={imageDetails.arrow}
+                    width={24}
+                    height={24}
+                    alt=`Visitar el sitio web`
+               />
+          </a>
+     </div>
+
+     <!-- achievements -->
+     <section class="flex relative -mt-[130px] md:mx-auto max-w-[850px] lg:-mt-[30px]">
+          <div class="absolute h-full w-[10px] bg-[#161927] py-[10px] rounded-full"></div>
+
+          <div class="mx-[30px]">
+               <h2 class="text-[26px] font-bold">Achievements and Results</h2>
+
+               {
+                    achievements.map((achievement) => (
+                         <div class="text-white mt-[20px] text-sm flex gap-[10px]">
+                              <span>●</span>
+                              <p
+                                   class="leading-[24px] lg:text-base"
+                                   set:html={achievement}
+                              />
+                         </div>
+                    ))
+               }
+
+               <p class="mt-[40px] text-sm leading-[24px] lg:text-base">
+                    {conclusion}
+               </p>
+          </div>
+     </section>
+
+     <!-- projecyt description -->
+     <section class="mx-4 mt-[45px] md:mx-auto max-w-[850px]">
+          <h2 class="text-[26px] font-bold">Project description</h2>
+          <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
+     </section>
+
+     <!-- footer image -->
+     <section class="flex flex-col mx-4 mt-[35px] mb-[100px] md:mx-auto max-w-[850px]">
+          <Image
+               src={footerImage}
+               alt={footerCaption}
+               width={750}
+               height={600}
+               class="object-cover h-[420px] min-w-full rounded-[20px] lg:h-[420px]"
+          />
+          <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2"
+               >{footerCaption}</span
+          >
+     </section>
+
+     <!-- back button -->
+     <div class="flex w-full justify-center items-center">
+          <a
+               href="/"
+               class="flex justify-center items-center gap-[20px] bg-transparent border-[1px] py-[21px] px-[32px] rounded-full border-[#328AF2] hover:bg-[#3288f215] duration-100 active:bg-[#3288f22c]"
+          >
+               <Image
+                    src={'/src/assets/details/arrow-icon.svg'}
+                    width={67}
+                    height={10}
+                    alt="Volver al inicio"
+               />
+
+               <span class="from-neutral-600">Go back </span>
+          </a>
+     </div>
+</Layout>
+
+<style>
+     .shadow-image-header {
+          mask-image: linear-gradient(black 1%, transparent);
+     }
+
+     section {
+          overflow-x: hidden;
+     }
+</style>
