@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import { work, education } from '../../assets/images'
 import Tags from '../ui/Tags.astro'
+import { arrowUp } from '../../assets/icons/images'
 
 interface Props {
      title: string
@@ -9,9 +10,10 @@ interface Props {
      isLast?: boolean
      isEducation?: boolean
      tags?: string[]
+     link?: string
 }
 
-const { isLast, date, title, isEducation, tags = [''] } = Astro.props
+const { isLast, date, title, isEducation, tags = [''], link } = Astro.props
 ---
 
 <div class="flex mb-16 relative enter-animation">
@@ -30,9 +32,18 @@ const { isLast, date, title, isEducation, tags = [''] } = Astro.props
           )
      }
 
-     <div class="ml-5">
+     <a href={link} target="_blank" class="box-experience ml-5">
           <span class="text-base text-textGray">{date}</span>
-          <h4 class="-mt-[2px]">{title}</h4>
+
+          <h4
+               class="title-experience -mt-[2px] underline lg:no-underline"
+               class:list={{ ['hover:underline']: link }}
+          >
+               {title}
+
+               <p class="inline-block rotate-45 ml-3" class:list={{ hidden: !link }}>↑</p>
+          </h4>
+
           <p class="mt-4 text-base font-light">
                <slot />
 
@@ -40,7 +51,7 @@ const { isLast, date, title, isEducation, tags = [''] } = Astro.props
                     {tags.map((tag) => <Tags title={tag} />)}
                </div>
           </p>
-     </div>
+     </a>
 </div>
 
 <style>

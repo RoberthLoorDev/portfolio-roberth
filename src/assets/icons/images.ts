@@ -20,6 +20,7 @@ import iconProject1 from './project1.png'
 import iconProject2 from './projects/icon_proyect_2.png'
 import captureProject2 from './projects/capture_proyect_2.png'
 import instagram from './instagram.png'
+import arrowUp from './arrow-up.png'
 
 export {
      arrowHeader,
@@ -36,6 +37,7 @@ export {
      iconProject2,
      captureProject2,
      instagram,
+     arrowUp,
 }
 
 export const skillsArray = [
