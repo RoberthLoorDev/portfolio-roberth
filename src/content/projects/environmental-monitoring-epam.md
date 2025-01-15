@@ -1,9 +1,10 @@
 ---
-title: 'IoT Temperature Monitoring System'
-date: 'Nov 2022 - Feb 2023'
+title: 'IoT Environmental Monitoring System'
+date: 'Sep 2023 - Jan 2024'
 company: 'Public Water Company of the City of Manta'
 description: |
-  'I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces.'
+  Spearheaded development of an innovative, low-cost IoT environmental monitoring system for laboratory use, enabling real-time tracking of temperature and humidity conditions with customizable alerts.
+
 tags:
   - name: 'Express'
   - name: 'PostgreSQL'
