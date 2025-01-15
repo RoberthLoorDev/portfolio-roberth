@@ -8,7 +8,7 @@ const projectsCollection = defineCollection({
           description: z.string(),
           tags: z.array(
                z.object({
-                    name: z.string(),
+                    name: z.any(),
                })
           ),
           image: z.string(),
