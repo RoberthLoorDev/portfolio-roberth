@@ -21,8 +21,7 @@ import iconProject2 from './projects/icon_proyect_2.png'
 import captureProject2 from './projects/capture_proyect_2.png'
 import instagram from './instagram.png'
 import arroba from './arroba.png'
-import epamBuilding from './details/epam-building.jpg'
-import arrow from './details/arrow.svg'
+import arrow from './icons/arrow.svg'
 import captureCodecolibri from './projects/capture-codecolibri.png'
 import codecolibriIcon from './projects/icon-codecolibri.png'
 
@@ -56,4 +55,4 @@ export const skillsArray = [
      javascript,
      css,
 ]
-export const imageDetails = { epamBuilding, arrow }
+export const imageDetails = { arrow }

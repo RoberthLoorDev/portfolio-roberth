@@ -11,7 +11,7 @@ tags:
   - name: 'TypeScript'
   - name: 'Tailwind'
   - name: 'Vercel'
-image: '/src/assets/details/doppa-cards-h.png'
+image: '/details/doppa-cards-h.png'
 buttonText: 'Visit'
 buttonLink: 'https://bambuners-cards.vercel.app/'
 showRedirectButton: true 
@@ -54,6 +54,6 @@ body: |
   Currently, there are some issues with the backend provided by the client. Communication attempts have been made to resolve these problems, but no response has been received to implement the necessary fixes.
 
 
-footerImage: '/src/assets/details/doppa-cards-f.png'
+footerImage: '/details/doppa-cards-f.png'
 footerCaption: "Top 10 users within the streamer's community with the most letters to their names"
 ---

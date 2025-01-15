@@ -11,7 +11,7 @@ tags:
   - name: 'Express'
   - name: 'Bootstrap'
   - name: 'PostgreSQL'
-image: '/src/assets/details/epam-header-p1.png'
+image: '/details/epam-header-p1.png'
 buttonText: 'View Demo'
 buttonLink: 'https://google.com'
 showRedirectButton: false 
@@ -48,6 +48,6 @@ body: |
   <br/><br/>
   During implementation, weekly meetings were held with laboratory representatives to ensure that the functionalities met the client’s <strong class="focus">specific requirements</strong>.
 
-footerImage: '/src/assets/details/footer-epam-p1.png'
+footerImage: '/details/footer-epam-p1.png'
 footerCaption: 'Example of the system managing chemical supply inventory.'
 ---
