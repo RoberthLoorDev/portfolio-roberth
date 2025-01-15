@@ -45,7 +45,7 @@ body: |
   The system integrated <strong class="focus">hardware and software,</strong>  using DHT22 sensors connected to ESP32 microcontrollers for environmental data capture, which was transmitted through an Express backend and stored in MongoDB Atlas. The data was presented in a <strong class="focus">web application developed</strong>  with React, <strong class="focus">a mobile app</strong>  in React Native, and LED screens in the laboratories for local real-time visualization. Additionally, notifications were implemented via <strong class="focus">Firebase Cloud Messaging (FCM)</strong>  for critical alerts, optimizing the control of environmental conditions.
 
 
-footerImage: '/details/'
+footerImage: '/details/screen-sensor.png'
 
 footerCaption: 'Proposed hardware circuit (the larger one) compared to the existing sensor in the laboratories.'
 
