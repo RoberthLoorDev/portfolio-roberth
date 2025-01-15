@@ -7,6 +7,7 @@ import {
      codecolibriIcon,
      captureIoTEPAM,
      epamIcon,
+     captureP1EPAM,
 } from '../assets/images'
 
 export const projectsArray = [
@@ -31,10 +32,19 @@ export const projectsArray = [
                'IoT',
                'DHT22 Sensor',
           ],
-          description: `I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces.`,
+          description: `Spearheaded development of an innovative, low-cost IoT environmental monitoring system for laboratory.`,
           image: captureIoTEPAM,
           icon: epamIcon,
           link: '/projects/environmental-monitoring-epam',
+     },
+
+     {
+          title: 'EPAM - Aguas de Manta',
+          tags: ['React', 'Express', 'PostgreSQL', 'Bootstrap', 'TypeScript'],
+          description: `I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces.`,
+          image: captureP1EPAM,
+          icon: epamIcon,
+          link: '/projects/epam-lab-system',
      },
 
      {
