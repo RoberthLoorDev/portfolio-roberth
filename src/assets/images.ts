@@ -27,6 +27,8 @@ import codecolibriIcon from './projects/icon-codecolibri.png'
 import captureIoTEPAM from './projects/capture-iot-epam.png'
 import epamIcon from './projects/icon-epam.png'
 import captureP1EPAM from './projects/capture-epam-p1.png'
+import captureVagadamia from './projects/capture-vagadamia.png'
+import iconVagadamia from './projects/icon-vagadamia.png'
 
 export {
      arrowHeader,
@@ -49,6 +51,8 @@ export {
      captureIoTEPAM,
      epamIcon,
      captureP1EPAM,
+     captureVagadamia,
+     iconVagadamia,
 }
 
 export const skillsArray = [
