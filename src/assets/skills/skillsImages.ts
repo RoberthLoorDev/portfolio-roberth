@@ -10,6 +10,9 @@ import postgresql from './postgresql.png'
 import tailwind from './tailwind.png'
 import typescript from './typescript.png'
 import vue from './vue.png'
+import shadcn from './shadcn.png'
+import mysql from './mysql.png'
+import nestjs from './nestjs.png'
 
 export const arraySkills = [
      { icon: react, name: 'react' },
@@ -24,4 +27,7 @@ export const arraySkills = [
      { icon: mongodb, name: 'mongodb' },
      { icon: html, name: 'html' },
      { icon: css, name: 'css' },
+     { icon: shadcn, name: 'shadcn' },
+     { icon: mysql, name: 'mysql' },
+     { icon: nestjs, name: 'nestjs' },
 ]
