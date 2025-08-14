@@ -32,26 +32,46 @@ const { isLast, date, title, isEducation, tags = [''], link } = Astro.props
           )
      }
 
-     <a href={link} target="_blank" class="box-experience ml-5">
-          <span class="text-base text-textGray">{date}</span>
-
-          <h4
-               class="title-experience -mt-[2px] underline lg:no-underline"
-               class:list={{ ['hover:underline']: link }}
-          >
-               {title}
-
-               <p class="inline-block rotate-45 ml-3" class:list={{ hidden: !link }}>↑</p>
-          </h4>
-
-          <p class="mt-4 text-base font-light">
-               <slot />
-
-               <div class="flex mt-1 flex-wrap">
-                    {tags.map((tag) => <Tags title={tag} />)}
+     {
+          link ? (
+               <a href={link} target="_blank" class="box-experience ml-5">
+                    <span class="text-base text-textGray">{date}</span>
+                    <h4
+                         class="title-experience -mt-[2px] underline lg:no-underline"
+                         class:list={{ ['hover:underline']: link }}
+                    >
+                         {title}
+                         <p
+                              class="inline-block rotate-45 ml-3"
+                              class:list={{ hidden: !link }}
+                         >
+                              ↑
+                         </p>
+                    </h4>
+                    <p class="mt-4 text-base font-light">
+                         <slot />
+                         <div class="flex mt-1 flex-wrap">
+                              {tags.map((tag) => (
+                                   <Tags title={tag} />
+                              ))}
+                         </div>
+                    </p>
+               </a>
+          ) : (
+               <div class="box-experience ml-5">
+                    <span class="text-base text-textGray">{date}</span>
+                    <h4 class="title-experience -mt-[2px]">{title}</h4>
+                    <p class="mt-4 text-base font-light">
+                         <slot />
+                         <div class="flex mt-1 flex-wrap">
+                              {tags.map((tag) => (
+                                   <Tags title={tag} />
+                              ))}
+                         </div>
+                    </p>
                </div>
-          </p>
-     </a>
+          )
+     }
 </div>
 
 <style>

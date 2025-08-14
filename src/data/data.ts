@@ -8,9 +8,28 @@ import {
      captureIoTEPAM,
      epamIcon,
      captureP1EPAM,
+     captureVagadamia,
+     iconVagadamia,
 } from '../assets/images'
 
 export const projectsArray = [
+     {
+          title: 'Vagadamia',
+          tags: [
+               'React',
+               'TypeScript',
+               'Express',
+               'Sequelize',
+               'Tailwind CSS',
+               'shadcn/ui',
+               'Web Scraping',
+          ],
+          description: `  End-to-end platform to manage purchase orders, inventory, invoicing, service orders, and maintenance—complete with automated status updates, role-based access, dashboards, notifications, and PDF document generation.`,
+          image: captureVagadamia,
+          icon: iconVagadamia,
+          link: '/projects/vagadamia-system',
+     },
+
      {
           title: 'codecolibri',
           tags: ['Astro', 'TypeScript', 'Tailwind', 'Vercel', 'EmailJS'],
