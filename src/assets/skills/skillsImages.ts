@@ -13,6 +13,8 @@ import vue from './vue.png'
 import shadcn from './shadcn.png'
 import mysql from './mysql.png'
 import nestjs from './nestjs.png'
+import docker from './docker.png'
+import ubuntu from './ubuntu.png'
 
 export const arraySkills = [
      { icon: react, name: 'react' },
@@ -30,4 +32,6 @@ export const arraySkills = [
      { icon: shadcn, name: 'shadcn' },
      { icon: mysql, name: 'mysql' },
      { icon: nestjs, name: 'nestjs' },
+     { icon: docker, name: 'docker' },
+     { icon: ubuntu, name: 'ubuntu' },
 ]
