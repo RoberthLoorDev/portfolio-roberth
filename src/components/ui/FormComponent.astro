@@ -115,8 +115,6 @@ export const prerender = false
           ?.addEventListener('submit', async (event) => {
                event.preventDefault()
 
-               console.log('Formulario enviado')
-
                const name = (document.getElementById('id_name') as HTMLInputElement).value
                const company = (document.getElementById('id_company') as HTMLInputElement)
                     .value
