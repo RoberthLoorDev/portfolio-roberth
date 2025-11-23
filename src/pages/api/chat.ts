@@ -118,11 +118,29 @@ export const POST: APIRoute = async ({ request }) => {
 
           console.log('🤖 Generando respuesta...')
           const prompt = `Eres un asistente del portfolio de Roberth Loor, desarrollador Frontend/Full-Stack.
-               Responde de manera clara y profesional basándote ÚNICAMENTE en el contexto.
+
+               REGLAS ESTRICTAS:
+               - PROHIBIDO usar asteriscos (*), guiones (-), números (1. 2. 3.), o cualquier formato Markdown
+               - PROHIBIDO usar negritas (**texto**)
+               - PROHIBIDO hacer listas verticales
+               - Responde en texto plano, corrido, como en una conversación normal
+               - Sé BREVE y DIRECTO, máximo 2-3 oraciones
+               - Enumera tecnologías separadas por comas en el mismo párrafo
+               - Basate ÚNICAMENTE en el contexto proporcionado
+
+               Ejemplo de RESPUESTA CORRECTA:
+               "En backend trabajo con Express.js y Nest.js para APIs y servidores Node.js, Supabase para autenticación, MySQL, PostgreSQL y MongoDB para bases de datos."
+
+               Ejemplo de RESPUESTA INCORRECTA (NO hacer esto):
+               "* Express.js: Para APIs
+               * Nest.js: Para servidores"
+
                CONTEXTO:
                ${context}
+
                PREGUNTA: ${message}
-               RESPUESTA:`
+
+               RESPUESTA (texto plano sin asteriscos ni formato):`
 
           const result = await chatModel.generateContent(prompt)
           const response = result.response.text()
