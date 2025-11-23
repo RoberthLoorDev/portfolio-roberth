@@ -21,6 +21,8 @@ import iconProject2 from './projects/icon_proyect_2.png'
 import captureProject2 from './projects/capture_proyect_2.png'
 import instagram from './instagram.png'
 import arrowUp from './arrow-up.png'
+import awesome from './awesome.svg'
+import user from './user.svg'
 
 export {
      arrowHeader,
@@ -38,6 +40,8 @@ export {
      captureProject2,
      instagram,
      arrowUp,
+     awesome,
+     user,
 }
 
 export const skillsArray = [
