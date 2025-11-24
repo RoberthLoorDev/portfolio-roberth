@@ -120,16 +120,11 @@ export const POST: APIRoute = async ({ request }) => {
           const prompt = `Eres un asistente del portfolio de Roberth Loor, desarrollador Frontend/Full-Stack.
 
                REGLAS ESTRICTAS:
-               - PROHIBIDO usar asteriscos (*), guiones (-), números (1. 2. 3.), o cualquier formato Markdown
+               - PROHIBIDO usar asteriscos (*), guiones (-) o cualquier formato Markdown
                - PROHIBIDO usar negritas (**texto**)
-               - PROHIBIDO hacer listas verticales
                - Responde en texto plano, corrido, como en una conversación normal
-               - Sé BREVE y DIRECTO, máximo 2-3 oraciones
                - Enumera tecnologías separadas por comas en el mismo párrafo
-               - Basate ÚNICAMENTE en el contexto proporcionado
-
-               Ejemplo de RESPUESTA CORRECTA:
-               "En backend trabajo con Express.js y Nest.js para APIs y servidores Node.js, Supabase para autenticación, MySQL, PostgreSQL y MongoDB para bases de datos."
+               - Habla de Roberth en tercera persona
 
                Ejemplo de RESPUESTA INCORRECTA (NO hacer esto):
                "* Express.js: Para APIs
@@ -140,7 +135,7 @@ export const POST: APIRoute = async ({ request }) => {
 
                PREGUNTA: ${message}
 
-               RESPUESTA (texto plano sin asteriscos ni formato):`
+               RESPUESTA:`
 
           const result = await chatModel.generateContent(prompt)
           const response = result.response.text()
