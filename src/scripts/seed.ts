@@ -26,7 +26,8 @@ async function seedPortfolio() {
           try {
                console.log(`🔍 Processing chunk: "${chunk.metadata.title}..."`)
 
-               const result = await embeddingModel.embedContent(chunk.content)
+               const textToEmbed = `Roberth Loor – ${chunk.metadata.title}\n\n${chunk.content}`
+               const result = await embeddingModel.embedContent(textToEmbed)
                const embedding = result.embedding.values
 
                if (embedding.length !== 768) {
