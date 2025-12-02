@@ -37,14 +37,14 @@ export const POST: APIRoute = async ({ request }) => {
           console.log('🔢 Embedding generado, dimensiones:', queryEmbedding.length)
 
           // Get all chunks from database
-          console.log('🔍 Buscando chunks con raw SQL...')
-
-          const embeddingStr = '[' + queryEmbedding.join(',') + ']'
-
-          const { data: relevantChunks, error: searchError } = await supabase
-               .from('portfolio_chunks')
-               .select('*')
-               .limit(100)
+          const { data: filteredChunks, error: searchError } = await supabase.rpc(
+               'match_portfolio_chunks',
+               {
+                    query_embedding: queryEmbedding,
+                    match_threshold: 0.4,
+                    match_count: 10,
+               },
+          )
 
           if (searchError) {
                console.error('❌ Error obteniendo chunks:', searchError)
@@ -60,41 +60,12 @@ export const POST: APIRoute = async ({ request }) => {
                )
           }
 
-          // Calculate cosine similarity for each chunk
-          const chunksWithSimilarity = relevantChunks.map((chunk: any) => {
-               const chunkEmbedding =
-                    typeof chunk.embedding === 'string'
-                         ? JSON.parse(chunk.embedding)
-                         : chunk.embedding
-
-               let dotProduct = 0
-               let normA = 0
-               let normB = 0
-
-               for (let i = 0; i < 768; i++) {
-                    dotProduct += queryEmbedding[i] * chunkEmbedding[i]
-                    normA += queryEmbedding[i] * queryEmbedding[i]
-                    normB += chunkEmbedding[i] * chunkEmbedding[i]
-               }
-
-               const similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
-
-               return {
-                    ...chunk,
-                    similarity,
-               }
-          })
-
-          // Filter and sort by similarity
-          const filteredChunks = chunksWithSimilarity
-               .filter((chunk) => chunk.similarity > 0.5)
-               .sort((a, b) => b.similarity - a.similarity)
-               .slice(0, 5)
+          // Nota: Eliminamos todo el código de cálculo manual de similitud.
 
           console.log('📚 Chunks encontrados:', filteredChunks.length)
           console.log(
                '📊 Similitudes:',
-               filteredChunks.map((c) => c.similarity.toFixed(3)),
+               filteredChunks.map((c: any) => c.similarity.toFixed(3)),
           )
 
           if (filteredChunks.length === 0) {
@@ -110,7 +81,6 @@ export const POST: APIRoute = async ({ request }) => {
                     },
                )
           }
-
           // Build context from relevant chunks
           const context = filteredChunks
                .map((chunk: any) => `[${chunk.metadata.title}]\n${chunk.content}`)
