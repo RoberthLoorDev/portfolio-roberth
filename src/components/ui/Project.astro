@@ -4,46 +4,65 @@ import { project1, project1capture } from '../../assets/images'
 import Tags from '../../components/ui/Tags.astro'
 
 interface Props {
-  title: string
-  tags: string[]
-  description: string
-  image: ImageMetadata
-  icon: ImageMetadata
-  link: string
+     title: string
+     tags: string[]
+     description: string
+     image: ImageMetadata
+     icon: ImageMetadata
+     link: string
 }
 
 const { title, description, image, tags, icon, link } = Astro.props
 ---
 
 <a
-  href={link}
-  target="_blank"
-  class="p-5 lg:p-7 rounded-xl relative box-border hover:border-3 hover:outline outline-[1px] outline-primary hover:bg-[#0F1A30] transition duration-300 hover:cursor-pointer"
+     href={link}
+     target="_blank"
+     class="enter-animation p-5 lg:p-7 rounded-xl relative box-border hover:border-3 hover:outline outline-[1px] outline-primary hover:bg-[#0F1A30] transition duration-300 hover:cursor-pointer"
 >
-  <div class="flex lg:flex-row flex-col lg:justify-between">
-    <div class="flex items-center mb-2">
-      <Image
-        class="w-auto h-[43px] p-[7px] bg-[#1A354C] rounded-lg mr-3"
-        src={icon}
-        alt="Project 1"
-      />
-      <h4>{title}</h4>
-    </div>
-  </div>
+     <div class="flex lg:flex-row flex-col lg:justify-between">
+          <div class="flex items-center mb-2">
+               <Image
+                    class="w-auto h-[43px] p-[7px] bg-[#1A354C] rounded-lg mr-3"
+                    src={icon}
+                    alt="Project 1"
+               />
+               <h4>{title}</h4>
+          </div>
+     </div>
 
-  <!-- tags -->
+     <!-- tags -->
 
-  <div class="flex flex-wrap items-center my-5 lg:mt-0">
-    {tags.map((tag) => <Tags title={tag} />)}
-  </div>
+     <div class="flex flex-wrap items-center my-5 lg:mt-0">
+          {tags.map((tag) => <Tags title={tag} />)}
+     </div>
 
-  <p class="opacity-80 text-sm leading-5">
-    {description}
-  </p>
-  <div
-    class="absolute w-full h-full top-0 left-0 bg-primary rounded-xl -z-10 opacity-[0.03]"
-  >
-  </div>
+     <p class="opacity-80 text-sm leading-5">
+          {description}
+     </p>
+     <div
+          class="absolute w-full h-full top-0 left-0 bg-primary rounded-xl -z-10 opacity-[0.03]"
+     >
+     </div>
 
-  <Image src={image} alt="Project 1" class="mt-2 rounded-lg" />
+     <Image src={image} alt="Project 1" class="mt-2 rounded-lg" />
 </a>
+<style>
+     .enter-animation {
+          animation: appear linear;
+          animation-timeline: view();
+          animation-range: entry 40% cover 30%;
+          animation-fill-mode: both;
+     }
+
+     @keyframes appear {
+          from {
+               opacity: 0;
+               transform: translateY(30px);
+          }
+          to {
+               opacity: 1;
+               transform: translateY(0px);
+          }
+     }
+</style>
