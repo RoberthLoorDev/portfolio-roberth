@@ -29,6 +29,8 @@ import epamIcon from './projects/icon-epam.png'
 import captureP1EPAM from './projects/capture-epam-p1.png'
 import captureVagadamia from './projects/capture-vagadamia.png'
 import iconVagadamia from './projects/icon-vagadamia.png'
+import captureRiku from './projects/capture-riku.jpg'
+import iconRiku from './projects/icon-riku.png'
 
 export {
      arrowHeader,
@@ -53,6 +55,8 @@ export {
      captureP1EPAM,
      captureVagadamia,
      iconVagadamia,
+     captureRiku,
+     iconRiku,
 }
 
 export const skillsArray = [

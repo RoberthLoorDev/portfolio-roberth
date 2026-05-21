@@ -10,9 +10,28 @@ import {
      captureP1EPAM,
      captureVagadamia,
      iconVagadamia,
+     captureRiku,
+     iconRiku,
 } from '../assets/images'
 
 export const projectsArray = [
+     {
+          title: 'Riku',
+          tags: [
+               'Angular',
+               'Astro',
+               'TypeScript',
+               'Tailwind CSS',
+               'Express',
+               'Nginx',
+               'Linux',
+               'Docker',
+          ],
+          description: `Web and mobile vehicle transaction marketplace in Ecuador, built under Jakay. Restructured unstable transactional flows, integrated credit scoring API (Avalburó), and established a progressive Nginx-based Astro migration.`,
+          image: captureRiku,
+          icon: iconRiku,
+          link: '/projects/riku',
+     },
      {
           title: 'Vagadamia',
           tags: [

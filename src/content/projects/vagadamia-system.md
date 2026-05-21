@@ -1,6 +1,6 @@
 ---
 title: 'Purchase Order & Inventory Management System'
-date: 'Feb 2025 - Present'
+date: 'Feb 2025 - Nov 2025'
 company: 'VAGADAMIA — Nationwide Hardware Sales & Supply'
 
 description: |-
