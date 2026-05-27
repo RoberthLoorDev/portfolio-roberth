@@ -10,7 +10,9 @@ const supabase = createClient(
 )
 
 const genAI = new GoogleGenerativeAI(import.meta.env.GOOGLE_API_KEY)
-const embeddingModel = genAI.getGenerativeModel({ model: 'text-embedding-004' })
+const embeddingModel = genAI.getGenerativeModel({
+  model: 'gemini-embedding-001',
+})
 const chatModel = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' })
 
 export const POST: APIRoute = async ({ request }) => {

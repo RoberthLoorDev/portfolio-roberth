@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import dotenv from 'dotenv'
+import { portfolioData } from './portfolioData'
 
 dotenv.config()
 
@@ -12,13 +13,25 @@ const supabase = createClient(
 const genIA = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!)
 
 const embeddingModel = genIA.getGenerativeModel({
-     model: 'text-embedding-004',
+     model: 'gemini-embedding-001',
 })
-import { portfolioData } from './portfolioData'
 
 // principal function to seed the database
 async function seedPortfolio() {
      console.log('🚀 Starting generation embeddings... \n')
+
+     // Clean old records first
+     console.log('🧹 Cleaning old records from portfolio_chunks...')
+     const { error: deleteError } = await supabase
+          .from('portfolio_chunks')
+          .delete()
+          .neq('id', '0') // delete all rows
+     if (deleteError) {
+          console.error('❌ Error deleting old records:', deleteError.message)
+          return
+     }
+     console.log('✅ Old records deleted successfully\n')
+
      let processCount = 0
 
      // Iterate over each portfolio item
@@ -30,9 +43,9 @@ async function seedPortfolio() {
                const result = await embeddingModel.embedContent(textToEmbed)
                const embedding = result.embedding.values
 
-               if (embedding.length !== 768) {
+               if (embedding.length !== 3072) {
                     throw new Error(
-                         `Embedding length is ${embedding.length}, expected 768.`,
+                         `Embedding length is ${embedding.length}, expected 3072.`,
                     )
                }
 
