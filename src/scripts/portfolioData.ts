@@ -118,6 +118,73 @@ export const portfolioData = [
           },
      },
      {
+          category: 'experience',
+          content: `Como desarrollador Frontend y miembro del Comité de Desarrollo Estratégico en Jakay desde diciembre 2025, 
+    contribuyo al desarrollo de sistemas financieros digitales, APIs personalizadas y soluciones ágiles centradas en el usuario. 
+    Participo en la definición de la arquitectura técnica, decisiones de frameworks, e infraestructura. Introduje y mentoreé 
+    al equipo en el uso de asistentes AI (Cursor, Claude, Copilot) para acelerar la entrega diaria. También tomé control 
+    de operaciones de infraestructura, gestionando builds, compilación y despliegue en servidores con Docker y Linux. 
+    Mi trabajo se enfoca principalmente en Riku, el sistema transaccional de vehículos más importante de la compañía.`,
+          metadata: {
+               title: 'Frontend Developer & Strategic Committee',
+               company: 'Jakay',
+               period: 'Dic 2025 – Presente',
+               type: 'full-time',
+               location: 'Ambato, Ecuador',
+               responsibilities: [
+                    'Comité de Desarrollo Estratégico',
+                    'Definición de arquitectura frontend',
+                    'Operaciones de infraestructura (Docker, Linux)',
+                    'Mentoría en asistentes AI',
+               ],
+               technologies: [
+                    'Angular',
+                    'React',
+                    'Vue.js',
+                    'Express',
+                    'TypeScript',
+                    'Docker',
+                    'Linux',
+               ],
+          },
+     },
+     {
+          category: 'experience',
+          content: `Como desarrollador líder del frontend de Riku en Jakay desde diciembre 2025, trabajo en la plataforma 
+    integral de compraventa de vehículos y fintech en Ecuador que digitaliza todo el proceso: desde la publicación 
+    hasta la aprobación de crédito y documentación. Rescaté y reestructure lógica transaccional crítica en Express 
+    y Angular, resolviendo fallos graves de flujo que ponían en riesgo transacciones de alto valor. Implementé un 
+    sistema de enrutamiento inteligente con Nginx para migrar progresivamente páginas del Angular legacy a Astro, 
+    permitiendo una migración página por página sin tiempo de inactividad. Desarrollé integraciones con bancos 
+    locales y la buró de crédito Avalburó para automatizar perfiles de riesgo y elegibilidad crediticia. 
+    Implementé un modelo de "precio congelado" para evitar que ediciones en base de datos corrompan contratos 
+    de crédito activos. Gestioné builds y despliegues en servidores de producción usando Docker y Linux.`,
+          metadata: {
+               title: 'Frontend Developer — Riku Project',
+               company: 'Jakay',
+               period: 'Dic 2025 – Presente',
+               type: 'project',
+               location: 'Ambato, Ecuador',
+               responsibilities: [
+                    'Rescate arquitectónico de lógica transaccional',
+                    'Migración progresiva Angular → Astro con Nginx',
+                    'Integración con buró de crédito Avalburó',
+                    'Modelo de precio congelado para contratos',
+                    'Despliegue con Docker y Linux',
+               ],
+               technologies: [
+                    'Angular',
+                    'Astro',
+                    'Express',
+                    'TypeScript',
+                    'Tailwind CSS',
+                    'Nginx',
+                    'Docker',
+                    'Linux',
+               ],
+          },
+     },
+     {
           category: 'education',
           content: `Obtuve mi título de Ingeniero en Tecnologías de la Información en la Universidad Laica 
     Eloy Alfaro de Manabí en marzo 2024. Durante mi formación me especialicé en desarrollo de software 
