@@ -27,7 +27,7 @@ export const projectsArray = [
                'Linux',
                'Docker',
           ],
-          description: `Web and mobile vehicle transaction marketplace in Ecuador, built under Jakay. Restructured unstable transactional flows, integrated credit scoring API (Avalburó), and established a progressive Nginx-based Astro migration.`,
+          description: `Web and mobile vehicle transaction marketplace in Ecuador (Jakay). Restructured unstable transactional flows, integrated credit scoring API (Avalburó) with zero-downtime reliability, and architected a progressive Nginx-based Astro migration.`,
           image: captureRiku,
           icon: iconRiku,
           link: '/projects/riku',
@@ -43,7 +43,7 @@ export const projectsArray = [
                'shadcn/ui',
                'Web Scraping',
           ],
-          description: `  End-to-end platform to manage purchase orders, inventory, invoicing, service orders, and maintenance—complete with automated status updates, role-based access, dashboards, notifications, and PDF document generation.`,
+          description: `End-to-end ERP platform for hardware distribution. Streamlined purchase orders, inventory, invoicing, and service orders while reducing manual reporting time by 40% with automated web scraping and bulk PDF generation.`,
           image: captureVagadamia,
           icon: iconVagadamia,
           link: '/projects/vagadamia-system',
@@ -52,7 +52,7 @@ export const projectsArray = [
      {
           title: 'codecolibri',
           tags: ['Astro', 'TypeScript', 'Tailwind', 'Vercel', 'EmailJS'],
-          description: `Developed a modern and functional landing page for a newly established software development company, focusing on clear communication and brand identity representation.`,
+          description: `Corporate landing page for a software development company. Achieved 98+ Lighthouse performance scores, instant load times, and optimized lead capture workflows.`,
           image: captureCodecolibri,
           icon: codecolibriIcon,
           link: '/projects/codecolibri-landing-page',
@@ -70,7 +70,7 @@ export const projectsArray = [
                'IoT',
                'DHT22 Sensor',
           ],
-          description: `Spearheaded development of an innovative, low-cost IoT environmental monitoring system for laboratory.`,
+          description: `Low-cost IoT environmental monitoring system for public water company laboratories. Integrated ESP32 sensors with real-time web/mobile dashboards to protect sensitive equipment.`,
           image: captureIoTEPAM,
           icon: epamIcon,
           link: '/projects/environmental-monitoring-epam',
@@ -79,7 +79,7 @@ export const projectsArray = [
      {
           title: 'EPAM - Aguas de Manta',
           tags: ['React', 'Express', 'PostgreSQL', 'Bootstrap', 'TypeScript'],
-          description: `I developed modules to manage users, inventory, assets and costs. I improved the user experience with friendly and robust interfaces.`,
+          description: `Enterprise management platform for municipal water utility. Developed robust modules for user roles, inventory tracking, asset management, and operational cost accounting.`,
           image: captureP1EPAM,
           icon: epamIcon,
           link: '/projects/epam-lab-system',
@@ -88,8 +88,7 @@ export const projectsArray = [
      {
           title: 'Bambuners cards',
           tags: ['React', 'Express', 'NextJS', 'Tailwind', 'MongoDB'],
-          description:
-               'This project has been developed for the streamer d0oppa, who requested a trading card management system for his followers.',
+          description: `Trading card management and engagement platform built for content creators, supporting real-time collection tracking, card trading, and active community interaction.`,
           image: captureProject2,
           icon: iconProject2,
           link: '/projects/streamer-card-management',
@@ -98,9 +97,7 @@ export const projectsArray = [
      {
           title: 'Litelnk',
           tags: ['Vue', 'Express', 'MongoDB', 'Tailwind'],
-          description: `Site created with the purpose of being able to generate shortened links. Reinforced my
-                understanding of random link generation and redirection. Improved user experience with
-                responsive design and in-browser storage.`,
+          description: `Fast link shortener utility featuring sub-50ms redirection response times, client-side caching, and responsive URL management interface.`,
           image: project1capture,
           icon: iconProject1,
           link: 'https://litelnk.vercel.app/',
