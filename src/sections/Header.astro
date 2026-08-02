@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { github, linkedin, headerBackground, instagram } from '../assets/images'
+import { github, linkedin, me2 } from '../assets/images'
 
 const socials = [
      {
@@ -9,11 +9,6 @@ const socials = [
           icon: linkedin,
      },
      { name: 'Github', href: 'https://github.com/RoberthLoorDev', icon: github },
-     // {
-     //      name: 'Instagram',
-     //      href: 'https://www.instagram.com/roberth.loor10/',
-     //      icon: instagram,
-     // },
 ]
 ---
 
@@ -25,6 +20,19 @@ const socials = [
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                </span>
                Available for new projects & opportunities
+          </div>
+          <!-- Mobile Profile Image with Ring -->
+          <div class="flex justify-center items-center lg:hidden my-8 relative w-[75vw] h-[75vw] max-w-[380px] max-h-[380px] mx-auto">
+               <!-- Mobile Ring Background Wrapper -->
+               <div class="absolute inset-0 flex items-center justify-center ring-gradient-opacity">
+                    <div class="w-[80%] h-[80%] rounded-full border-[18px] sm:border-[24px] border-[#007cff] shadow-[0_0_25px_#007cff]"></div>
+               </div>
+               <!-- Mobile Image -->
+               <Image
+                    src={me2}
+                    alt="Roberth Loor"
+                    class="w-full h-full object-contain relative z-10 image-fade-bottom"
+               />
           </div>
           <span class="text-lg text-primary font-semibold block">Welcome to my portfolio</span>
           <h2
@@ -43,7 +51,7 @@ const socials = [
                <div class="flex gap-6 flex-col lg:flex-row my-12">
                     <a href="mailto:dayvidlife@gmail.com" target="_blank">
                          <button
-                              class="text-white bg-[#026eed] h-14 w-36 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#026eed] duration-150 hover:bg-[#0251b3] hover:border-[#0251b3] active:bg-[#024599]"
+                              class="text-white bg-[#007cff] h-14 w-36 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#007cff] duration-150 hover:bg-[#0066d6] hover:border-[#0066d6] active:bg-[#0055b3]"
                          >
                               <svg
                                    xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +78,7 @@ const socials = [
                          target="_blank"
                     >
                          <button
-                              class="text-white h-14 w-48 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#026eed]"
+                              class="text-white h-14 w-48 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#007cff]"
                          >
                               <svg
                                    xmlns="http://www.w3.org/2000/svg"
@@ -117,19 +125,23 @@ const socials = [
                </div>
           </div>
 
-          <img
-               class="shadow-image-header absolute -top-10 right-0 -z-10 w-auto h-[552px] opacity-0 lg:opacity-50"
-               src={headerBackground.src}
-          />
+          <!-- Desktop Profile Image with Ring -->
+          <div class="hidden lg:block absolute top-8 right-0 -z-10 w-[450px] h-[450px] xl:w-[650px] xl:h-[650px]">
+               <!-- Desktop Ring Background Wrapper -->
+               <div class="absolute inset-x-0 -top-5 inset-y-0 m-auto w-[460px] h-[460px] xl:w-[500px] xl:h-[500px] flex items-center justify-center ring-gradient-opacity">
+                    <div class="w-[380px] h-[380px] xl:w-[420px] xl:h-[420px] rounded-full border-[68px] border-[#007cff] shadow-[0_0_40px_#007cff]"></div>
+               </div>
+               <Image
+                    src={me2}
+                    alt="Roberth Loor"
+                    class="w-full h-full object-contain relative z-10 image-fade-bottom"
+               />
+          </div>
      </div>
 </section>
 
 <style>
      /* animations for header */
-     .shadow-image-header {
-          animation: show-image-header 1.5s ease-out;
-     }
-
      .title-presentation {
           animation: title-animation 1s forwards;
      }
@@ -153,17 +165,6 @@ const socials = [
           }
      }
 
-     @media (min-width: 1024px) {
-          @keyframes show-image-header {
-               0% {
-                    opacity: 0;
-               }
-               100% {
-                    opacity: 0.5;
-               }
-          }
-     }
-
      @keyframes title-animation {
           0% {
                opacity: 0;
@@ -173,6 +174,16 @@ const socials = [
                opacity: 1;
                transform: translateY(0px);
           }
+     }
+
+     .image-fade-bottom {
+          mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+     }
+
+     .ring-gradient-opacity {
+          mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,1) 100%);
+          -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,1) 100%);
      }
 </style>
 
@@ -187,7 +198,7 @@ const socials = [
           bottom: 7px; /* Alineado con el borde inferior del div */
           width: 100%; /* Ancho completo del div */
           height: 4px; /* Altura de la barra inferior */
-          background-color: #2d8cfc; /* Color de la barra inferior */
+          background-color: #007cff; /* Color de la barra inferior */
           border-radius: 100px;
           transform: scaleX(
                0

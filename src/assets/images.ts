@@ -15,6 +15,7 @@ import work from './work.png'
 import project1 from './project1.png'
 import project1capture from './project1capture.png'
 import me from './me.png'
+import me2 from './me2.png'
 import education from './education.png'
 import iconProject1 from './project1.png'
 import iconProject2 from './projects/icon_proyect_2.png'
@@ -42,6 +43,7 @@ export {
      project1,
      project1capture,
      me,
+     me2,
      education,
      iconProject1,
      iconProject2,
