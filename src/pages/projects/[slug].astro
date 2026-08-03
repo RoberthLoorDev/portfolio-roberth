@@ -29,18 +29,25 @@ const projectData = project.data
 const {
      date,
      title,
+     title_es,
      company,
      description,
+     description_es,
      tags,
      image,
      buttonText,
+     buttonText_es,
      buttonLink,
      showRedirectButton,
      achievements,
+     achievements_es,
      conclusion,
+     conclusion_es,
      body,
+     body_es,
      footerImage,
      footerCaption,
+     footerCaption_es,
 } = projectData
 ---
 
@@ -52,10 +59,16 @@ const {
                >{date}</span
           >
 
-          <h1 class="mt-[35px] text-[35px] font-bold md:text-center">{title}</h1>
+          <h1 class="mt-[35px] text-[35px] font-bold md:text-center">
+               <span data-i18n-lang="en">{title}</span>
+               <span data-i18n-lang="es" class="hidden">{title_es || title}</span>
+          </h1>
           <strong class="text-[#61DAFB] font-light md:text-center">{company}</strong>
 
-          <p class="text-base font-light mt-[35px] md:text-center">{description}</p>
+          <p class="text-base font-light mt-[35px] md:text-center">
+               <span data-i18n-lang="en">{description}</span>
+               <span data-i18n-lang="es" class="hidden">{description_es || description}</span>
+          </p>
 
           <ul class="flex flex-wrap gap-[13px] mt-[35px] md:justify-center">
                {
@@ -96,7 +109,10 @@ const {
                class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px] lg:-mt-[0px]"
                class:list={{ hidden: !showRedirectButton }}
           >
-               <span class="text-base text-[#090C1A] font-bold">{buttonText}</span>
+               <span class="text-base text-[#090C1A] font-bold">
+                    <span data-i18n-lang="en">{buttonText}</span>
+                    <span data-i18n-lang="es" class="hidden">{buttonText_es || buttonText}</span>
+               </span>
                <Image
                     src={imageDetails.arrow}
                     width={24}
@@ -111,30 +127,59 @@ const {
           <div class="absolute h-full w-[10px] bg-[#161927] py-[10px] rounded-full"></div>
 
           <div class="mx-[30px]">
-               <h2 class="text-[26px] font-bold">Achievements and Results</h2>
+               <h2 class="text-[26px] font-bold">
+                    <span data-i18n-lang="en">Achievements and Results</span>
+                    <span data-i18n-lang="es" class="hidden">Logros y Resultados</span>
+               </h2>
 
-               {
-                    achievements.map((achievement) => (
-                         <div class="text-white mt-[20px] text-sm flex gap-[10px]">
-                              <span>●</span>
-                              <p
-                                   class="leading-[24px] lg:text-base"
-                                   set:html={achievement}
-                              />
-                         </div>
-                    ))
-               }
+               <!-- EN achievements -->
+               <div data-i18n-lang="en">
+                    {
+                         achievements.map((achievement) => (
+                              <div class="text-white mt-[20px] text-sm flex gap-[10px]">
+                                   <span>●</span>
+                                   <p
+                                        class="leading-[24px] lg:text-base"
+                                        set:html={achievement}
+                                   />
+                              </div>
+                         ))
+                    }
+               </div>
+               <!-- ES achievements -->
+               <div data-i18n-lang="es" class="hidden">
+                    {
+                         (achievements_es || achievements).map((achievement) => (
+                              <div class="text-white mt-[20px] text-sm flex gap-[10px]">
+                                   <span>●</span>
+                                   <p
+                                        class="leading-[24px] lg:text-base"
+                                        set:html={achievement}
+                                   />
+                              </div>
+                         ))
+                    }
+               </div>
 
                <p class="mt-[40px] text-sm leading-[24px] lg:text-base">
-                    {conclusion}
+                    <span data-i18n-lang="en">{conclusion}</span>
+                    <span data-i18n-lang="es" class="hidden">{conclusion_es || conclusion}</span>
                </p>
           </div>
      </section>
 
-     <!-- projecyt description -->
+     <!-- project description -->
      <section class="mx-4 mt-[45px] md:mx-auto max-w-[850px]">
-          <h2 class="text-[26px] font-bold">Project description</h2>
-          <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
+          <h2 class="text-[26px] font-bold">
+               <span data-i18n-lang="en">Project description</span>
+               <span data-i18n-lang="es" class="hidden">Descripción del proyecto</span>
+          </h2>
+          <div data-i18n-lang="en">
+               <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
+          </div>
+          <div data-i18n-lang="es" class="hidden">
+               <p set:html={body_es || body} class="text-sm leading-[24px] mt-[20px]" />
+          </div>
      </section>
 
      <!-- footer image -->
@@ -146,9 +191,10 @@ const {
                height={600}
                class="object-cover h-[420px] min-w-full rounded-[20px] lg:h-[420px]"
           />
-          <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2"
-               >{footerCaption}</span
-          >
+          <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2">
+               <span data-i18n-lang="en">{footerCaption}</span>
+               <span data-i18n-lang="es" class="hidden">{footerCaption_es || footerCaption}</span>
+          </span>
      </section>
 
      <!-- back button -->
@@ -164,7 +210,10 @@ const {
                     alt="Volver al inicio"
                />
 
-               <span class="from-neutral-600">Go back </span>
+               <span class="from-neutral-600">
+                    <span data-i18n-lang="en">Go back</span>
+                    <span data-i18n-lang="es" class="hidden">Volver</span>
+               </span>
           </a>
      </div>
 </Layout>

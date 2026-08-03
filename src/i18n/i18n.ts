@@ -71,6 +71,16 @@ export function applyTranslations(lang: Lang): void {
       const value = resolve(dict, key)
       if (value) el.placeholder = value
     })
+
+  // data-i18n-lang → show/hide pre-rendered content blocks by language
+  document.querySelectorAll<HTMLElement>('[data-i18n-lang]').forEach((el) => {
+    const elLang = el.getAttribute('data-i18n-lang')
+    if (elLang === lang) {
+      el.classList.remove('hidden')
+    } else {
+      el.classList.add('hidden')
+    }
+  })
 }
 
 /** Update the visual state of the language selector */
