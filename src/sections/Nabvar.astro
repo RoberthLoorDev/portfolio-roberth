@@ -7,28 +7,28 @@ import LangSelector from '../components/ui/LangSelector.astro'
 >
      <a
           id="id_section_2"
-          href="#experience_section"
+          href="/#experience_section"
           class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.experience">Experience</span></a
      >
      <a
           id="id_section_3"
-          href="#projects_section"
+          href="/#projects_section"
           class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.projects">Projects</span></a
      >
      <a
           id="id_section_1"
-          href="#skill_section"
+          href="/#skill_section"
           class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.skills">Skills</span></a
      >
      <a
           id="id_section_4"
-          href="#about_me_section"
+          href="/#about_me_section"
           class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.about">About me</span></a
      >
 
      <a
           id="id_section_5"
-          href="#contact_me_section"
+          href="/#contact_me_section"
           class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.contact">Contact me</span></a
      >
      <LangSelector />
@@ -41,7 +41,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
 >
      <a
           id="id_section_2"
-          href="#experience_section"
+          href="/#experience_section"
           class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
      >
           <svg
@@ -64,7 +64,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
      >
      <a
           id="id_section_3"
-          href="#projects_section"
+          href="/#projects_section"
           class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
      >
           <svg
@@ -86,7 +86,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
      >
      <a
           id="id_section_1"
-          href="#skill_section"
+          href="/#skill_section"
           class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
      >
           <svg
@@ -107,7 +107,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
      >
      <a
           id="id_section_4"
-          href="#about_me_section"
+          href="/#about_me_section"
           class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
      >
           <svg
@@ -131,7 +131,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
 
      <a
           id="id_section_4"
-          href="#contact_me_section"
+          href="/#contact_me_section"
           class="text-white text-base font-semibold drop-shadow-lg ml-5 mt-8 flex"
      >
           <svg
@@ -193,7 +193,7 @@ import LangSelector from '../components/ui/LangSelector.astro'
                          link.classList.remove('active')
 
                          //agregar el color azul
-                         if (link.getAttribute('href') === `#${sectionId}`) {
+                         if (link.getAttribute('href') === `/#${sectionId}`) {
                               link.classList.add('active')
                          }
                     })

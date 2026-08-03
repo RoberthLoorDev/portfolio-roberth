@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import Layout from '../../layouts/Layout.astro'
+import Nabvar from '../../sections/Nabvar.astro'
 import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
 import { imageDetails } from '../../assets/images'
@@ -44,6 +45,7 @@ const {
 ---
 
 <Layout title={title}>
+     <Nabvar />
      <!-- header -->
      <section class="mt-[60px] flex flex-col mx-4 md:mx-auto max-w-[850px] lg:mt-[100px]">
           <span class="text-center w-full text-[#4793FF] text-sm font-semibold"
