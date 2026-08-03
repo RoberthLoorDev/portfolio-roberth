@@ -11,9 +11,11 @@ interface Props {
      isEducation?: boolean
      tags?: string[]
      link?: string
+     titleKey?: string
+     dateKey?: string
 }
 
-const { isLast, date, title, isEducation, tags = [''], link } = Astro.props
+const { isLast, date, title, isEducation, tags = [''], link, titleKey, dateKey } = Astro.props
 ---
 
 <div class="flex mb-16 relative">
@@ -35,10 +37,11 @@ const { isLast, date, title, isEducation, tags = [''], link } = Astro.props
      {
           link ? (
                <a href={link} target="_blank" class="box-experience ml-5">
-                    <span class="text-base text-textGray">{date}</span>
+                    <span class="text-base text-textGray" data-i18n={dateKey}>{date}</span>
                     <h4
                          class="title-experience -mt-[2px] underline lg:no-underline"
                          class:list={{ ['hover:underline']: link }}
+                         data-i18n={titleKey}
                     >
                          {title}
                          <p
@@ -59,8 +62,8 @@ const { isLast, date, title, isEducation, tags = [''], link } = Astro.props
                </a>
           ) : (
                <div class="box-experience ml-5">
-                    <span class="text-base text-textGray">{date}</span>
-                    <h4 class="title-experience -mt-[2px]">{title}</h4>
+                    <span class="text-base text-textGray" data-i18n={dateKey}>{date}</span>
+                    <h4 class="title-experience -mt-[2px]" data-i18n={titleKey}>{title}</h4>
                     <p class="mt-4 text-base font-light">
                          <slot />
                          <div class="flex mt-1 flex-wrap">

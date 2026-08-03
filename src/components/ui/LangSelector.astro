@@ -1,0 +1,39 @@
+---
+/**
+ * Language selector toggle (EN / ES)
+ * Renders two buttons side by side. The active language gets highlighted.
+ */
+---
+
+<div class="flex items-center gap-1 ml-6 lg:ml-12">
+     <button
+          data-lang-btn="en"
+          class="lang-btn text-sm font-semibold px-2 py-1 rounded-md transition-colors duration-200"
+          aria-label="Switch to English"
+     >
+          EN
+     </button>
+     <span class="text-textGray text-sm select-none">/</span>
+     <button
+          data-lang-btn="es"
+          class="lang-btn text-sm font-semibold px-2 py-1 rounded-md transition-colors duration-200"
+          aria-label="Cambiar a Español"
+     >
+          ES
+     </button>
+</div>
+
+<style>
+     .lang-btn {
+          color: #979BA4;
+          cursor: pointer;
+          background: transparent;
+          border: none;
+     }
+     .lang-btn:hover {
+          color: #ffffff;
+     }
+     .lang-btn.lang-active {
+          color: #007cff;
+     }
+</style>

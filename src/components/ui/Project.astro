@@ -10,9 +10,10 @@ interface Props {
      image: ImageMetadata
      icon: ImageMetadata
      link: string
+     descKey?: string
 }
 
-const { title, description, image, tags, icon, link } = Astro.props
+const { title, description, image, tags, icon, link, descKey } = Astro.props
 ---
 
 <a
@@ -37,7 +38,7 @@ const { title, description, image, tags, icon, link } = Astro.props
           {tags.map((tag) => <Tags title={tag} />)}
      </div>
 
-     <p class="opacity-80 text-sm leading-5">
+     <p class="opacity-80 text-sm leading-5" data-i18n={descKey}>
           {description}
      </p>
      <div

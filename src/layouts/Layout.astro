@@ -63,6 +63,37 @@ const { title } = Astro.props
                <Toaster client:load position="top-right" />
                <GetInTouchMe />
           </div>
+
+          <!-- i18n initialization -->
+          <script>
+               import { initI18n, setLang } from '../i18n/i18n'
+               import type { Lang } from '../i18n/translations'
+
+               // Initialize i18n on page load
+               document.addEventListener('DOMContentLoaded', () => {
+                    initI18n()
+
+                    // Bind language selector buttons
+                    document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
+                         btn.addEventListener('click', () => {
+                              const lang = btn.getAttribute('data-lang-btn') as Lang
+                              if (lang) setLang(lang)
+                         })
+                    })
+               })
+
+               // Also run on Astro page transitions
+               document.addEventListener('astro:page-load', () => {
+                    initI18n()
+
+                    document.querySelectorAll<HTMLButtonElement>('[data-lang-btn]').forEach((btn) => {
+                         btn.addEventListener('click', () => {
+                              const lang = btn.getAttribute('data-lang-btn') as Lang
+                              if (lang) setLang(lang)
+                         })
+                    })
+               })
+          </script>
      </body>
 </html>
 <style is:global>

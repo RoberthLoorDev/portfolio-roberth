@@ -10,12 +10,14 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
      <LightShadow position="left" />
 
      <div class="lg:w-[65%]">
-          <h3 class="">Experience</h3>
+          <h3 class="" data-i18n="exp.title">Experience</h3>
           <div class="flex justify-between">
                <div class="mt-10">
                     <WorkExperience
                          title="Software & Mobile Developer - Jakay"
                          date="Dec 2025 - Present"
+                         titleKey="exp.job1Title"
+                         dateKey="exp.job1Date"
                          tags={[
                               'Angular',
                               'Astro',
@@ -28,13 +30,15 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                          ]}
                          link="/projects/jakay"
                     >
-                         <p class="lg:text-base text-sm">
+                         <p class="lg:text-base text-sm" data-i18n-html="exp.job1Desc">
                               Spearheaded frontend and full-stack initiatives at Jakay for their flagship vehicle marketplace <f>Riku</f>. Restructured unstable transactional flows, integrated credit scoring API (<f>Avalburó</f>) with automated validation, and architected a <f>zero-downtime progressive migration</f> routing legacy Angular to modern Astro via Nginx on Linux/Docker servers.
                          </p>
                     </WorkExperience>
                     <WorkExperience
                          title="Software Engineer / ERP Developer - VAGADAMIA"
                          date="Feb 2025 - Nov 2025"
+                         titleKey="exp.job2Title"
+                         dateKey="exp.job2Date"
                          tags={[
                               'React',
                               'TypeScript',
@@ -46,13 +50,15 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                          ]}
                          link="/projects/vagadamia-system"
                     >
-                         <p class="lg:text-base text-sm">
+                         <p class="lg:text-base text-sm" data-i18n-html="exp.job2Desc">
                               Architected an end-to-end management platform for <f>purchase orders, inventory, and equipment maintenance</f>. Automated workflow status transitions, built a real-time government procurement monitor using <f>web scraping</f>, and reduced document generation overhead by 40% through <f>bulk PDF generation</f>.
                          </p>
                     </WorkExperience>
                     <WorkExperience
                          title="Freelance Software Engineer - Upwork / Fiverr"
                          date="Dec 2024 - Feb 2025"
+                         titleKey="exp.job3Title"
+                         dateKey="exp.job3Date"
                          tags={[
                               'Astro',
                               'React.js',
@@ -62,13 +68,15 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                               'Supabase',
                          ]}
                     >
-                         <p class="lg:text-base text-sm">
+                         <p class="lg:text-base text-sm" data-i18n-html="exp.job3Desc">
                               Delivered high-performance web solutions, custom dashboards, and serverless backends using Astro, React, and Supabase for international clients. Maintained a <f>100% on-time delivery rate</f>, focusing on <f>SEO optimization, sub-second load times, and clean UI architecture</f>.
                          </p>
                     </WorkExperience>
                     <WorkExperience
                          title="Software Developer (IoT) - Public Water Company of Manta (EPAM)"
                          date="Sep 2023 - Jan 2024"
+                         titleKey="exp.job4Title"
+                         dateKey="exp.job4Date"
                          isLast={false}
                          tags={[
                               'React Native',
@@ -80,7 +88,7 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                          ]}
                          link="/projects/environmental-monitoring-epam"
                     >
-                         <p class="lg:text-base text-sm">
+                         <p class="lg:text-base text-sm" data-i18n-html="exp.job4Desc">
                               Engineered an <f>IoT environmental monitoring solution</f> for EPAM laboratories. Integrated hardware sensors (ESP32) over Wi-Fi with web/mobile dashboards to capture temperature and humidity in real time, preventing critical equipment degradation.
                          </p>
                     </WorkExperience>
@@ -89,9 +97,11 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
                          isLast
                          title="Software Developer - Public Water Company of Manta (EPAM)"
                          date="Nov 2022 - Feb 2023"
+                         titleKey="exp.job5Title"
+                         dateKey="exp.job5Date"
                          link="/projects/epam-lab-system"
                     >
-                         <p class="lg:text-base text-sm">
+                         <p class="lg:text-base text-sm" data-i18n-html="exp.job5Desc">
                               Developed core enterprise modules to manage <f>users, inventory, assets, and operational costs</f>. Modernized administrative tools with robust PostgreSQL queries and responsive interfaces.
                          </p>
                     </WorkExperience>
@@ -101,25 +111,29 @@ import WorkExperience from '../components/ui/WorkExperience.astro'
 
      <!-- Education -->
      <div class="">
-          <h3>Education</h3>
+          <h3 data-i18n="exp.eduTitle">Education</h3>
           <div class="mt-10">
                <div class="lg:w-[20rem]">
                     <WorkExperience
                          title="Bachelor's degree in Computer Science"
                          date="2015 - 2019"
+                         titleKey="exp.edu1Title"
+                         dateKey="exp.edu1Date"
                          isEducation={true}
                     >
-                         Bachelor's degree fed on <f>computer science and systems.</f>
+                         <span data-i18n-html="exp.edu1Desc">Bachelor's degree fed on <f>computer science and systems.</f></span>
                     </WorkExperience>
                     <WorkExperience
                          title="University degree in Information Technology Engineering"
                          date="2019 - 2024"
+                         titleKey="exp.edu2Title"
+                         dateKey="exp.edu2Date"
                          isLast={true}
                          isEducation={true}
                     >
-                         Create and manage computer systems <f
+                         <span data-i18n-html="exp.edu2Desc">Create and manage computer systems <f
                               >to solve business and social problems.</f
-                         >
+                         ></span>
                     </WorkExperience>
                </div>
           </div>

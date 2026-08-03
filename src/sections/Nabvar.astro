@@ -1,32 +1,37 @@
+---
+import LangSelector from '../components/ui/LangSelector.astro'
+---
+
 <nav
      class="justify-center w-full fixed left-0 h-16 items-center z-20 bg-background hidden lg:flex"
 >
      <a
           id="id_section_2"
           href="#experience_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg">Experience</a
+          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.experience">Experience</span></a
      >
      <a
           id="id_section_3"
           href="#projects_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg">Projects</a
+          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.projects">Projects</span></a
      >
      <a
           id="id_section_1"
           href="#skill_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg">Skills</a
+          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.skills">Skills</span></a
      >
      <a
           id="id_section_4"
           href="#about_me_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg">About me</a
+          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.about">About me</span></a
      >
 
      <a
           id="id_section_5"
           href="#contact_me_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg">Contact me</a
+          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.contact">Contact me</span></a
      >
+     <LangSelector />
 </nav>
 
 <!-- Lateral navbar -->
@@ -55,7 +60,7 @@
                     d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z"
                ></path></svg
           >
-          Experience</a
+          <span data-i18n="nav.experience">Experience</span></a
      >
      <a
           id="id_section_3"
@@ -77,7 +82,7 @@
                     d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
                     d="M14 4l-4 16"></path></svg
           >
-          Projects</a
+          <span data-i18n="nav.projects">Projects</span></a
      >
      <a
           id="id_section_1"
@@ -98,7 +103,7 @@
                     d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"
                ></path><path d="M13.5 6.5l4 4"></path></svg
           >
-          Skills</a
+          <span data-i18n="nav.skills">Skills</span></a
      >
      <a
           id="id_section_4"
@@ -121,7 +126,7 @@
                     d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg
           >
 
-          About me</a
+          <span data-i18n="nav.about">About me</span></a
      >
 
      <a
@@ -144,8 +149,9 @@
                     d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
                ></path><path d="M4 13h3l3 3h4l3 -3h3"></path></svg
           >
-          Contact me</a
+          <span data-i18n="nav.contact">Contact me</span></a
      >
+     <LangSelector />
 </nav>
 
 <!-- button lateral navbar -->

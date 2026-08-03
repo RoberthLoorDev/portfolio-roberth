@@ -31,6 +31,7 @@ export const projectsArray = [
           image: captureRiku,
           icon: iconRiku,
           link: '/projects/riku',
+          descKey: 'projects.riku.desc',
      },
      {
           title: 'Vagadamia',
@@ -47,6 +48,7 @@ export const projectsArray = [
           image: captureVagadamia,
           icon: iconVagadamia,
           link: '/projects/vagadamia-system',
+          descKey: 'projects.vagadamia.desc',
      },
 
      {
@@ -56,6 +58,7 @@ export const projectsArray = [
           image: captureCodecolibri,
           icon: codecolibriIcon,
           link: '/projects/codecolibri-landing-page',
+          descKey: 'projects.codecolibri.desc',
      },
 
      {
@@ -74,6 +77,7 @@ export const projectsArray = [
           image: captureIoTEPAM,
           icon: epamIcon,
           link: '/projects/environmental-monitoring-epam',
+          descKey: 'projects.epamIot.desc',
      },
 
      {
@@ -83,6 +87,7 @@ export const projectsArray = [
           image: captureP1EPAM,
           icon: epamIcon,
           link: '/projects/epam-lab-system',
+          descKey: 'projects.epamLab.desc',
      },
 
      {
@@ -92,6 +97,7 @@ export const projectsArray = [
           image: captureProject2,
           icon: iconProject2,
           link: '/projects/streamer-card-management',
+          descKey: 'projects.bambuners.desc',
      },
 
      {
@@ -101,5 +107,6 @@ export const projectsArray = [
           image: project1capture,
           icon: iconProject1,
           link: 'https://litelnk.vercel.app/',
+          descKey: 'projects.litelnk.desc',
      },
 ]
