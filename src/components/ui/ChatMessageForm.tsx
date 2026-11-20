@@ -23,7 +23,8 @@ export default function ChatMessageForm() {
 
           setLoading(true)
           setShowResponse(true)
-          setAiResponse('Sending...')
+          setAiResponse('')
+          setSources([])
 
           try {
                const response = await fetch('/api/chat', {
@@ -34,15 +35,36 @@ export default function ChatMessageForm() {
                     body: JSON.stringify({ message: question }),
                })
 
-               const data = await response.json()
-
-               if (!response.ok || data.error) {
+               // Validation / rate-limit errors come back as plain JSON
+               if (!response.ok || !response.body) {
+                    const data = await response.json().catch(() => ({}))
                     setAiResponse(data.error || 'Error al procesar tu mensaje')
-                    setSources([])
-               } else {
-                    setAiResponse(data.response)
-                    setSources(data.sources || [])
+                    return
                }
+
+               // Successful answers arrive as newline-delimited JSON events
+               const reader = response.body.getReader()
+               const decoder = new TextDecoder()
+               let buffer = ''
+
+               const handleEvent = (line: string) => {
+                    if (!line.trim()) return
+                    const event = JSON.parse(line)
+                    if (event.type === 'sources') setSources(event.sources ?? [])
+                    else if (event.type === 'token')
+                         setAiResponse((prev) => prev + event.text)
+                    else if (event.type === 'error') setAiResponse(event.message)
+               }
+
+               while (true) {
+                    const { done, value } = await reader.read()
+                    if (done) break
+                    buffer += decoder.decode(value, { stream: true })
+                    const lines = buffer.split('\n')
+                    buffer = lines.pop() ?? ''
+                    lines.forEach(handleEvent)
+               }
+               handleEvent(buffer)
           } catch (error) {
                console.error('Error:', error)
                setAiResponse('Error de conexión. Intenta de nuevo.')
