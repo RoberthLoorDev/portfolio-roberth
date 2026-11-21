@@ -3,7 +3,8 @@ export const prerender = false
 import type { APIRoute } from 'astro'
 import { embedText } from '../../lib/embedText'
 import { getEnv } from '../../lib/env'
-import { allowRequest, cacheKey, getCached, setCached } from '../../lib/guards'
+import { cacheKey, checkRateLimit, getCached, setCached } from '../../lib/guards'
+import { withLanguageInstruction } from '../../lib/language'
 import { providerOrder, streamAnswer } from '../../lib/llm'
 import { search } from '../../lib/retrieval'
 
@@ -22,7 +23,7 @@ function buildSystemPrompt(context: string) {
 REGLAS:
 - Responde SOLO con la información del CONTEXTO. Si no aparece, di brevemente que no tienes ese dato.
 - Si la pregunta no tiene que ver con Roberth, su experiencia, proyectos o habilidades, indica amablemente que solo puedes hablar de eso.
-- IDIOMA: responde siempre en el idioma en que está escrita la PREGUNTA (inglés o español), aunque el CONTEXTO esté en español. Traduce lo necesario.
+- LANGUAGE (highest priority): always reply in the language of the user's QUESTION. If the question is in English, your whole answer MUST be in English even though the CONTEXT is in Spanish (translate it). If the question is in Spanish, reply in Spanish.
 - Texto plano y corrido, como en una conversación. PROHIBIDO usar Markdown, asteriscos, guiones de lista o negritas.
 - Enumera tecnologías separadas por comas dentro del mismo párrafo.
 - Habla de Roberth en tercera persona. Sé conciso (máximo 5 frases).
@@ -33,7 +34,27 @@ ${context}`
 
 const ndjson = (event: Record<string, unknown>) => JSON.stringify(event) + '\n'
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+/**
+ * Client IP for rate limiting. `Astro.clientAddress` throws on the Vercel adapter, so use the
+ * headers Vercel sets (it overwrites them, so clients cannot spoof them). Falls back to
+ * `clientAddress` in local dev, and to one shared bucket if nothing is available.
+ */
+function getClientIp(context: Parameters<APIRoute>[0]): string {
+     const headers = context.request.headers
+     const fromHeaders =
+          headers.get('x-vercel-forwarded-for') ??
+          headers.get('x-real-ip') ??
+          headers.get('x-forwarded-for')?.split(',')[0]
+     if (fromHeaders?.trim()) return fromHeaders.trim()
+     try {
+          return context.clientAddress
+     } catch {
+          return 'unknown'
+     }
+}
+
+export const POST: APIRoute = async (context) => {
+     const { request } = context
      let question: string
      try {
           const body = await request.json()
@@ -51,17 +72,23 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           )
      }
 
-     let ip = 'unknown'
-     try {
-          ip = clientAddress
-     } catch {
-          // clientAddress is unavailable in some environments
-     }
-     if (!allowRequest(ip)) {
-          return json(
-               { error: 'Demasiadas preguntas seguidas. Intenta de nuevo en un minuto.' },
-               429,
-          )
+     const limit = checkRateLimit(getClientIp(context))
+     if (!limit.allowed) {
+          const wait =
+               limit.retryAfterSeconds >= 90
+                    ? `${Math.ceil(limit.retryAfterSeconds / 60)} minutos`
+                    : `${limit.retryAfterSeconds} segundos`
+          const error =
+               limit.scope === 'global'
+                    ? `El chat está recibiendo muchas consultas ahora mismo. Intenta de nuevo en ${wait}.`
+                    : `Has hecho muchas preguntas seguidas. Intenta de nuevo en ${wait}.`
+          return new Response(JSON.stringify({ error }), {
+               status: 429,
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Retry-After': String(limit.retryAfterSeconds),
+               },
+          })
      }
 
      const providers = providerOrder()
@@ -127,7 +154,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
                     try {
                          for await (const text of streamAnswer(provider, {
                               system,
-                              question,
+                              question: withLanguageInstruction(question),
                          })) {
                               fullText += text
                               send({ type: 'token', text })

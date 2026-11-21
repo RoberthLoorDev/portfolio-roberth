@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import SibApiV3Sdk from 'sib-api-v3-sdk'
+import { getSecret } from 'astro:env/server'
 
 export const prerender = false
 
@@ -14,7 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
 
           const client = SibApiV3Sdk.ApiClient.instance
           const apiKey = client.authentications['api-key']
-          apiKey.apiKey = import.meta.env.BREVO_API_KEY
+          apiKey.apiKey = getSecret('BREVO_API_KEY')
 
           const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
 
@@ -23,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
                     name: 'Portfolio Roberth',
                     email: 'contact@roberth.dev',
                },
-               to: [{ email: import.meta.env.RECIPIENT_EMAIL }],
+               to: [{ email: getSecret('RECIPIENT_EMAIL') }],
                htmlContent: html,
                subject: subject,
           }
@@ -35,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
                     success: true,
                     message: 'Contact email sent successfully.',
                }),
-               { status: 200, headers: { 'Content-Type': 'application/json' } }
+               { status: 200, headers: { 'Content-Type': 'application/json' } },
           )
      } catch (error) {
           console.error('Error sending contact email:', error)
@@ -44,7 +45,7 @@ export const POST: APIRoute = async ({ request }) => {
                     success: false,
                     message: 'Failed to send contact email.',
                }),
-               { status: 500, headers: { 'Content-Type': 'application/json' } }
+               { status: 500, headers: { 'Content-Type': 'application/json' } },
           )
      }
 }

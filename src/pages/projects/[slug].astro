@@ -9,7 +9,7 @@ import { imageDetails } from '../../assets/images'
 export const getStaticPaths = (async () => {
      const projects = await getCollection('projects')
      return projects.map((project) => ({
-          params: { slug: project.slug },
+          params: { slug: project.id },
      }))
 }) satisfies GetStaticPaths
 
@@ -17,7 +17,7 @@ const { slug } = Astro.params
 console.log(slug)
 
 const project = await getCollection('projects').then((collection) =>
-     collection.find((entry) => entry.slug === slug)
+     collection.find((entry) => entry.id === slug)
 )
 
 if (!project) {
