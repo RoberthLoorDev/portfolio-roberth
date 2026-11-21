@@ -1,30 +1,72 @@
 // Best-effort, in-memory protections. On serverless, state lives per warm instance,
 // so these limit casual abuse and repeat questions but are not a hard guarantee.
 
-const WINDOW_MS = 60_000
-const MAX_REQUESTS_PER_WINDOW = 8
-const hits = new Map<string, number[]>()
+const MINUTE = 60_000
+const HOUR = 60 * MINUTE
 
-/** Returns true if this IP may make a request right now. */
-export function allowRequest(ip: string): boolean {
+// A recruiter asks a handful of questions per visit; these limits leave plenty of room
+// for that while stopping scripts. Groq's free tier allows 30 requests/min for the whole
+// account, so the global cap stays below it.
+const LIMITS = {
+     perIpPerMinute: 8,
+     perIpPerHour: 30,
+     globalPerMinute: 25,
+}
+
+const ipHits = new Map<string, number[]>()
+let globalHits: number[] = []
+
+export type RateLimitResult =
+     | { allowed: true }
+     | { allowed: false; retryAfterSeconds: number; scope: 'ip' | 'global' }
+
+const within = (times: number[], now: number, windowMs: number) =>
+     times.filter((t) => now - t < windowMs)
+
+/** Seconds until the oldest hit in `times` leaves the window. */
+const retryAfter = (times: number[], now: number, windowMs: number) =>
+     Math.max(1, Math.ceil((times[0] + windowMs - now) / 1000))
+
+export function checkRateLimit(ip: string): RateLimitResult {
      const now = Date.now()
-     const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS)
 
-     if (recent.length >= MAX_REQUESTS_PER_WINDOW) {
-          hits.set(ip, recent)
-          return false
-     }
+     globalHits = within(globalHits, now, MINUTE)
+     const lastHour = within(ipHits.get(ip) ?? [], now, HOUR)
+     const lastMinute = within(lastHour, now, MINUTE)
+     ipHits.set(ip, lastHour)
 
-     recent.push(now)
-     hits.set(ip, recent)
-
-     // Keep the map from growing forever
-     if (hits.size > 5_000) {
-          for (const [key, times] of hits) {
-               if (times.every((t) => now - t >= WINDOW_MS)) hits.delete(key)
+     if (lastMinute.length >= LIMITS.perIpPerMinute) {
+          return {
+               allowed: false,
+               scope: 'ip',
+               retryAfterSeconds: retryAfter(lastMinute, now, MINUTE),
           }
      }
-     return true
+     if (lastHour.length >= LIMITS.perIpPerHour) {
+          return {
+               allowed: false,
+               scope: 'ip',
+               retryAfterSeconds: retryAfter(lastHour, now, HOUR),
+          }
+     }
+     if (globalHits.length >= LIMITS.globalPerMinute) {
+          return {
+               allowed: false,
+               scope: 'global',
+               retryAfterSeconds: retryAfter(globalHits, now, MINUTE),
+          }
+     }
+
+     lastHour.push(now)
+     globalHits.push(now)
+
+     // Keep the map from growing forever
+     if (ipHits.size > 5_000) {
+          for (const [key, times] of ipHits) {
+               if (times.every((t) => now - t >= HOUR)) ipHits.delete(key)
+          }
+     }
+     return { allowed: true }
 }
 
 // ---- Answer cache: identical questions are replayed instantly ----

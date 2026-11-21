@@ -52,3 +52,33 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Chat del portafolio
+
+El chat responde con tu información usando búsqueda semántica local (sin base de datos):
+
+1. Edita tu experiencia, proyectos y habilidades en `src/data/portfolioData.ts`.
+2. Corre `npm run embed`. Genera `src/data/embeddings.json` y solo vuelve a llamar a Gemini
+   para los textos que cambiaron.
+3. Haz commit (incluido `embeddings.json`) y push. Vercel despliega solo.
+
+`npm run build` falla si olvidas el paso 2 (`npm run embed:check`), para no publicar datos viejos.
+
+### Variables de entorno
+
+Copia `.env.example` a `.env`. En Vercel agrégalas en Settings → Environment Variables.
+
+- `GOOGLE_API_KEY`: embeddings (siempre Gemini) y respaldo del chat.
+- `GROQ_API_KEY`: modelo principal de respuestas (por defecto `openai/gpt-oss-20b`).
+- `LLM_PROVIDER`: `groq` (por defecto) o `gemini`. El otro actúa como respaldo si falla.
+- `BREVO_API_KEY` y `RECIPIENT_EMAIL`: formulario de contacto.
+
+### Requisitos
+
+Node 24 (`engines` en `package.json`). En Vercel: Settings → General → Node.js Version → 24.x.
+
+### Límites del chat
+
+Por IP: 8 preguntas por minuto y 30 por hora; en total 25 por minuto. Las preguntas repetidas se
+responden desde una caché en memoria. Estos límites viven en la memoria de cada instancia
+serverless, así que frenan el uso abusivo casual, no un ataque dirigido.

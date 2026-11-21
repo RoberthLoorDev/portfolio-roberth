@@ -1,6 +1,10 @@
-import { defineCollection, z } from 'astro:content'
+import { defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
 const projectsCollection = defineCollection({
+     // Content Layer API: entry.id is the file name without extension (same as the old slug)
+     loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
      schema: z.object({
           title: z.string(),
           title_es: z.string().optional(),
@@ -11,7 +15,7 @@ const projectsCollection = defineCollection({
           tags: z.array(
                z.object({
                     name: z.any(),
-               })
+               }),
           ),
           image: z.string(),
           buttonText: z.string(),
