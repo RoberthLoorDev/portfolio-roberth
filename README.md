@@ -57,7 +57,10 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
 El chat responde con tu información usando búsqueda semántica local (sin base de datos):
 
-1. Edita tu experiencia, proyectos y habilidades en `src/data/portfolioData.ts`.
+1. Edita tu experiencia, proyectos y habilidades en `src/data/portfolioData.ts`. Es lo ÚNICO que lee el chat
+   (no lee los `.md` de `src/content/projects`), así que mantén fechas, cargos y datos de contacto
+   iguales a los del sitio (`Experience.astro`, `translations.ts`). Un fragmento por tema, en tercera
+   persona y texto plano, de unos 400 a 900 caracteres.
 2. Corre `npm run embed`. Genera `src/data/embeddings.json` y solo vuelve a llamar a Gemini
    para los textos que cambiaron.
 3. Haz commit (incluido `embeddings.json`) y push. Vercel despliega solo.

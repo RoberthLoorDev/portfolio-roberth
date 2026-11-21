@@ -7,15 +7,20 @@ import 'dotenv/config'
 import { readFile, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { portfolioData } from '../data/portfolioData'
-import { chunkHash, chunkText } from '../lib/chunkText'
+import { chunkHash, chunkText, type KnowledgeChunk } from '../lib/chunkText'
 import { embedText, EMBEDDING_DIMS, EMBEDDING_MODEL } from '../lib/embedText'
 
 const OUTPUT = fileURLToPath(new URL('../data/embeddings.json', import.meta.url))
 
+interface StoredChunk extends KnowledgeChunk {
+     hash: string
+     embedding: number[]
+}
+
 interface EmbeddingsFile {
      model: string
      dimensions: number
-     chunks: { hash: string; title: string; embedding: number[] }[]
+     chunks: StoredChunk[]
 }
 
 async function loadExisting(): Promise<Map<string, number[]>> {
@@ -41,7 +46,7 @@ async function main() {
                )
                process.exit(1)
           }
-          console.log('✅ embeddings.json is up to date')
+          console.log(`✅ embeddings.json is up to date (${portfolioData.length} chunks)`)
           return
      }
 
@@ -51,22 +56,23 @@ async function main() {
           process.exit(1)
      }
 
-     const chunks: EmbeddingsFile['chunks'] = []
+     const chunks: StoredChunk[] = []
      for (const chunk of portfolioData) {
           const hash = chunkHash(chunk)
           let embedding = existing.get(hash)
 
           if (embedding) {
-               console.log(`⏭️  unchanged: ${chunk.metadata.title}`)
+               console.log(`⏭️  unchanged: ${chunk.title}`)
           } else {
-               console.log(`🔢 embedding: ${chunk.metadata.title}`)
+               console.log(`🔢 embedding: ${chunk.title}`)
                embedding = await embedText(
                     chunkText(chunk),
                     'RETRIEVAL_DOCUMENT',
                     apiKey!,
                )
           }
-          chunks.push({ hash, title: chunk.metadata.title, embedding })
+          // The text is stored next to its vector so the server only needs this one file
+          chunks.push({ hash, ...chunk, embedding })
      }
 
      const file: EmbeddingsFile = {

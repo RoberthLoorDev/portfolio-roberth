@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useRef, useState, type KeyboardEvent } from 'react'
 import userIcon from '../../assets/icons/user.svg'
 import awesomeIcon from '../../assets/icons/awesome.svg'
+
+const MAX_HISTORY = 50
 
 interface Source {
      title: string
@@ -15,11 +17,29 @@ export default function ChatMessageForm() {
      const [sources, setSources] = useState<Source[]>([])
      const [showResponse, setShowResponse] = useState(false)
 
+     const inputRef = useRef<HTMLInputElement>(null)
+     // Terminal-style history of sent messages (ArrowUp / ArrowDown to browse it)
+     const history = useRef<string[]>([])
+     // Position in `history` while browsing; equal to history.length when not browsing
+     const historyIndex = useRef(0)
+     // What the user was typing before they started browsing, restored on the way back down
+     const draft = useRef('')
+
      const handleSend = async () => {
           const question = userQuestion.trim()
           if (!question) {
                return
           }
+
+          // Remember it (skipping an immediate repeat) and clear the input, like a normal chat
+          if (history.current.at(-1) !== question) {
+               history.current.push(question)
+               if (history.current.length > MAX_HISTORY) history.current.shift()
+          }
+          historyIndex.current = history.current.length
+          draft.current = ''
+          setUserQuestion('')
+          inputRef.current?.focus()
 
           setLoading(true)
           setShowResponse(true)
@@ -74,6 +94,33 @@ export default function ChatMessageForm() {
           }
      }
 
+     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+          // Enter confirms IME composition (e.g. accents/CJK): don't treat it as "send"
+          if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+               if (!loading) handleSend()
+               return
+          }
+
+          const entries = history.current
+          if (entries.length === 0) return
+
+          if (e.key === 'ArrowUp') {
+               e.preventDefault() // keep the caret from jumping to the start
+               if (historyIndex.current === entries.length) draft.current = userQuestion
+               historyIndex.current = Math.max(0, historyIndex.current - 1)
+               setUserQuestion(entries[historyIndex.current])
+          } else if (e.key === 'ArrowDown') {
+               e.preventDefault()
+               if (historyIndex.current >= entries.length) return
+               historyIndex.current += 1
+               setUserQuestion(
+                    historyIndex.current === entries.length
+                         ? draft.current
+                         : entries[historyIndex.current],
+               )
+          }
+     }
+
      return (
           <div className="relative p-4 sm:p-6 backdrop-blur-sm border border-none rounded-lg w-full text-md">
                <div className="mb-6">
@@ -85,11 +132,8 @@ export default function ChatMessageForm() {
                                    id="userQuestion"
                                    value={userQuestion}
                                    onChange={(e) => setUserQuestion(e.target.value)}
-                                   onKeyDown={(e) => {
-                                        if (e.key === 'Enter' && !loading) {
-                                             handleSend()
-                                        }
-                                   }}
+                                   ref={inputRef}
+                                   onKeyDown={handleKeyDown}
                                    className="text-white w-full sm:flex-1 bg-transparent border-0 px-0 py-2 sm:py-1  placeholder-slate-500 focus:outline-none"
                                    type="text"
                                    placeholder="What are your main skills?"

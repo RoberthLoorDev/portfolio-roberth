@@ -22,6 +22,7 @@ function buildSystemPrompt(context: string) {
 
 REGLAS:
 - Responde SOLO con la información del CONTEXTO. Si no aparece, di brevemente que no tienes ese dato.
+- Sé preciso y no exageres: no inventes cargos, cifras ni fechas, y no conviertas mentoría o decisiones técnicas en dirección de personas. Cuando el CONTEXTO aclare un límite (por ejemplo, que el liderazgo es técnico), inclúyelo.
 - Si la pregunta no tiene que ver con Roberth, su experiencia, proyectos o habilidades, indica amablemente que solo puedes hablar de eso.
 - LANGUAGE (highest priority): always reply in the language of the user's QUESTION. If the question is in English, your whole answer MUST be in English even though the CONTEXT is in Spanish (translate it). If the question is in Spanish, reply in Spanish.
 - Texto plano y corrido, como en una conversación. PROHIBIDO usar Markdown, asteriscos, guiones de lista o negritas.
@@ -128,14 +129,14 @@ export const POST: APIRoute = async (context) => {
           return json({ error: 'No pude procesar tu pregunta. Intenta de nuevo.' }, 502)
      }
 
-     const sources = retrieved.map(({ chunk, score }) => ({
-          title: chunk.metadata.title,
-          category: chunk.category,
+     const sources = retrieved.map(({ title, category, score }) => ({
+          title,
+          category,
           similarity: (score * 100).toFixed(1) + '%',
      }))
      const system = buildSystemPrompt(
           retrieved
-               .map(({ chunk }) => `[${chunk.metadata.title}]\n${chunk.content}`)
+               .map(({ title, content }) => `[${title}]\n${content}`)
                .join('\n\n---\n\n'),
      )
 
