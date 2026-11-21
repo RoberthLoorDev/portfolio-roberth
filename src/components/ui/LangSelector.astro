@@ -5,18 +5,17 @@
  */
 ---
 
-<div class="flex items-center gap-1 ml-6 lg:ml-12">
+<div class="lang" role="group" aria-label="Language">
      <button
           data-lang-btn="en"
-          class="lang-btn text-sm font-semibold px-2 py-1 rounded-md transition-colors duration-200"
+          class="lang-btn"
           aria-label="Switch to English"
      >
           EN
      </button>
-     <span class="text-textGray text-sm select-none">/</span>
      <button
           data-lang-btn="es"
-          class="lang-btn text-sm font-semibold px-2 py-1 rounded-md transition-colors duration-200"
+          class="lang-btn"
           aria-label="Cambiar a Español"
      >
           ES
@@ -24,16 +23,43 @@
 </div>
 
 <style>
+     /* segmented control in the mono face used for data across the site */
+     .lang {
+          display: inline-flex;
+          align-items: center;
+          gap: 2px;
+          margin-left: 1.5rem;
+          padding: 2px;
+          border: 1px solid var(--c-line);
+          border-radius: 0.65rem;
+     }
+
      .lang-btn {
-          color: #979BA4;
-          cursor: pointer;
+          padding: 0.28rem 0.6rem;
+          border: 0;
+          border-radius: 0.45rem;
           background: transparent;
-          border: none;
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          color: var(--c-muted);
+          cursor: pointer;
+          transition:
+               color 0.2s,
+               background 0.2s;
      }
+
      .lang-btn:hover {
-          color: #ffffff;
+          color: var(--c-text);
      }
+
      .lang-btn.lang-active {
-          color: #007cff;
+          background: rgba(0, 124, 255, 0.2);
+          color: var(--c-text);
+     }
+
+     .lang-btn:focus-visible {
+          outline: 2px solid var(--c-cyan);
+          outline-offset: 1px;
      }
 </style>

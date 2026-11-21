@@ -2,36 +2,32 @@
 import LangSelector from '../components/ui/LangSelector.astro'
 ---
 
-<nav
-     class="justify-center w-full fixed left-0 h-16 items-center z-20 bg-background hidden lg:flex"
->
-     <a
-          id="id_section_2"
-          href="/#experience_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.experience">Experience</span></a
-     >
-     <a
-          id="id_section_3"
-          href="/#projects_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.projects">Projects</span></a
-     >
-     <a
-          id="id_section_1"
-          href="/#skill_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.skills">Skills</span></a
-     >
-     <a
-          id="id_section_4"
-          href="/#about_me_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.about">About me</span></a
-     >
+<nav class="topbar hidden lg:block" data-scrolled="false" aria-label="Main">
+     <div class="topbar__inner">
+          <a href="/" class="brand" aria-label="Roberth Loor">
+               <b class="brand__mark" aria-hidden="true">RL</b>
+               <span class="brand__name">Roberth Loor</span>
+          </a>
 
-     <a
-          id="id_section_5"
-          href="/#contact_me_section"
-          class="text-white text-base font-semibold ml-12 drop-shadow-lg"><span data-i18n="nav.contact">Contact me</span></a
-     >
-     <LangSelector />
+          <div class="topbar__right">
+               <a id="id_section_2" href="/#experience_section" class="nav-link"
+                    ><span data-i18n="nav.experience">Experience</span></a
+               >
+               <a id="id_section_3" href="/#projects_section" class="nav-link"
+                    ><span data-i18n="nav.projects">Projects</span></a
+               >
+               <a id="id_section_1" href="/#skill_section" class="nav-link"
+                    ><span data-i18n="nav.skills">Skills</span></a
+               >
+               <a id="id_section_4" href="/#about_me_section" class="nav-link"
+                    ><span data-i18n="nav.about">About me</span></a
+               >
+               <a id="id_section_5" href="/#contact_me_section" class="nav-link nav-cta"
+                    ><span data-i18n="nav.contact">Contact me</span></a
+               >
+               <LangSelector />
+          </div>
+     </div>
 </nav>
 
 <!-- Lateral navbar -->
@@ -202,6 +198,13 @@ import LangSelector from '../components/ui/LangSelector.astro'
      }
      window.addEventListener('scroll', handleScroll)
 
+     // the top bar is transparent over the hero and gets a frosted background once you scroll
+     const topbar = document.querySelector('.topbar')
+     const updateScrolled = () =>
+          topbar?.setAttribute('data-scrolled', String(window.scrollY > 8))
+     window.addEventListener('scroll', updateScrolled, { passive: true })
+     updateScrolled()
+
      //mostrar navbar lateral
      document.addEventListener('DOMContentLoaded', () => {
           const navbar = document.getElementById('id_lateral_navbar')
@@ -218,31 +221,179 @@ import LangSelector from '../components/ui/LangSelector.astro'
 </script>
 
 <style>
-     .active {
-          color: #2d8cfc;
-          transition: color 0.3s ease; /* Transición de color con duración de 0.3 segundos y función de tiempo ease */
+     /* ---------- top bar (desktop) ---------- */
+
+     .topbar {
+          position: fixed;
+          inset: 0 0 auto 0;
+          z-index: 20;
+          height: 4rem;
+          border-bottom: 1px solid transparent;
+          transition:
+               background 0.3s,
+               border-color 0.3s;
      }
+
+     .topbar[data-scrolled='true'] {
+          background: rgba(9, 12, 26, 0.72);
+          border-bottom-color: var(--c-line);
+          -webkit-backdrop-filter: blur(14px) saturate(1.2);
+          backdrop-filter: blur(14px) saturate(1.2);
+     }
+
+     /* same horizontal rhythm as the hero (max 80rem, 5rem side margins) */
+     .topbar__inner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 100%;
+          max-width: 80rem;
+          margin: 0 auto;
+          padding: 0 5rem;
+     }
+
+     .brand {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.7rem;
+          text-decoration: none;
+     }
+
+     .brand__mark {
+          display: grid;
+          place-items: center;
+          width: 2rem;
+          height: 2rem;
+          border: 1px solid var(--c-line-strong);
+          border-radius: 0.6rem;
+          background: rgba(0, 124, 255, 0.14);
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
+          color: var(--c-blue-soft);
+          transition:
+               background 0.2s,
+               border-color 0.2s;
+     }
+
+     .brand__name {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--c-text);
+     }
+
+     .brand:hover .brand__mark {
+          background: rgba(0, 124, 255, 0.26);
+          border-color: var(--c-blue-soft);
+     }
+
+     .topbar__right {
+          display: flex;
+          align-items: center;
+          gap: 1.75rem;
+     }
+
+     .nav-link {
+          position: relative;
+          padding: 0.5rem 0;
+          font-size: 0.92rem;
+          font-weight: 500;
+          color: var(--c-muted);
+          text-decoration: none;
+          transition: color 0.2s;
+     }
+
+     /* the global span{color:white} rule would otherwise ignore the link color */
+     .nav-link span {
+          color: inherit;
+     }
+
+     .nav-link::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0.05rem;
+          height: 2px;
+          border-radius: 2px;
+          background: var(--c-blue-soft);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+     }
+
+     .nav-link:hover,
+     .nav-link.active {
+          color: var(--c-text);
+     }
+
+     /* hover draws the full underline (softer); the active section keeps it solid */
+     .nav-link:hover::after {
+          transform: scaleX(1);
+          opacity: 0.55;
+     }
+
+     .nav-link.active::after {
+          transform: scaleX(1);
+          opacity: 1;
+     }
+
+     .nav-link:focus-visible,
+     .brand:focus-visible {
+          outline: 2px solid var(--c-cyan);
+          outline-offset: 4px;
+          border-radius: 0.4rem;
+     }
+
+     /* "Contact me" is the only action in the bar */
+     .nav-cta {
+          padding: 0.5rem 1rem;
+          border: 1px solid var(--c-line-strong);
+          border-radius: 0.7rem;
+          color: var(--c-text);
+          transition:
+               background 0.2s,
+               border-color 0.2s;
+     }
+
+     .nav-cta::after {
+          display: none;
+     }
+
+     .nav-cta:hover,
+     .nav-cta.active {
+          background: rgba(103, 171, 255, 0.12);
+          border-color: var(--c-blue-soft);
+     }
+
+     /* ---------- lateral navbar (mobile) ---------- */
+
      .shadow-lateral-navbar {
           box-shadow: -1rem 0rem 10rem black;
      }
 
-     /* navbar */
      .lateral_navbar {
           transform: translateX(150%);
           transition: 250ms;
+          background: var(--c-panel);
+          border-left: 1px solid var(--c-line);
+     }
+
+     .lateral_navbar a {
+          color: var(--c-muted);
+          transition: color 0.2s;
+     }
+
+     .lateral_navbar a span {
+          color: inherit;
+     }
+
+     .lateral_navbar a:hover,
+     .lateral_navbar a.active {
+          color: var(--c-text);
      }
 
      .navbar_active {
           transform: translateX(0);
-     }
-
-     a {
-          transition: 200ms;
-     }
-
-     a:hover {
-          color: #2d8cfc;
-          transition: 200ms;
-          padding: 20px;
      }
 </style>

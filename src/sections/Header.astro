@@ -12,204 +12,527 @@ const socials = [
 ]
 ---
 
-<section class="relative flex mt-10 lg:mt-28 mx-4 lg:mx-20" id="header_section">
-     <div>
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium mb-3">
-               <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-               </span>
-               <span data-i18n="header.available">Available for new projects & opportunities</span>
-          </div>
-          <!-- Mobile Profile Image with Ring -->
-          <div class="flex justify-center items-center lg:hidden my-8 relative w-[75vw] h-[75vw] max-w-[380px] max-h-[380px] mx-auto">
-               <!-- Mobile Ring Background Wrapper -->
-               <div class="absolute inset-0 flex items-center justify-center ring-gradient-opacity">
-                    <div class="w-[80%] h-[80%] rounded-full border-[18px] sm:border-[24px] border-[#007cff] shadow-[0_0_25px_#007cff]"></div>
-               </div>
-               <!-- Mobile Image -->
-               <Image
-                    src={me2}
-                    alt="Roberth Loor"
-                    class="w-full h-full object-contain relative z-10 image-fade-bottom"
-               />
-          </div>
-          <span class="text-lg text-primary font-semibold block" data-i18n="header.welcome">Welcome to my portfolio</span>
-          <h2
-               class="title-presentation font-bold mt-4 text-6xl lg:text-7xl lg:leading-[5.5rem]"
-               data-i18n-html="header.greeting"
-          >
+<section class="hero" id="header_section">
+     <div class="hero__text">
+          <p class="hero__eyebrow">
+               <i class="hero__prompt" aria-hidden="true">›</i>
+               <span data-i18n="header.welcome">Welcome to my portfolio</span>
+          </p>
+
+          <h2 class="title-presentation hero__title" data-i18n-html="header.greeting">
                Hello, my <br /> name's<span class="text-primary"> Roberth</span>.
           </h2>
+
           <h1
-               class="description-presentation text-textGray font-normal text-start mt-5 max-w-lg text-lg leading-relaxed"
+               class="description-presentation hero__lead"
                data-i18n-html="header.description"
           >
                <strong class="text-white font-bold">IT Engineer</strong> focused on <strong class="text-white font-bold">software development</strong> & <strong class="text-white font-bold">technology solutions</strong>, crafting high-performance digital systems and scalable architectures.
           </h1>
 
-          <!-- button section -->
-          <div class="flex flex-col">
-               <div class="flex gap-6 flex-col lg:flex-row my-12">
-                    <a href="mailto:dayvidlife@gmail.com" target="_blank">
-                         <button
-                              class="text-white bg-[#007cff] h-14 w-36 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#007cff] duration-150 hover:bg-[#0066d6] hover:border-[#0066d6] active:bg-[#0055b3]"
-                         >
-                              <svg
-                                   xmlns="http://www.w3.org/2000/svg"
-                                   width="24"
-                                   height="24"
-                                   viewBox="0 0 24 24"
-                                   fill="none"
-                                   stroke="#ffffff"
-                                   stroke-width="2"
-                                   stroke-linecap="round"
-                                   stroke-linejoin="round"
-                                   class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
-                                   ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                                   ></path><path
-                                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-                                   ></path><path d="M3 7l9 6l9 -6"></path></svg
-                              >
-                              <span data-i18n="header.mailMe">Mail me</span></button
-                         >
-                    </a>
-
-                    <a
-                         href="https://drive.google.com/file/d/17afGF7g8qTCTxSGsyQ_JI8iwgXGTYfbd/view?usp=sharing"
-                         target="_blank"
+          <div class="hero__actions">
+               <a class="btn btn--primary" href="mailto:dayvidlife@gmail.com" target="_blank">
+                    <svg
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="20"
+                         height="20"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         aria-hidden="true"
+                         ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                              d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+                         ></path><path d="M3 7l9 6l9 -6"></path></svg
                     >
-                         <button
-                              class="text-white h-14 w-48 rounded-xl text-base font-semibold flex items-center justify-center gap-4 border-2 border-[#007cff]"
-                         >
-                              <svg
-                                   xmlns="http://www.w3.org/2000/svg"
-                                   width="24"
-                                   height="24"
-                                   viewBox="0 0 24 24"
-                                   fill="none"
-                                   stroke="#ffffff"
-                                   stroke-width="2"
-                                   stroke-linecap="round"
-                                   stroke-linejoin="round"
-                                   class="icon icon-tabler icons-tabler-outline icon-tabler-download"
-                                   ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                                   ></path><path
-                                        d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"
-                                   ></path><path d="M7 11l5 5l5 -5"></path><path
-                                        d="M12 4l0 12"></path></svg
-                              >
-                              <span data-i18n="header.downloadCv">Download CV</span></button
-                         >
-                    </a>
-               </div>
+                    <span data-i18n="header.mailMe">Mail me</span>
+               </a>
 
-               <div class="flex items-center h-10">
-                    <!-- <span class="font-bold text-lg"> Contact me: </span> -->
-
-                    <!-- social media -->
-                    {
-                         socials.map(({ name, icon, href }) => (
-                              <a
-                                   class="p-5 flex justify-center items-center relative network line"
-                                   href={href}
-                                   target="_blank"
-                              >
-                                   <Image
-                                        class="w-auto h-[19px]"
-                                        alt="Linkedin"
-                                        src={icon}
-                                   />
-                                   <span class="font-light text-lg ml-2">{name}</span>
-                              </a>
-                         ))
-                    }
-               </div>
+               <a
+                    class="btn btn--ghost"
+                    href="https://drive.google.com/file/d/17afGF7g8qTCTxSGsyQ_JI8iwgXGTYfbd/view?usp=sharing"
+                    target="_blank"
+               >
+                    <svg
+                         xmlns="http://www.w3.org/2000/svg"
+                         width="20"
+                         height="20"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         aria-hidden="true"
+                         ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                              d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"
+                         ></path><path d="M7 11l5 5l5 -5"></path><path d="M12 4l0 12"
+                         ></path></svg
+                    >
+                    <span data-i18n="header.downloadCv">Download CV</span>
+               </a>
           </div>
 
-          <!-- Desktop Profile Image with Ring -->
-          <div class="hidden lg:block absolute top-8 right-0 -z-10 w-[450px] h-[450px] xl:w-[650px] xl:h-[650px]">
-               <!-- Desktop Ring Background Wrapper -->
-               <div class="absolute inset-x-0 -top-5 inset-y-0 m-auto w-[460px] h-[460px] xl:w-[500px] xl:h-[500px] flex items-center justify-center ring-gradient-opacity">
-                    <div class="w-[380px] h-[380px] xl:w-[420px] xl:h-[420px] rounded-full border-[68px] border-[#007cff] shadow-[0_0_40px_#007cff]"></div>
-               </div>
-               <Image
-                    src={me2}
-                    alt="Roberth Loor"
-                    class="w-full h-full object-contain relative z-10 image-fade-bottom"
-               />
+          <div class="hero__social">
+               {
+                    socials.map(({ name, icon, href }) => (
+                         <a class="social" href={href} target="_blank" rel="noopener">
+                              <Image class="social__icon" alt="" src={icon} />
+                              <span>{name}</span>
+                         </a>
+                    ))
+               }
           </div>
      </div>
+
+     <!-- Portrait: the cutout stands on a blueprint card and breaks out of its top edge -->
+     <figure class="portrait">
+          <div class="portrait__frame" aria-hidden="true">
+               <i class="portrait__tick portrait__tick--tl"></i>
+               <i class="portrait__tick portrait__tick--tr"></i>
+               <i class="portrait__tick portrait__tick--bl"></i>
+               <i class="portrait__tick portrait__tick--br"></i>
+               <div class="portrait__card"></div>
+          </div>
+
+          <div class="portrait__photo">
+               <Image src={me2} alt="Roberth Loor" loading="eager" />
+          </div>
+
+          <figcaption class="portrait__status">
+               <span class="portrait__dot" aria-hidden="true"></span>
+               <span class="portrait__available" data-i18n="header.available"
+                    >Available for new projects & opportunities</span
+               >
+               <span class="portrait__time">Manta · <time id="manta-time">--:--</time></span>
+          </figcaption>
+     </figure>
 </section>
 
+<script>
+     // Local time in Manta, Ecuador (UTC-5, no daylight saving): useful for scheduling calls
+     const clock = document.getElementById('manta-time')
+     const formatter = new Intl.DateTimeFormat('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+          timeZone: 'America/Guayaquil',
+     })
+     const tick = () => {
+          if (clock) clock.textContent = formatter.format(new Date())
+     }
+     tick()
+     setInterval(tick, 15_000)
+</script>
+
 <style>
-     /* animations for header */
+     .hero {
+          position: relative;
+          display: grid;
+          gap: 2.25rem;
+          align-items: center;
+          margin: 2.5rem 1rem 0;
+          padding-bottom: 2rem;
+     }
+
+     @media (min-width: 1024px) {
+          .hero {
+               grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+               gap: 3rem;
+               margin: 7rem 5rem 0;
+               padding-bottom: 4rem;
+          }
+     }
+
+     /* ---------- text ---------- */
+
+     .hero__eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 0.55rem;
+          margin: 0;
+          font-size: 1rem;
+          font-weight: 500;
+          color: var(--c-blue-soft);
+     }
+
+     .hero__eyebrow span {
+          color: inherit;
+     }
+
+     .hero__prompt {
+          font-style: normal;
+          font-size: 1.25rem;
+          font-weight: 600;
+          line-height: 1;
+          color: var(--c-amber);
+     }
+
+     .hero__title {
+          margin: 1rem 0 0;
+          font-weight: 700;
+          font-size: clamp(2.6rem, 4.6vw, 4rem);
+          line-height: 1.08;
+          letter-spacing: -0.025em;
+          color: var(--c-text);
+          text-wrap: balance;
+     }
+
+     /* the name comes from the translations as <span class="text-primary"> */
+     .hero__title :global(.text-primary) {
+          color: var(--c-blue-soft);
+     }
+
+     /* a blinking cursor closes the sentence, like a prompt waiting for input */
+     /* A zero-width word joiner keeps the cursor glued to the final period (an inline-block
+        could wrap onto a line of its own); the gradient draws a slim block, cap-height tall. */
+     .hero__title::after {
+          content: '\2060';
+          display: inline;
+          padding: 0 0.1em;
+          margin-left: 0.08em;
+          background: linear-gradient(var(--c-amber), var(--c-amber)) center / 100% 56% no-repeat;
+          border-radius: 2px;
+          animation: cursor-blink 1.1s steps(2, start) infinite;
+     }
+
+     @keyframes cursor-blink {
+          50% {
+               opacity: 0;
+          }
+     }
+
+     .hero__lead {
+          max-width: 34rem;
+          margin: 1.5rem 0 0;
+          font-size: 1.125rem;
+          font-weight: 400;
+          line-height: 1.7;
+          color: var(--c-muted);
+     }
+
+     .hero__actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.85rem;
+          margin-top: 2.25rem;
+     }
+
+     .btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.65rem;
+          height: 3rem;
+          padding: 0 1.3rem;
+          border-radius: 0.85rem;
+          font-size: 0.95rem;
+          font-weight: 600;
+          text-decoration: none;
+          transition:
+               background 0.2s,
+               border-color 0.2s,
+               transform 0.2s;
+     }
+
+     .btn span {
+          color: inherit;
+     }
+
+     .btn--primary {
+          color: #fff;
+          background: var(--c-blue);
+          box-shadow:
+               inset 0 1px 0 rgba(255, 255, 255, 0.2),
+               0 12px 26px -14px rgba(0, 124, 255, 0.9);
+     }
+
+     .btn--primary:hover {
+          background: #1a8bff;
+          transform: translateY(-1px);
+     }
+
+     .btn--ghost {
+          color: var(--c-text);
+          border: 1px solid var(--c-line-strong);
+          background: rgba(103, 171, 255, 0.04);
+     }
+
+     .btn--ghost:hover {
+          background: rgba(103, 171, 255, 0.12);
+          transform: translateY(-1px);
+     }
+
+     .btn:focus-visible,
+     .social:focus-visible {
+          outline: 2px solid var(--c-cyan);
+          outline-offset: 3px;
+     }
+
+     .hero__social {
+          display: flex;
+          gap: 1.6rem;
+          margin-top: 2rem;
+     }
+
+     .social {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+          padding: 0.25rem 0;
+          font-size: 0.95rem;
+          color: var(--c-muted);
+          text-decoration: none;
+          transition: color 0.2s;
+     }
+
+     .social span {
+          color: inherit;
+     }
+
+     .social :global(.social__icon) {
+          width: auto;
+          height: 18px;
+          opacity: 0.75;
+          transition: opacity 0.2s;
+     }
+
+     .social::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -2px;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+     }
+
+     .social:hover {
+          color: var(--c-text);
+     }
+
+     .social:hover :global(.social__icon) {
+          opacity: 1;
+     }
+
+     .social:hover::after {
+          transform: scaleX(1);
+     }
+
+     /* ---------- portrait ---------- */
+
+     .portrait {
+          position: relative;
+          order: -1;
+          margin: 0;
+          justify-self: center;
+          width: min(92vw, 26rem);
+          aspect-ratio: 1 / 1.1;
+     }
+
+     @media (min-width: 1024px) {
+          .portrait {
+               order: 0;
+               justify-self: end;
+               width: min(100%, 37rem);
+          }
+     }
+
+     .portrait__frame {
+          position: absolute;
+          inset: 21% 3% 0 3%;
+     }
+
+     .portrait__card {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          border: 1px solid var(--c-line);
+          border-radius: 1.5rem;
+          background:
+               radial-gradient(circle at 1px 1px, rgba(103, 171, 255, 0.28) 1px, transparent 1.5px)
+                    0 0 / 22px 22px,
+               linear-gradient(180deg, rgba(14, 23, 46, 0.35), var(--c-panel));
+          box-shadow: 0 40px 90px -55px rgba(0, 124, 255, 0.6);
+     }
+
+     /* dots fade out toward the edges so the card feels lit from behind the person */
+     .portrait__card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 50% 55%, transparent 25%, var(--c-panel) 95%);
+     }
+
+     /* crop marks at the corners, like a technical drawing */
+     .portrait__tick {
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          border-color: var(--c-line-strong);
+          border-style: solid;
+          border-width: 0;
+     }
+
+     .portrait__tick--tl {
+          top: -7px;
+          left: -7px;
+          border-top-width: 1px;
+          border-left-width: 1px;
+     }
+
+     .portrait__tick--tr {
+          top: -7px;
+          right: -7px;
+          border-top-width: 1px;
+          border-right-width: 1px;
+     }
+
+     .portrait__tick--bl {
+          bottom: -7px;
+          left: -7px;
+          border-bottom-width: 1px;
+          border-left-width: 1px;
+     }
+
+     .portrait__tick--br {
+          bottom: -7px;
+          right: -7px;
+          border-bottom-width: 1px;
+          border-right-width: 1px;
+     }
+
+     /* the photo is taller than the card: its top breaks out of the frame, its bottom is cut flush */
+     .portrait__photo {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          clip-path: inset(-30% -20% 0 -20%);
+          pointer-events: none;
+     }
+
+     .portrait__photo :global(img) {
+          width: 100%;
+          height: auto;
+          max-height: 100%;
+          object-fit: contain;
+          object-position: bottom;
+     }
+
+     .portrait__status {
+          position: absolute;
+          left: calc(3% + 0.8rem);
+          right: calc(3% + 0.8rem);
+          bottom: 0.8rem;
+          z-index: 2;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.35rem 0.7rem;
+          padding: 0.65rem 0.85rem;
+          border: 1px solid var(--c-line);
+          border-radius: 0.9rem;
+          background: rgba(9, 12, 26, 0.72);
+          -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+          font-size: 0.8rem;
+          line-height: 1.35;
+          color: var(--c-text);
+     }
+
+     .portrait__dot {
+          position: relative;
+          flex: none;
+          width: 0.55rem;
+          height: 0.55rem;
+          border-radius: 50%;
+          background: var(--c-green);
+     }
+
+     .portrait__dot::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          background: var(--c-green);
+          animation: status-ping 2.4s ease-out infinite;
+     }
+
+     @keyframes status-ping {
+          from {
+               transform: scale(1);
+               opacity: 0.6;
+          }
+          to {
+               transform: scale(3);
+               opacity: 0;
+          }
+     }
+
+     .portrait__available {
+          flex: 1 1 10rem;
+          min-width: 0;
+          color: var(--c-text);
+     }
+
+     .portrait__time {
+          margin-left: auto;
+          font-size: 0.78rem;
+          font-weight: 500;
+          font-variant-numeric: tabular-nums;
+          color: var(--c-muted);
+          white-space: nowrap;
+     }
+
+     .portrait__time time {
+          color: var(--c-text);
+     }
+
+     /* ---------- entrance (kept gentle) ---------- */
+
      .title-presentation {
-          animation: title-animation 1s forwards;
+          animation: title-animation 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
      }
 
      .description-presentation {
-          animation: description-animation 1s forwards;
-     }
-
-     @keyframes description-animation {
-          0% {
-               opacity: 0;
-               transform: translateY(-50px);
-          }
-
-          30% {
-               opacity: 0;
-          }
-          100% {
-               opacity: 1;
-               transform: translateY(0px);
-          }
+          animation: description-animation 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s both;
      }
 
      @keyframes title-animation {
-          0% {
+          from {
                opacity: 0;
-               transform: translateY(100px);
+               transform: translateY(28px);
           }
-          100% {
+          to {
                opacity: 1;
-               transform: translateY(0px);
+               transform: translateY(0);
           }
      }
 
-     .image-fade-bottom {
-          mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+     @keyframes description-animation {
+          from {
+               opacity: 0;
+               transform: translateY(18px);
+          }
+          to {
+               opacity: 1;
+               transform: translateY(0);
+          }
      }
 
-     .ring-gradient-opacity {
-          mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,1) 100%);
-          -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,1) 100%);
-     }
-</style>
-
-<style>
-     .network {
-          position: relative; /* Asegura que el pseudo-elemento ::after esté posicionado respecto al .network */
-     }
-
-     .network::after {
-          content: ''; /* Contenido generado */
-          position: absolute; /* Posición absoluta respecto al div padre */
-          bottom: 7px; /* Alineado con el borde inferior del div */
-          width: 100%; /* Ancho completo del div */
-          height: 4px; /* Altura de la barra inferior */
-          background-color: #007cff; /* Color de la barra inferior */
-          border-radius: 100px;
-          transform: scaleX(
-               0
-          ); /* Escala inicial cero para que comience desde el centro */
-          transform-origin: center; /* Origen de la transformación en el centro */
-          transition: transform 0.3s ease; /* Efecto de transición suave solo en la transformación */
-     }
-
-     .network:hover::after {
-          transform: scaleX(1); /* Escala completa al hacer hover */
+     @media (prefers-reduced-motion: reduce) {
+          .title-presentation,
+          .description-presentation,
+          .hero__title::after,
+          .portrait__dot::after {
+               animation: none;
+          }
      }
 </style>
