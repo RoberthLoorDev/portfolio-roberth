@@ -12,7 +12,8 @@
           "embed:check": "tsx ./src/scripts/embed.ts --check",
           "build": "npm run embed:check && astro check && astro build",
           "preview": "astro preview",
-          "astro": "astro"
+          "astro": "astro",
+          "images": "node ./scripts/optimize-images.mjs"
      },
      "dependencies": {
           "@astrojs/check": "^0.9.12",
@@ -38,6 +39,7 @@
      "devDependencies": {
           "@types/canvas-confetti": "^1.9.0",
           "@types/node": "^24.19.2",
+          "sharp": "^0.35.5",
           "tsx": "^4.23.15"
      }
 }

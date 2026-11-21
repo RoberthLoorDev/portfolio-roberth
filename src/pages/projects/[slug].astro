@@ -2,9 +2,8 @@
 import type { GetStaticPaths } from 'astro'
 import Layout from '../../layouts/Layout.astro'
 import Nabvar from '../../sections/Nabvar.astro'
+import Tags from '../../components/ui/Tags.astro'
 import { getCollection } from 'astro:content'
-import { Image } from 'astro:assets'
-import { imageDetails } from '../../assets/images'
 
 export const getStaticPaths = (async () => {
      const projects = await getCollection('projects')
@@ -14,7 +13,6 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 
 const { slug } = Astro.params
-console.log(slug)
 
 const project = await getCollection('projects').then((collection) =>
      collection.find((entry) => entry.id === slug)
@@ -49,181 +47,643 @@ const {
      footerCaption,
      footerCaption_es,
 } = projectData
+
+/**
+ * The bodies are written as one HTML string: paragraphs are separated by blank lines or by a
+ * double <br/>, and a few contain Markdown links. Split them into real paragraphs and turn the
+ * links into anchors so the page reads as an article.
+ */
+const toParagraphs = (html: string) =>
+     html
+          .split(/(?:\s*<br\s*\/?>\s*){2,}|\n{2,}/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+          .map((paragraph) =>
+               paragraph.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)\s]*)\)/g, '<a href="$2">$1</a>')
+          )
+
+const paragraphs = { en: toParagraphs(body), es: toParagraphs(body_es || body) }
+
+// "Dec 2025 - Present": the role that is still going gets the amber "live" marker
+const isCurrent = /present|presente|actualidad/i.test(date)
+
+const results = {
+     en: achievements,
+     es: achievements_es || achievements,
+}
 ---
 
 <Layout title={title}>
      <Nabvar />
-     <!-- header -->
-     <section class="mt-[60px] flex flex-col mx-4 md:mx-auto max-w-[850px] lg:mt-[100px]">
-          <span class="text-center w-full text-[#4793FF] text-sm font-semibold"
-               >{date}</span
-          >
 
-          <h1 class="mt-[35px] text-[35px] font-bold md:text-center">
-               <span data-i18n-lang="en">{title}</span>
-               <span data-i18n-lang="es" class="hidden">{title_es || title}</span>
-          </h1>
-          <strong class="text-[#61DAFB] font-light md:text-center">{company}</strong>
+     <!-- flags JS before the page paints, so cards are only hidden when the reveal can run -->
+     <script is:inline>
+          document.documentElement.classList.add('js')
+     </script>
 
-          <p class="text-base font-light mt-[35px] md:text-center">
-               <span data-i18n-lang="en">{description}</span>
-               <span data-i18n-lang="es" class="hidden">{description_es || description}</span>
-          </p>
+     <main class="post">
+          <!-- header -->
+          <header class="post__hero post__narrow">
+               <a class="post__back" href="/#projects_section">
+                    <span aria-hidden="true">←</span>
+                    <span>
+                         <span data-i18n-lang="en">Projects</span>
+                         <span data-i18n-lang="es" class="hidden">Proyectos</span>
+                    </span>
+               </a>
 
-          <ul class="flex flex-wrap gap-[13px] mt-[35px] md:justify-center">
-               {
-                    tags.map((tag) => {
-                         return (
-                              <li
-                                   class="py-[6px]  px-[15px] inline-block rounded-full text-sm font-medium shadow-[0px_0px_15px_0px_rgba(51,103,145,0.8)] border-[1px] border-[#61DAFB]"
-                                   class:list={{
-                                        [`
-                                        bg-[#61DAFB] 
-                                        bg-opacity-30 
-                                        text-[#4ba9c3] 
-                                        `]: true,
-                                   }}
-                              >
-                                   {tag.name}
+               <p class="post__meta">
+                    <span class:list={['post__date', { 'post__date--live': isCurrent }]}>{date}</span>
+                    <span class="post__company">{company}</span>
+               </p>
+
+               <h1 class="post__title">
+                    <span data-i18n-lang="en">{title}</span>
+                    <span data-i18n-lang="es" class="hidden">{title_es || title}</span>
+               </h1>
+
+               <p class="post__lead">
+                    <span data-i18n-lang="en">{description}</span>
+                    <span data-i18n-lang="es" class="hidden">{description_es || description}</span>
+               </p>
+
+               <ul class="post__tags">
+                    {
+                         tags.map((tag) => (
+                              <li>
+                                   <Tags title={String(tag.name)} subtle />
                               </li>
-                         )
-                    })
+                         ))
+                    }
+               </ul>
+
+               {
+                    showRedirectButton && (
+                         <a class="post__visit" href={buttonLink} target="_blank" rel="noopener">
+                              <span>
+                                   <span data-i18n-lang="en">{buttonText}</span>
+                                   <span data-i18n-lang="es" class="hidden">
+                                        {buttonText_es || buttonText}
+                                   </span>
+                              </span>
+                              <span aria-hidden="true">↗</span>
+                         </a>
+                    )
                }
-          </ul>
-     </section>
+          </header>
 
-     <!-- image header -->
-     <div
-          class="relative min-w-full h-[678px] mt-[57px] grid place-items-center lg:max-h-[732px] lg:px-[60px] lg:w-full"
-     >
-          <Image
-               width={500}
-               height={500}
-               src={image}
-               class="shadow-image-header min-w-full h-full object-cover opacity-70 lg:max-h-[732px] lg:mx-auto lg:rounded-[20px]"
-               alt={title}
-          />
-          <a
-               href={buttonLink}
-               target="_blank"
-               class="flex items-center bg-[#2D8CFC] h-[42px] px-[20px] absolute z-20 rounded-lg hover:bg-[#1f72f1] active:bg-[#1949b4] duration-100 -mt-[130px] lg:-mt-[0px]"
-               class:list={{ hidden: !showRedirectButton }}
-          >
-               <span class="text-base text-[#090C1A] font-bold">
-                    <span data-i18n-lang="en">{buttonText}</span>
-                    <span data-i18n-lang="es" class="hidden">{buttonText_es || buttonText}</span>
-               </span>
-               <Image
-                    src={imageDetails.arrow}
-                    width={24}
-                    height={24}
-                    alt=`Visitar el sitio web`
+          <!-- main image -->
+          <figure class="post__figure post__cover">
+               <img
+                    src={image}
+                    width="2400"
+                    height="1590"
+                    alt={title}
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
                />
-          </a>
-     </div>
+          </figure>
 
-     <!-- achievements -->
-     <section class="flex relative -mt-[130px] md:mx-auto max-w-[850px] lg:-mt-[30px]">
-          <div class="absolute h-full w-[10px] bg-[#161927] py-[10px] rounded-full"></div>
-
-          <div class="mx-[30px]">
-               <h2 class="text-[26px] font-bold">
+          <!-- achievements -->
+          <section class="post__section post__narrow" aria-labelledby="results-title">
+               <h2 class="post__h2" id="results-title">
                     <span data-i18n-lang="en">Achievements and Results</span>
                     <span data-i18n-lang="es" class="hidden">Logros y Resultados</span>
                </h2>
 
-               <!-- EN achievements -->
-               <div data-i18n-lang="en">
-                    {
-                         achievements.map((achievement) => (
-                              <div class="text-white mt-[20px] text-sm flex gap-[10px]">
-                                   <span>●</span>
-                                   <p
-                                        class="leading-[24px] lg:text-base"
-                                        set:html={achievement}
-                                   />
-                              </div>
-                         ))
-                    }
-               </div>
-               <!-- ES achievements -->
-               <div data-i18n-lang="es" class="hidden">
-                    {
-                         (achievements_es || achievements).map((achievement) => (
-                              <div class="text-white mt-[20px] text-sm flex gap-[10px]">
-                                   <span>●</span>
-                                   <p
-                                        class="leading-[24px] lg:text-base"
-                                        set:html={achievement}
-                                   />
-                              </div>
-                         ))
-                    }
-               </div>
+               {
+                    (['en', 'es'] as const).map((lang) => (
+                         <div data-i18n-lang={lang} class:list={{ hidden: lang === 'es' }}>
+                              <ul class="results">
+                                   {results[lang].map((achievement, index) => (
+                                        <li
+                                             class="result reveal"
+                                             data-reveal
+                                             style={`--reveal-delay: ${(index % 2) * 0.08}s`}
+                                        >
+                                             <span class="result__icon" aria-hidden="true">
+                                                  <svg
+                                                       width="16"
+                                                       height="16"
+                                                       viewBox="0 0 24 24"
+                                                       fill="none"
+                                                       stroke="currentColor"
+                                                       stroke-width="2.6"
+                                                       stroke-linecap="round"
+                                                       stroke-linejoin="round"
+                                                  >
+                                                       <path d="m5 12.5 4.5 4.5L19 7.5" />
+                                                  </svg>
+                                             </span>
+                                             <p class="result__text" set:html={achievement} />
+                                        </li>
+                                   ))}
+                              </ul>
+                         </div>
+                    ))
+               }
 
-               <p class="mt-[40px] text-sm leading-[24px] lg:text-base">
+               <blockquote class="post__conclusion reveal" data-reveal>
                     <span data-i18n-lang="en">{conclusion}</span>
                     <span data-i18n-lang="es" class="hidden">{conclusion_es || conclusion}</span>
-               </p>
-          </div>
-     </section>
+               </blockquote>
+          </section>
 
-     <!-- project description -->
-     <section class="mx-4 mt-[45px] md:mx-auto max-w-[850px]">
-          <h2 class="text-[26px] font-bold">
-               <span data-i18n-lang="en">Project description</span>
-               <span data-i18n-lang="es" class="hidden">Descripción del proyecto</span>
-          </h2>
-          <div data-i18n-lang="en">
-               <p set:html={body} class="text-sm leading-[24px] mt-[20px]" />
-          </div>
-          <div data-i18n-lang="es" class="hidden">
-               <p set:html={body_es || body} class="text-sm leading-[24px] mt-[20px]" />
-          </div>
-     </section>
+          <!-- project description -->
+          <section class="post__section post__narrow post__prose">
+               <h2 class="post__h2">
+                    <span data-i18n-lang="en">Project description</span>
+                    <span data-i18n-lang="es" class="hidden">Descripción del proyecto</span>
+               </h2>
 
-     <!-- footer image -->
-     <section class="flex flex-col mx-4 mt-[35px] mb-[100px] md:mx-auto max-w-[850px]">
-          <Image
-               src={footerImage}
-               alt={footerCaption}
-               width={750}
-               height={600}
-               class="object-cover h-[420px] min-w-full rounded-[20px] lg:h-[420px]"
-          />
-          <span class="text-white text-opacity-50 bg-transparent italic font-thin mt-2">
-               <span data-i18n-lang="en">{footerCaption}</span>
-               <span data-i18n-lang="es" class="hidden">{footerCaption_es || footerCaption}</span>
-          </span>
-     </section>
+               {
+                    (['en', 'es'] as const).map((lang) => (
+                         <div data-i18n-lang={lang} class:list={{ hidden: lang === 'es' }}>
+                              {paragraphs[lang].map((paragraph) => (
+                                   <p set:html={paragraph} />
+                              ))}
+                         </div>
+                    ))
+               }
+          </section>
 
-     <!-- back button -->
-     <div class="flex w-full justify-center items-center">
-          <a
-               href="/"
-               class="flex justify-center items-center gap-[20px] bg-transparent border-[1px] py-[21px] px-[32px] rounded-full border-[#328AF2] hover:bg-[#3288f215] duration-100 active:bg-[#3288f22c]"
-          >
-               <Image
-                    src={'/details/arrow-icon.svg'}
-                    width={67}
-                    height={10}
-                    alt="Volver al inicio"
+          <!-- secondary image -->
+          <figure class="post__figure post__secondary reveal" data-reveal>
+               <img
+                    src={footerImage}
+                    width="2400"
+                    height="1590"
+                    alt={footerCaption}
+                    loading="lazy"
+                    decoding="async"
                />
+               <figcaption class="post__caption">
+                    <span data-i18n-lang="en">{footerCaption}</span>
+                    <span data-i18n-lang="es" class="hidden">{footerCaption_es || footerCaption}</span>
+               </figcaption>
+          </figure>
 
-               <span class="from-neutral-600">
-                    <span data-i18n-lang="en">Go back</span>
-                    <span data-i18n-lang="es" class="hidden">Volver</span>
-               </span>
-          </a>
-     </div>
+          <!-- back -->
+          <div class="post__end">
+               <a class="post__go-back" href="/#projects_section">
+                    <span aria-hidden="true">←</span>
+                    <span>
+                         <span data-i18n-lang="en">Go back</span>
+                         <span data-i18n-lang="es" class="hidden">Volver</span>
+                    </span>
+               </a>
+          </div>
+     </main>
 </Layout>
 
+<script>
+     // Reveal the cards as soon as they peek into view (see Projects.astro for the reasoning)
+     const items = document.querySelectorAll<HTMLElement>('.post [data-reveal]')
+
+     if (!('IntersectionObserver' in window)) {
+          items.forEach((item) => item.classList.add('is-in'))
+     } else {
+          const observer = new IntersectionObserver(
+               (entries) => {
+                    entries.forEach((entry) => {
+                         if (!entry.isIntersecting) return
+                         entry.target.classList.add('is-in')
+                         observer.unobserve(entry.target)
+                    })
+               },
+               { threshold: 0.04, rootMargin: '0px 0px -6% 0px' }
+          )
+          items.forEach((item) => observer.observe(item))
+     }
+</script>
+
 <style>
-     .shadow-image-header {
-          mask-image: linear-gradient(black 1%, transparent);
+     .post {
+          --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+          position: relative;
+          isolation: isolate;
+          /* definite width: the page wrapper sizes itself to its content */
+          width: min(calc(100vw - 2rem), 68rem);
+          margin: 0 auto;
+          padding: 6.5rem 0 3rem;
+          overflow-x: clip;
      }
 
-     section {
-          overflow-x: hidden;
+     /* soft light behind the header, like the glow the rest of the site uses */
+     .post::before {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          left: 50%;
+          width: min(100%, 64rem);
+          height: 28rem;
+          transform: translateX(-50%);
+          background: radial-gradient(60% 70% at 50% 0%, rgba(0, 124, 255, 0.16), transparent 72%);
+          pointer-events: none;
+     }
+
+     /* text column: readable measure, centered; images and covers use the full width */
+     .post__narrow {
+          max-width: 50rem;
+          margin-inline: auto;
+     }
+
+     /* ---------- header ---------- */
+
+     .post__hero > * {
+          animation: post-rise 0.7s var(--ease) both;
+     }
+
+     .post__hero > :nth-child(2) {
+          animation-delay: 0.06s;
+     }
+     .post__hero > :nth-child(3) {
+          animation-delay: 0.12s;
+     }
+     .post__hero > :nth-child(4) {
+          animation-delay: 0.18s;
+     }
+     .post__hero > :nth-child(5) {
+          animation-delay: 0.24s;
+     }
+     .post__hero > :nth-child(6) {
+          animation-delay: 0.3s;
+     }
+
+     @keyframes post-rise {
+          from {
+               opacity: 0;
+               transform: translateY(18px);
+          }
+          to {
+               opacity: 1;
+               transform: translateY(0);
+          }
+     }
+
+     .post__back,
+     .post__go-back {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: var(--c-muted);
+          text-decoration: none;
+          transition: color 0.2s;
+     }
+
+     .post__back span,
+     .post__go-back span {
+          color: inherit;
+     }
+
+     .post__back:hover,
+     .post__go-back:hover {
+          color: var(--c-text);
+     }
+
+     .post__back > span:first-child,
+     .post__go-back > span:first-child {
+          transition: transform 0.25s var(--ease);
+     }
+
+     .post__back:hover > span:first-child,
+     .post__go-back:hover > span:first-child {
+          transform: translateX(-4px);
+     }
+
+     .post__back:focus-visible,
+     .post__go-back:focus-visible,
+     .post__visit:focus-visible {
+          outline: 2px solid var(--c-cyan);
+          outline-offset: 4px;
+          border-radius: 0.5rem;
+     }
+
+     .post__meta {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.6rem 1rem;
+          margin: 1.75rem 0 0;
+     }
+
+     .post__date {
+          padding: 0.3rem 0.85rem;
+          border: 1px solid var(--c-line);
+          border-radius: 999px;
+          background: rgba(103, 171, 255, 0.06);
+          font-size: 0.82rem;
+          font-weight: 500;
+          font-variant-numeric: tabular-nums;
+          color: var(--c-muted);
+     }
+
+     /* the role that is still going on: amber, like every "live" detail on the site */
+     .post__date--live::before {
+          content: '';
+          display: inline-block;
+          width: 0.42rem;
+          height: 0.42rem;
+          margin-right: 0.5rem;
+          border-radius: 50%;
+          background: var(--c-amber);
+          vertical-align: middle;
+     }
+
+     .post__company {
+          font-size: 0.92rem;
+          font-weight: 500;
+          color: var(--c-cyan);
+     }
+
+     .post__title {
+          margin: 1.1rem 0 0;
+          font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+          font-weight: 700;
+          line-height: 1.08;
+          letter-spacing: -0.025em;
+          color: var(--c-text);
+          text-wrap: balance;
+     }
+
+     .post__lead {
+          max-width: 42rem;
+          margin: 1.4rem 0 0;
+          font-size: 1.15rem;
+          line-height: 1.75;
+          color: var(--c-muted);
+     }
+
+     .post__tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem;
+          margin: 1.6rem 0 0;
+          padding: 0;
+          list-style: none;
+     }
+
+     .post__tags :global(.tag-subtle) {
+          padding: 0.28rem 0.85rem;
+          font-size: 0.8rem;
+     }
+
+     .post__visit {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          height: 3rem;
+          margin-top: 1.9rem;
+          padding: 0 1.4rem;
+          border-radius: 0.85rem;
+          background: var(--c-blue);
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #fff;
+          text-decoration: none;
+          box-shadow:
+               inset 0 1px 0 rgba(255, 255, 255, 0.2),
+               0 12px 26px -14px rgba(0, 124, 255, 0.9);
+          transition:
+               background 0.2s,
+               transform 0.2s;
+     }
+
+     .post__visit span {
+          color: inherit;
+     }
+
+     .post__visit:hover {
+          background: #1a8bff;
+          transform: translateY(-1px);
+     }
+
+     /* ---------- images ---------- */
+
+     .post__figure {
+          margin: 0;
+     }
+
+     .post__figure img {
+          display: block;
+          width: 100%;
+          height: auto;
+          border: 1px solid var(--c-line);
+          border-radius: 1.5rem;
+          background: var(--c-panel);
+          box-shadow: 0 40px 90px -55px rgba(0, 124, 255, 0.6);
+     }
+
+     .post__cover {
+          margin-top: 3rem;
+          animation: post-rise 0.8s var(--ease) 0.25s both;
+     }
+
+     .post__secondary {
+          margin-top: 4rem;
+     }
+
+     .post__caption {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+          margin-top: 1rem;
+          font-size: 0.86rem;
+          line-height: 1.5;
+          color: var(--c-muted);
+     }
+
+     .post__caption::before {
+          content: '';
+          flex: none;
+          width: 1.5rem;
+          height: 1px;
+          background: var(--c-line-strong);
+     }
+
+     .post__caption span {
+          color: inherit;
+     }
+
+     /* ---------- sections ---------- */
+
+     .post__section {
+          margin-top: 4.5rem;
+     }
+
+     .post__h2 {
+          margin: 0 0 1.5rem;
+          font-size: 1.6rem;
+          font-weight: 700;
+          letter-spacing: -0.015em;
+          color: var(--c-text);
+     }
+
+     /* ---------- achievements ---------- */
+
+     .results {
+          display: grid;
+          gap: 0.9rem;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+     }
+
+     @media (min-width: 720px) {
+          .results {
+               grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+     }
+
+     .result {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.9rem;
+          padding: 1.1rem 1.2rem;
+          border: 1px solid var(--c-line);
+          border-radius: 1rem;
+          background: linear-gradient(180deg, rgba(14, 23, 46, 0.65), rgba(14, 23, 46, 0.3));
+          transition:
+               opacity 0.7s ease var(--reveal-delay, 0s),
+               transform 0.7s var(--ease) var(--reveal-delay, 0s),
+               border-color 0.25s;
+     }
+
+     .result:hover {
+          border-color: var(--c-line-strong);
+     }
+
+     .result__icon {
+          display: grid;
+          place-items: center;
+          flex: none;
+          width: 1.9rem;
+          height: 1.9rem;
+          margin-top: 0.1rem;
+          border-radius: 0.6rem;
+          background: rgba(97, 218, 251, 0.12);
+          color: var(--c-cyan);
+     }
+
+     .result__text {
+          margin: 0;
+          font-size: 0.93rem;
+          line-height: 1.65;
+          color: var(--c-muted);
+     }
+
+     /* the bold label opens each card like a small title */
+     .result__text :global(strong:first-child:not(.focus)) {
+          display: block;
+          margin-bottom: 0.2rem;
+          font-size: 0.98rem;
+          font-weight: 600;
+          color: #fff;
+     }
+
+     .post__conclusion {
+          margin: 1.5rem 0 0;
+          padding: 1.25rem 1.5rem;
+          border-left: 2px solid var(--c-blue-soft);
+          border-radius: 0 1rem 1rem 0;
+          background: rgba(0, 124, 255, 0.07);
+          font-size: 1.02rem;
+          line-height: 1.75;
+          color: var(--c-text);
+          transition:
+               opacity 0.7s ease,
+               transform 0.7s var(--ease);
+     }
+
+     .post__conclusion span {
+          color: inherit;
+     }
+
+     /* ---------- description ---------- */
+
+     .post__prose :global(p) {
+          margin: 0 0 1.25rem;
+          font-size: 1.04rem;
+          font-weight: 400;
+          line-height: 1.85;
+          color: var(--c-muted);
+     }
+
+     .post__prose :global(strong) {
+          font-weight: 600;
+          color: #fff;
+     }
+
+     .post__prose :global(strong.focus) {
+          color: var(--c-blue-soft);
+          font-weight: 700;
+     }
+
+     .post__prose :global(em) {
+          color: var(--c-text);
+     }
+
+     .post__prose :global(a) {
+          color: var(--c-blue-soft);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          transition: color 0.2s;
+     }
+
+     .post__prose :global(a:hover) {
+          color: var(--c-cyan);
+     }
+
+     /* ---------- end ---------- */
+
+     .post__end {
+          display: flex;
+          justify-content: center;
+          margin-top: 4.5rem;
+     }
+
+     .post__go-back {
+          gap: 0.8rem;
+          padding: 0.95rem 1.7rem;
+          border: 1px solid var(--c-line-strong);
+          border-radius: 999px;
+          font-size: 0.95rem;
+          color: var(--c-text);
+          transition:
+               background 0.2s,
+               border-color 0.2s;
+     }
+
+     .post__go-back:hover {
+          background: rgba(103, 171, 255, 0.1);
+          border-color: var(--c-blue-soft);
+     }
+
+     /* ---------- scroll reveal (hidden only once JS has flagged the page) ---------- */
+
+     :global(html.js) .post .reveal:not(.is-in) {
+          opacity: 0;
+          transform: translateY(26px);
+     }
+
+     @media (prefers-reduced-motion: reduce) {
+          .post__hero > *,
+          .post__cover {
+               animation: none;
+          }
+
+          :global(html.js) .post .reveal:not(.is-in) {
+               opacity: 1;
+               transform: none;
+          }
+
+          .result,
+          .post__conclusion {
+               transition: none;
+          }
      }
 </style>

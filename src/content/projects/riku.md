@@ -19,7 +19,7 @@ tags:
   - name: 'Linux'
   - name: 'Docker'
 
-image: '/details/riku-header.png'
+image: '/details/riku-header.webp'
 buttonText: 'View Project'
 buttonText_es: 'Ver Proyecto'
 buttonLink: 'https://google.com'
@@ -76,7 +76,7 @@ body_es: |-
   <br/><br/>
   Para obtener más información sobre la empresa matriz de desarrollo fintech detrás de esta plataforma, consulta el [Perfil de la Empresa Jakay](/projects/jakay).
 
-footerImage: '/details/riku-footer.png'
+footerImage: '/details/riku-footer.webp'
 footerCaption: 'Marketplace interfaces, transactional logic, and progressive migration architecture for Riku.'
 footerCaption_es: 'Interfaces del marketplace, lógica transaccional y arquitectura de migración progresiva para Riku.'
 ---

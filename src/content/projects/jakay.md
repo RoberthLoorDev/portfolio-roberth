@@ -18,7 +18,7 @@ tags:
   - name: 'Docker'
   - name: 'DevOps'
 
-image: '/details/jakay-header.png'
+image: '/details/jakay-header.webp'
 buttonText: 'Visit Company'
 buttonText_es: 'Visitar Empresa'
 buttonLink: 'https://google.com'
@@ -63,7 +63,7 @@ body_es: |-
   <br/><br/>
   <strong>Nuestro Proyecto Principal:</strong> Mi trabajo se centra principalmente en su sistema insignia de transacciones automotrices, <strong class="focus">Riku</strong>. Para obtener todos los detalles sobre el rescate arquitectónico, las integraciones de crédito y la migración progresiva con Nginx de este sistema, consulte la [Página del Proyecto Riku](/projects/riku).
 
-footerImage: '/details/jakay-footer.png'
+footerImage: '/details/jakay-footer.webp'
 footerCaption: 'Jakay tech stack: showcasing custom-developed fintech technologies and solutions.'
 footerCaption_es: 'Stack tecnológico de Jakay: mostrando tecnologías y soluciones fintech desarrolladas a medida.'
 ---

@@ -18,7 +18,7 @@ tags:
   - name: 'Vue.js'
   - name: 'IoT'
   - name: 'MongoDB'
-image: '/details/epam-iot.png'
+image: '/details/epam-iot.webp'
 buttonText: 'Test demo'
 buttonText_es: 'Probar demo'
 buttonLink: 'https://google.com'
@@ -64,7 +64,7 @@ body_es: |
   El sistema integró <strong class="focus">hardware y software,</strong> utilizando sensores DHT22 conectados a microcontroladores ESP32 para la captura de datos ambientales, los cuales se transmitieron a través de un backend en Express y se almacenaron en MongoDB Atlas. Los datos se presentaron en una <strong class="focus">aplicación web desarrollada</strong> con React, <strong class="focus">una aplicación móvil</strong> en React Native y pantallas LED en los laboratorios para la visualización local en tiempo real. Además, se implementaron notificaciones a través de <strong class="focus">Firebase Cloud Messaging (FCM)</strong> para alertas críticas, optimizando el control de las condiciones ambientales.
 
 
-footerImage: '/details/screen-sensor.png'
+footerImage: '/details/screen-sensor.webp'
 
 footerCaption: 'Proposed hardware circuit (the larger one) compared to the existing sensor in the laboratories.'
 footerCaption_es: 'Circuito de hardware propuesto (el más grande) en comparación con el sensor existente en los laboratorios.'

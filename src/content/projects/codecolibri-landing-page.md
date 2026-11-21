@@ -14,7 +14,7 @@ tags:
   - name: 'Tailwind'
   - name: 'Vercel'
   - name: 'EmailJS'
-image: '/details/codecolibri-h.png'
+image: '/details/codecolibri-h.webp'
 buttonText: 'Visit'
 buttonText_es: 'Visitar'
 buttonLink: 'https://codecolibri.vercel.app/'
@@ -81,7 +81,7 @@ body_es: |
   <br/><br/>
   Se llevaron a cabo múltiples reuniones con el equipo de codecolibri a lo largo del proceso de diseño y desarrollo, refinando el sitio web en función de sus comentarios. El cliente expresó una gran satisfacción tanto con el proceso de desarrollo como con el resultado final, el cual se alineó perfectamente con su visión para su presencia digital.
 
-footerImage: '/details/codecolibri-f.png'
+footerImage: '/details/codecolibri-f.webp'
 footerCaption: 'Overview of services offered by codecolibri.'
 footerCaption_es: 'Descripción general de los servicios ofrecidos por codecolibri.'
 ---

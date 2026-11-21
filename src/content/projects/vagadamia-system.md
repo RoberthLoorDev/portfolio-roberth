@@ -18,7 +18,7 @@ tags:
   - name: 'shadcn/ui'
   - name: 'Web Scraping'
 
-image: '/details/vagadamia-h.png'
+image: '/details/vagadamia-h.webp'
 buttonText: 'View Demo'
 buttonText_es: 'Ver Demo'
 buttonLink: 'https://google.com'
@@ -59,7 +59,7 @@ body_es: |-
 
   Construido con <strong class="focus">React</strong> en el frontend, <strong class="focus">TypeScript</strong> en todo, y un backend de <strong class="focus">Express</strong> utilizando <strong class="focus">Sequelize</strong>. La UI está implementada con <strong class="focus">Tailwind CSS</strong> y <strong class="focus">shadcn/ui</strong>. La arquitectura enfatiza la mantenibilidad, flujos de trabajo claros y automatización para reducir el trabajo repetitivo.
 
-footerImage: '/details/vagadamia-f.png'
+footerImage: '/details/vagadamia-f.webp'
 footerCaption: 'Example: maintenance planning with editable reports and PDF generation.'
 footerCaption_es: 'Ejemplo: planificación de mantenimiento con informes editables y generación de PDF.'
 ---
