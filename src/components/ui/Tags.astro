@@ -1,12 +1,36 @@
 ---
 interface Props {
      title: string
+     /** Soft outlined chip (used by the timeline); the default solid pill is kept for the project cards */
+     subtle?: boolean
 }
 
-const { title } = Astro.props
+const { title, subtle = false } = Astro.props
 ---
 
-<span
-     class="px-[10px] mr-1 mt-2 py-[2px] bg-primary rounded-3xl text-[#090C1A] font-bold text-[12px] ml-[2px]"
-     >{title}</span
->
+{
+     subtle ? (
+          <span class="tag-subtle">{title}</span>
+     ) : (
+          <span class="px-[10px] mr-1 mt-2 py-[2px] bg-primary rounded-3xl text-[#090C1A] font-bold text-[12px] ml-[2px]">
+               {title}
+          </span>
+     )
+}
+
+<style>
+     .tag-subtle {
+          display: inline-block;
+          padding: 0.2rem 0.7rem;
+          border: 1px solid var(--c-line);
+          border-radius: 999px;
+          background: rgba(103, 171, 255, 0.08);
+          font-size: 0.74rem;
+          font-weight: 500;
+          line-height: 1.45;
+          color: var(--c-blue-soft);
+          transition:
+               border-color 0.2s,
+               background 0.2s;
+     }
+</style>

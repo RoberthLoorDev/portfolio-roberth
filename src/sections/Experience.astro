@@ -3,139 +3,184 @@ import LightShadow from '../components/styles/LightShadow.astro'
 import WorkExperience from '../components/ui/WorkExperience.astro'
 ---
 
-<section
-     class="mt-20 flex flex-col gap-12 lg:flex-row mx-4 lg:mx-20"
-     id="experience_section"
->
+<section class="exp mt-20 mx-4 lg:mx-20" id="experience_section">
      <LightShadow position="left" />
 
-     <div class="lg:w-[65%]">
-          <h3 class="" data-i18n="exp.title">Experience</h3>
-          <div class="flex justify-between">
-               <div class="mt-10">
-                    <WorkExperience
-                         title="Software & Mobile Developer - Jakay"
-                         date="Dec 2025 - Present"
-                         titleKey="exp.job1Title"
-                         dateKey="exp.job1Date"
-                         tags={[
-                              'Angular',
-                              'Astro',
-                              'TypeScript',
-                              'Tailwind CSS',
-                              'Express',
-                              'Nginx',
-                              'Linux',
-                              'Docker',
-                         ]}
-                         link="/projects/jakay"
-                    >
-                         <p class="lg:text-base text-sm" data-i18n-html="exp.job1Desc">
-                              Spearheaded frontend and full-stack initiatives at Jakay for their flagship vehicle marketplace <f>Riku</f>. Restructured unstable transactional flows, integrated credit scoring API (<f>Avalburó</f>) with automated validation, and architected a <f>zero-downtime progressive migration</f> routing legacy Angular to modern Astro via Nginx on Linux/Docker servers.
-                         </p>
-                    </WorkExperience>
-                    <WorkExperience
-                         title="Software Engineer / ERP Developer - VAGADAMIA"
-                         date="Feb 2025 - Nov 2025"
-                         titleKey="exp.job2Title"
-                         dateKey="exp.job2Date"
-                         tags={[
-                              'React',
-                              'TypeScript',
-                              'Express',
-                              'Sequelize',
-                              'Tailwind CSS',
-                              'shadcn/ui',
-                              'Web Scraping',
-                         ]}
-                         link="/projects/vagadamia-system"
-                    >
-                         <p class="lg:text-base text-sm" data-i18n-html="exp.job2Desc">
-                              Architected an end-to-end management platform for <f>purchase orders, inventory, and equipment maintenance</f>. Automated workflow status transitions, built a real-time government procurement monitor using <f>web scraping</f>, and reduced document generation overhead by 40% through <f>bulk PDF generation</f>.
-                         </p>
-                    </WorkExperience>
-                    <WorkExperience
-                         title="Freelance Software Engineer - Upwork / Fiverr"
-                         date="Dec 2024 - Feb 2025"
-                         titleKey="exp.job3Title"
-                         dateKey="exp.job3Date"
-                         tags={[
-                              'Astro',
-                              'React.js',
-                              'Vue.js',
-                              'Tailwind CSS',
-                              'JavaScript',
-                              'Supabase',
-                         ]}
-                    >
-                         <p class="lg:text-base text-sm" data-i18n-html="exp.job3Desc">
-                              Delivered high-performance web solutions, custom dashboards, and serverless backends using Astro, React, and Supabase for international clients. Maintained a <f>100% on-time delivery rate</f>, focusing on <f>SEO optimization, sub-second load times, and clean UI architecture</f>.
-                         </p>
-                    </WorkExperience>
-                    <WorkExperience
-                         title="Software Developer (IoT) - Public Water Company of Manta (EPAM)"
-                         date="Sep 2023 - Jan 2024"
-                         titleKey="exp.job4Title"
-                         dateKey="exp.job4Date"
-                         isLast={false}
-                         tags={[
-                              'React Native',
-                              'Vue',
-                              'Express',
-                              'Arduino',
-                              'ESP32',
-                              'MongoDB',
-                         ]}
-                         link="/projects/environmental-monitoring-epam"
-                    >
-                         <p class="lg:text-base text-sm" data-i18n-html="exp.job4Desc">
-                              Engineered an <f>IoT environmental monitoring solution</f> for EPAM laboratories. Integrated hardware sensors (ESP32) over Wi-Fi with web/mobile dashboards to capture temperature and humidity in real time, preventing critical equipment degradation.
-                         </p>
-                    </WorkExperience>
-                    <WorkExperience
-                         tags={['React', 'Express', 'Scrum', 'PostgreSQL']}
-                         isLast
-                         title="Software Developer - Public Water Company of Manta (EPAM)"
-                         date="Nov 2022 - Feb 2023"
-                         titleKey="exp.job5Title"
-                         dateKey="exp.job5Date"
-                         link="/projects/epam-lab-system"
-                    >
-                         <p class="lg:text-base text-sm" data-i18n-html="exp.job5Desc">
-                              Developed core enterprise modules to manage <f>users, inventory, assets, and operational costs</f>. Modernized administrative tools with robust PostgreSQL queries and responsive interfaces.
-                         </p>
-                    </WorkExperience>
-               </div>
+     <div class="exp__main">
+          <h3 class="exp__title" data-i18n="exp.title">Experience</h3>
+          <div class="timeline">
+               <WorkExperience
+                    current
+                    title="Software & Mobile Developer - Jakay"
+                    date="Dec 2025 - Present"
+                    titleKey="exp.job1Title"
+                    dateKey="exp.job1Date"
+                    tags={[
+                         'Angular',
+                         'Astro',
+                         'TypeScript',
+                         'Tailwind CSS',
+                         'Express',
+                         'Nginx',
+                         'Linux',
+                         'Docker',
+                    ]}
+                    link="/projects/jakay"
+               >
+                    <p data-i18n-html="exp.job1Desc">
+                         Spearheaded frontend and full-stack initiatives at Jakay for their flagship vehicle marketplace <f>Riku</f>. Restructured unstable transactional flows, integrated credit scoring API (<f>Avalburó</f>) with automated validation, and architected a <f>zero-downtime progressive migration</f> routing legacy Angular to modern Astro via Nginx on Linux/Docker servers.
+                    </p>
+               </WorkExperience>
+               <WorkExperience
+                    title="Software Engineer / ERP Developer - VAGADAMIA"
+                    date="Feb 2025 - Nov 2025"
+                    titleKey="exp.job2Title"
+                    dateKey="exp.job2Date"
+                    tags={[
+                         'React',
+                         'TypeScript',
+                         'Express',
+                         'Sequelize',
+                         'Tailwind CSS',
+                         'shadcn/ui',
+                         'Web Scraping',
+                    ]}
+                    link="/projects/vagadamia-system"
+               >
+                    <p data-i18n-html="exp.job2Desc">
+                         Architected an end-to-end management platform for <f>purchase orders, inventory, and equipment maintenance</f>. Automated workflow status transitions, built a real-time government procurement monitor using <f>web scraping</f>, and reduced document generation overhead by 40% through <f>bulk PDF generation</f>.
+                    </p>
+               </WorkExperience>
+               <WorkExperience
+                    title="Freelance Software Engineer - Upwork / Fiverr"
+                    date="Dec 2024 - Feb 2025"
+                    titleKey="exp.job3Title"
+                    dateKey="exp.job3Date"
+                    tags={[
+                         'Astro',
+                         'React.js',
+                         'Vue.js',
+                         'Tailwind CSS',
+                         'JavaScript',
+                         'Supabase',
+                    ]}
+               >
+                    <p data-i18n-html="exp.job3Desc">
+                         Delivered high-performance web solutions, custom dashboards, and serverless backends using Astro, React, and Supabase for international clients. Maintained a <f>100% on-time delivery rate</f>, focusing on <f>SEO optimization, sub-second load times, and clean UI architecture</f>.
+                    </p>
+               </WorkExperience>
+               <WorkExperience
+                    title="Software Developer (IoT) - Public Water Company of Manta (EPAM)"
+                    date="Sep 2023 - Jan 2024"
+                    titleKey="exp.job4Title"
+                    dateKey="exp.job4Date"
+                    tags={[
+                         'React Native',
+                         'Vue',
+                         'Express',
+                         'Arduino',
+                         'ESP32',
+                         'MongoDB',
+                    ]}
+                    link="/projects/environmental-monitoring-epam"
+               >
+                    <p data-i18n-html="exp.job4Desc">
+                         Engineered an <f>IoT environmental monitoring solution</f> for EPAM laboratories. Integrated hardware sensors (ESP32) over Wi-Fi with web/mobile dashboards to capture temperature and humidity in real time, preventing critical equipment degradation.
+                    </p>
+               </WorkExperience>
+               <WorkExperience
+                    tags={['React', 'Express', 'Scrum', 'PostgreSQL']}
+                    title="Software Developer - Public Water Company of Manta (EPAM)"
+                    date="Nov 2022 - Feb 2023"
+                    titleKey="exp.job5Title"
+                    dateKey="exp.job5Date"
+                    link="/projects/epam-lab-system"
+               >
+                    <p data-i18n-html="exp.job5Desc">
+                         Developed core enterprise modules to manage <f>users, inventory, assets, and operational costs</f>. Modernized administrative tools with robust PostgreSQL queries and responsive interfaces.
+                    </p>
+               </WorkExperience>
           </div>
      </div>
 
-     <!-- Education -->
-     <div class="">
-          <h3 data-i18n="exp.eduTitle">Education</h3>
-          <div class="mt-10">
-               <div class="lg:w-[20rem]">
-                    <WorkExperience
-                         title="Bachelor's degree in Computer Science"
-                         date="2015 - 2019"
-                         titleKey="exp.edu1Title"
-                         dateKey="exp.edu1Date"
-                         isEducation={true}
-                    >
-                         <span data-i18n-html="exp.edu1Desc">Bachelor's degree fed on <f>computer science and systems.</f></span>
-                    </WorkExperience>
-                    <WorkExperience
-                         title="University degree in Information Technology Engineering"
-                         date="2019 - 2024"
-                         titleKey="exp.edu2Title"
-                         dateKey="exp.edu2Date"
-                         isLast={true}
-                         isEducation={true}
-                    >
-                         <span data-i18n-html="exp.edu2Desc">Create and manage computer systems <f
-                              >to solve business and social problems.</f
-                         ></span>
-                    </WorkExperience>
-               </div>
+     <!-- Education: stays in view while the longer experience timeline scrolls -->
+     <aside class="exp__aside">
+          <h3 class="exp__title" data-i18n="exp.eduTitle">Education</h3>
+          <div class="timeline">
+               <WorkExperience
+                    isEducation
+                    title="Bachelor's degree in Computer Science"
+                    date="2015 - 2019"
+                    titleKey="exp.edu1Title"
+                    dateKey="exp.edu1Date"
+               >
+                    <span data-i18n-html="exp.edu1Desc">Bachelor's degree fed on <f>computer science and systems.</f></span>
+               </WorkExperience>
+               <WorkExperience
+                    isEducation
+                    title="University degree in Information Technology Engineering"
+                    date="2019 - 2024"
+                    titleKey="exp.edu2Title"
+                    dateKey="exp.edu2Date"
+               >
+                    <span data-i18n-html="exp.edu2Desc">Create and manage computer systems <f
+                         >to solve business and social problems.</f
+                    ></span>
+               </WorkExperience>
           </div>
-     </div>
+     </aside>
 </section>
+
+<style>
+     .exp {
+          position: relative;
+          display: grid;
+          gap: 3rem;
+     }
+
+     @media (min-width: 1024px) {
+          .exp {
+               grid-template-columns: minmax(0, 1fr) 21rem;
+               gap: 4rem;
+          }
+
+          /* the shorter column follows the reader instead of leaving a gap below it */
+          /* top matches the scroll-margin of sections (90px) so both headings stay aligned */
+          .exp__aside {
+               position: sticky;
+               top: 90px;
+               align-self: start;
+          }
+     }
+
+     .exp__title {
+          margin: 0 0 2rem;
+     }
+
+     /* one continuous track for all entries; WorkExperience draws the nodes on it */
+     .timeline {
+          --tl-gutter: 1.8rem;
+          --tl-line-x: 0.5rem;
+          position: relative;
+          display: grid;
+          gap: 1.1rem;
+          padding-left: var(--tl-gutter);
+     }
+
+     .timeline::before {
+          content: '';
+          position: absolute;
+          top: 1.7rem;
+          bottom: 0;
+          left: var(--tl-line-x);
+          width: 2px;
+          border-radius: 2px;
+          transform: translateX(-1px);
+          background: linear-gradient(
+               to bottom,
+               var(--c-blue-soft),
+               rgba(103, 171, 255, 0.35) 65%,
+               transparent
+          );
+     }
+</style>
