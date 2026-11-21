@@ -4,12 +4,16 @@ import Project from '../components/ui/Project.astro'
 import { projectsArray } from '../data/data'
 ---
 
-<section class="mt-10 mx-4 lg:mx-20" id="projects_section">
-     <h3 data-i18n="projects.title">Projects</h3>
+<section class="projects mt-28 mx-4 lg:mx-20" id="projects_section">
+     <h3 class="projects__title" data-i18n="projects.title">Projects</h3>
      <LightShadow position="right" />
-     <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-3">
+     <!-- flags JS before the cards paint, so they are only hidden when the reveal can run -->
+     <script is:inline>
+          document.documentElement.classList.add('js')
+     </script>
+     <div class="projects__grid">
           {
-               projectsArray.map((project) => (
+               projectsArray.map((project, index) => (
                     <Project
                          title={project.title}
                          description={project.description}
@@ -18,8 +22,59 @@ import { projectsArray } from '../data/data'
                          tags={project.tags}
                          link={project.link}
                          descKey={project.descKey}
+                         featured={index === 0}
                     />
                ))
           }
      </div>
 </section>
+
+<script>
+     // Reveal each card the moment it peeks into view (a small margin so it never waits for
+     // half the card to be on screen), then stop watching it.
+     const cards = document.querySelectorAll<HTMLElement>('.project[data-reveal]')
+
+     if (!('IntersectionObserver' in window)) {
+          cards.forEach((card) => card.classList.add('is-in'))
+     } else {
+          const observer = new IntersectionObserver(
+               (entries) => {
+                    entries.forEach((entry) => {
+                         if (!entry.isIntersecting) return
+                         entry.target.classList.add('is-in')
+                         observer.unobserve(entry.target)
+                    })
+               },
+               { threshold: 0.04, rootMargin: '0px 0px -6% 0px' },
+          )
+          cards.forEach((card) => observer.observe(card))
+     }
+</script>
+
+<style>
+     .projects__title {
+          margin: 0 0 2rem;
+     }
+
+     .projects__grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 1.25rem;
+     }
+
+     @media (min-width: 1024px) {
+          .projects__grid {
+               grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          /* the flagship project spans both columns; the other six make three even rows */
+          .projects__grid > :global(:first-child) {
+               grid-column: 1 / -1;
+          }
+
+          /* cards in the right column arrive a beat after their neighbour */
+          .projects__grid > :global(:nth-child(odd):not(:first-child)) {
+               --reveal-delay: 0.1s;
+          }
+     }
+</style>

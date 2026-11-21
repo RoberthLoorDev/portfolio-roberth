@@ -3,60 +3,186 @@ import { Image } from 'astro:assets'
 import { me } from '../assets/images'
 ---
 
-<section class="mt-20 relative mx-4 lg:mx-20" id="about_me_section">
-     <h3 data-i18n="about.title">About me</h3>
+<section class="about mt-28 mx-4 lg:mx-20" id="about_me_section">
+     <h3 class="about__heading" data-i18n="about.title">About me</h3>
 
-     <div class="flex flex-col lg:flex-row">
-          <Image
-               class="w-auto lg:h-[32rem] mx-8 -mt-14 object-cover _ me"
-               src={me}
-               alt="Me"
-          />
-
-          <div>
-               <span class="text-[2.5rem] lg:text-[70px] font-bold" data-i18n-html="about.intro"
-                    >I’m <span class="text-primary"> Roberth Loor</span></span
-               >
-               <div class="max-w-[38rem]">
-                    <p class="mt-5 text-base" data-i18n-html="about.p1">
-                         My name is Roberth Loor, I'm 23 years old, and I am an
-                         <f>Information Technology Engineer.</f> Throughout my career, I have
-                         developed a deep understanding of information systems, with a passionate
-                         focus on creating digital solutions that <f
-                              >add value and solve problems.</f
-                         >
-                    </p>
-                    <p class="mt-5 text-base" data-i18n-html="about.p2">
-                         In addition to my commitment to development, I maintain a
-                         <f>balanced lifestyle</f> through regular physical exercise and healthy
-                         relationships with friends and family, which I consider essential
-                         for optimal and outstanding performance.
-                    </p>
-
-                    <p class="mt-5 text-base" data-i18n-html="about.p3">
-                         I am focused on expanding my skills in both <f
-                              >frontend and backend</f
-                         >
-                         development using technologies like React and Node, and my goal is
-                         to continue growing and <f
-                              >making significant contributions to web development.</f
-                         >
-                    </p>
+     <div class="about__grid">
+          <figure class="about__photo">
+               <div class="about__frame" aria-hidden="true">
+                    <i class="about__tick about__tick--tl"></i>
+                    <i class="about__tick about__tick--tr"></i>
+                    <i class="about__tick about__tick--bl"></i>
+                    <i class="about__tick about__tick--br"></i>
                </div>
+               <Image src={me} alt="Roberth Loor" class="about__img" />
+          </figure>
+
+          <div class="about__text">
+               <p class="about__intro" data-i18n-html="about.intro">
+                    I’m <span class="text-primary"> Roberth Loor</span>
+               </p>
+
+               <p class="about__p" data-i18n-html="about.p1">
+                    My name is Roberth Loor, I'm 23 years old, and I am an
+                    <f>Information Technology Engineer.</f> Throughout my career, I have
+                    developed a deep understanding of information systems, with a passionate
+                    focus on creating digital solutions that <f
+                         >add value and solve problems.</f
+                    >
+               </p>
+               <p class="about__p" data-i18n-html="about.p2">
+                    In addition to my commitment to development, I maintain a
+                    <f>balanced lifestyle</f> through regular physical exercise and healthy
+                    relationships with friends and family, which I consider essential
+                    for optimal and outstanding performance.
+               </p>
+
+               <p class="about__p" data-i18n-html="about.p3">
+                    I am focused on expanding my skills in both <f
+                         >frontend and backend</f
+                    >
+                    development using technologies like React and Node, and my goal is
+                    to continue growing and <f
+                         >making significant contributions to web development.</f
+                    >
+               </p>
           </div>
      </div>
 </section>
 
 <style>
-     .me {
-          mask-image: linear-gradient(
-               to bottom,
-               black 70%,
-               transparent 100%
-          ); /* Máscara con degradado de negro a transparente */
+     .about__heading {
+          margin: 0 0 2rem;
      }
 
-     .shadow-background-me {
-          box-shadow: 0rem 0rem 20rem 5rem #2d8cfc;
+     .about__grid {
+          display: grid;
+          gap: 2.5rem;
+          align-items: center;
+     }
+
+     @media (min-width: 1024px) {
+          .about__grid {
+               grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+               gap: 4.5rem;
+          }
+     }
+
+     /* ---------- portrait: same crop-mark frame as the hero ---------- */
+
+     .about__photo {
+          position: relative;
+          justify-self: center;
+          width: min(100%, 26rem);
+          margin: 0;
+          aspect-ratio: 4 / 5;
+          overflow: hidden;
+          border: 1px solid var(--c-line);
+          border-radius: 1.5rem;
+          background:
+               radial-gradient(circle at 1px 1px, rgba(103, 171, 255, 0.24) 1px, transparent 1.5px)
+                    0 0 / 22px 22px,
+               linear-gradient(180deg, rgba(14, 23, 46, 0.4), var(--c-panel));
+          box-shadow: 0 40px 90px -55px rgba(0, 124, 255, 0.6);
+     }
+
+     .about__photo::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 50% 45%, transparent 30%, var(--c-panel) 98%);
+     }
+
+     .about__photo :global(.about__img) {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+          -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+     }
+
+     .about__frame {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          pointer-events: none;
+     }
+
+     .about__tick {
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          border: 0 solid var(--c-line-strong);
+     }
+
+     .about__tick--tl {
+          top: 12px;
+          left: 12px;
+          border-top-width: 1px;
+          border-left-width: 1px;
+     }
+
+     .about__tick--tr {
+          top: 12px;
+          right: 12px;
+          border-top-width: 1px;
+          border-right-width: 1px;
+     }
+
+     .about__tick--bl {
+          bottom: 12px;
+          left: 12px;
+          border-bottom-width: 1px;
+          border-left-width: 1px;
+     }
+
+     .about__tick--br {
+          bottom: 12px;
+          right: 12px;
+          border-bottom-width: 1px;
+          border-right-width: 1px;
+     }
+
+     /* ---------- text ---------- */
+
+     /* a thin vertical rule, the same one the timeline uses */
+     .about__text {
+          max-width: 40rem;
+     }
+
+     @media (min-width: 1024px) {
+          .about__text {
+               padding-left: 2.5rem;
+               border-left: 1px solid var(--c-line);
+          }
+     }
+
+     .about__intro {
+          margin: 0 0 1.5rem;
+          font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+          font-weight: 700;
+          line-height: 1.08;
+          letter-spacing: -0.025em;
+          color: var(--c-text);
+     }
+
+     .about__intro :global(.text-primary) {
+          color: var(--c-blue-soft);
+     }
+
+     .about__p {
+          margin: 0 0 1.25rem;
+          font-size: 1.05rem;
+          font-weight: 400;
+          line-height: 1.8;
+          color: var(--c-muted);
+     }
+
+     .about__p:last-child {
+          margin-bottom: 0;
      }
 </style>

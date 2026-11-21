@@ -4,62 +4,224 @@ import ToastNotification from '../components/ui/ToastNotification.astro'
 import FormComponent from '../components/ui/FormComponent.astro'
 ---
 
-<section class="relative mx-4 lg:mx-20 mb-52 mt-20" id="contact_me_section">
+<section class="relative mx-4 lg:mx-20 mb-52 mt-28" id="contact_me_section">
      <LightShadow position="left" />
      <ToastNotification />
 
-     <div class="flex items-center lg:flex-row flex-col">
-          <div class="lg:w-[50%]">
-               <h3 data-i18n="contact.title">Let's get in touch</h3>
-               <p class="max-w-[30rem] my-5" data-i18n-html="contact.desc">
+     <div class="contact">
+          <div class="contact__info">
+               <h3 class="contact__title" data-i18n="contact.title">Let's get in touch</h3>
+               <p class="contact__desc" data-i18n-html="contact.desc">
                     Are you looking for a committed front end web developer? <f
                          >Connect with me!</f
                     > I'm excited to work with you.
                </p>
-               <div class="flex gap-7">
-                    <a
-                         href="https://wa.me/593998196406"
-                         target="_blank"
-                         class="hover:scale-[2] duration-300 p-3"
-                    >
-                         <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="#2d8cfc"
-                              class="icon icon-tabler icons-tabler-filled icon-tabler-phone"
-                              ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                              ></path><path
-                                   d="M9 3a1 1 0 0 1 .877 .519l.051 .11l2 5a1 1 0 0 1 -.313 1.16l-.1 .068l-1.674 1.004l.063 .103a10 10 0 0 0 3.132 3.132l.102 .062l1.005 -1.672a1 1 0 0 1 1.113 -.453l.115 .039l5 2a1 1 0 0 1 .622 .807l.007 .121v4c0 1.657 -1.343 3 -3.06 2.998c-8.579 -.521 -15.418 -7.36 -15.94 -15.998a3 3 0 0 1 2.824 -2.995l.176 -.005h4z"
-                              ></path>
-                         </svg>
-                    </a>
 
-                    <a
-                         href="mailto:dayvidlife@gmail.com"
-                         target="_blank"
-                         class="hover:scale-[2] duration-300 p-3"
-                    >
-                         <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="#2d8cfc"
-                              class="icon icon-tabler icons-tabler-filled icon-tabler-mail"
-                              ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                              ></path><path
-                                   d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
-                              ></path><path
-                                   d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
-                              ></path>
-                         </svg>
-                    </a>
-               </div>
+               <ul class="contact__links">
+                    <li>
+                         <a
+                              class="contact-link"
+                              href="https://wa.me/593998196406"
+                              target="_blank"
+                              rel="noopener"
+                         >
+                              <span class="contact-link__icon" aria-hidden="true">
+                                   <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="22"
+                                        height="22"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                                        ></path><path
+                                             d="M9 3a1 1 0 0 1 .877 .519l.051 .11l2 5a1 1 0 0 1 -.313 1.16l-.1 .068l-1.674 1.004l.063 .103a10 10 0 0 0 3.132 3.132l.102 .062l1.005 -1.672a1 1 0 0 1 1.113 -.453l.115 .039l5 2a1 1 0 0 1 .622 .807l.007 .121v4c0 1.657 -1.343 3 -3.06 2.998c-8.579 -.521 -15.418 -7.36 -15.94 -15.998a3 3 0 0 1 2.824 -2.995l.176 -.005h4z"
+                                        ></path>
+                                   </svg>
+                              </span>
+                              <span class="contact-link__text">
+                                   <span class="contact-link__label">WhatsApp</span>
+                                   <span class="contact-link__value">+593 99 819 6406</span>
+                              </span>
+                              <span class="contact-link__arrow" aria-hidden="true">↗</span>
+                         </a>
+                    </li>
+                    <li>
+                         <a
+                              class="contact-link"
+                              href="mailto:dayvidlife@gmail.com"
+                              target="_blank"
+                              rel="noopener"
+                         >
+                              <span class="contact-link__icon" aria-hidden="true">
+                                   <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="22"
+                                        height="22"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                                        ></path><path
+                                             d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
+                                        ></path><path
+                                             d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
+                                        ></path>
+                                   </svg>
+                              </span>
+                              <span class="contact-link__text">
+                                   <span class="contact-link__label">Email</span>
+                                   <span class="contact-link__value">dayvidlife@gmail.com</span>
+                              </span>
+                              <span class="contact-link__arrow" aria-hidden="true">↗</span>
+                         </a>
+                    </li>
+               </ul>
           </div>
 
           <!-- Form -->
           <FormComponent />
      </div>
 </section>
+
+<style>
+     /* one panel holds both halves, like the cards in the rest of the page */
+     .contact {
+          position: relative;
+          display: grid;
+          gap: 2.5rem;
+          padding: 1.75rem;
+          border: 1px solid var(--c-line);
+          border-radius: 1.75rem;
+          background:
+               radial-gradient(90% 80% at 0% 0%, rgba(0, 124, 255, 0.13), transparent 60%),
+               linear-gradient(180deg, rgba(14, 23, 46, 0.75), rgba(14, 23, 46, 0.45));
+          box-shadow: 0 40px 90px -55px rgba(0, 124, 255, 0.6);
+     }
+
+     @media (min-width: 1024px) {
+          .contact {
+               grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+               gap: 4rem;
+               align-items: center;
+               padding: 3.25rem 3.5rem;
+          }
+     }
+
+     .contact__title {
+          margin: 0;
+          font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          color: var(--c-text);
+     }
+
+     .contact__desc {
+          max-width: 28rem;
+          margin: 1.1rem 0 0;
+          font-size: 1.05rem;
+          line-height: 1.75;
+          color: var(--c-muted);
+     }
+
+     .contact__links {
+          display: grid;
+          gap: 0.75rem;
+          margin: 2rem 0 0;
+          padding: 0;
+          list-style: none;
+     }
+
+     .contact-link {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 0.85rem 1.1rem;
+          border: 1px solid var(--c-line);
+          border-radius: 1rem;
+          background: rgba(9, 12, 26, 0.5);
+          color: inherit;
+          text-decoration: none;
+          transition:
+               border-color 0.25s,
+               background 0.25s,
+               translate 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+     }
+
+     .contact-link:hover {
+          border-color: var(--c-line-strong);
+          background: rgba(103, 171, 255, 0.08);
+          translate: 0 -2px;
+     }
+
+     .contact-link:focus-visible {
+          outline: 2px solid var(--c-cyan);
+          outline-offset: 3px;
+     }
+
+     .contact-link__icon {
+          display: grid;
+          place-items: center;
+          flex: none;
+          width: 2.6rem;
+          height: 2.6rem;
+          border-radius: 0.8rem;
+          background: rgba(0, 124, 255, 0.14);
+          color: var(--c-blue-soft);
+     }
+
+     .contact-link__text {
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
+     }
+
+     .contact-link__label {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: var(--c-muted);
+     }
+
+     .contact-link__value {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #fff;
+          overflow-wrap: anywhere;
+     }
+
+     /* phones: tighter panel and row so the email fits on one line */
+     @media (max-width: 479px) {
+          .contact {
+               padding: 1.35rem;
+          }
+
+          .contact-link {
+               gap: 0.75rem;
+               padding: 0.8rem 0.9rem;
+          }
+
+          .contact-link__value {
+               font-size: 0.9rem;
+          }
+     }
+
+     .contact-link__arrow {
+          margin-left: auto;
+          color: var(--c-muted);
+          transition:
+               transform 0.25s,
+               color 0.25s;
+     }
+
+     .contact-link:hover .contact-link__arrow {
+          color: var(--c-blue-soft);
+          transform: translate(2px, -2px);
+     }
+
+     @media (prefers-reduced-motion: reduce) {
+          .contact-link,
+          .contact-link:hover {
+               transition: none;
+               translate: none;
+          }
+     }
+</style>

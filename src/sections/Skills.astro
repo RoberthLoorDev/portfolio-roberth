@@ -42,63 +42,138 @@ const getColor = (name: string) => {
 
      return '#64748b'
 }
+
+// Skills grouped by what they are, so the grid reads as a map instead of a flat list.
+// Names that are not listed fall into the last group, so nothing is ever dropped.
+const groupDefinitions = [
+     {
+          label: 'Frontend',
+          names: ['react', 'nextjs', 'vue', 'astro', 'tailwind', 'javascript', 'typescript', 'html', 'css', 'shadcn'],
+     },
+     { label: 'Backend', names: ['nodejs', 'nestjs', 'postgresql', 'mongodb', 'mysql'] },
+     { label: 'DevOps', names: ['docker', 'ubuntu'] },
+]
+
+const listed = new Set(groupDefinitions.flatMap((group) => group.names))
+const groups = groupDefinitions.map((group, index) => ({
+     label: group.label,
+     skills: arraySkills.filter(
+          (skill) =>
+               group.names.includes(skill.name) ||
+               (index === groupDefinitions.length - 1 && !listed.has(skill.name)),
+     ),
+}))
 ---
 
-<section class="mt-28 mx-4 lg:mx-20" id="skill_section">
-     <h3 class="text-3xl font-bold mb-8 text-white" data-i18n="skills.title">Skills</h3>
+<section class="skills mt-28 mx-4 lg:mx-20" id="skill_section">
+     <h3 class="skills__title" data-i18n="skills.title">Skills</h3>
 
-     <div class="skills-grid">
+     <div class="skills__groups">
           {
-               arraySkills.map((imageSkill, index) => {
-                    const techColor = getColor(imageSkill.name)
+               groups.map((group) => (
+                    <div class="skills-group">
+                         <div class="skills-group__head">
+                              <h4 class="skills-group__label">{group.label}</h4>
+                              <span class="skills-group__count">{group.skills.length}</span>
+                              <i class="skills-group__rule" aria-hidden="true" />
+                         </div>
 
-                    return (
-                         <div
-                              class="skill-card group"
-                              style={`
-                --tech-color: ${techColor}; 
-                --tech-color-dim: ${techColor}33; 
+                         <div class="skills-grid">
+                              {group.skills.map((imageSkill, index) => {
+                                   const techColor = getColor(imageSkill.name)
+
+                                   return (
+                                        <div
+                                             class="skill-card group"
+                                             style={`
+                --tech-color: ${techColor};
+                --tech-color-dim: ${techColor}33;
                 transition-delay: ${index * 50}ms;
             `}
-                         >
-                              <div class="glow-bg" />
+                                        >
+                                             <div class="glow-bg" />
 
-                              <Image
-                                   src={imageSkill.icon}
-                                   class="w-auto h-[3rem] lg:h-[3.5rem] object-contain transition-transform duration-300 group-hover:scale-110 z-10 relative grayscale opacity-50 transition-all"
-                                   alt={`Logo de ${imageSkill.name}`}
-                              />
+                                             <Image
+                                                  src={imageSkill.icon}
+                                                  class="skill-icon w-auto h-[2.75rem] lg:h-[3.25rem] object-contain transition-transform duration-300 group-hover:scale-110 z-10 relative grayscale opacity-50 transition-all"
+                                                  alt={`Logo de ${imageSkill.name}`}
+                                             />
 
-                              <p class="text-center w-full mt-3 text-sm font-medium text-gray-400 group-hover:text-white transition-colors z-10 relative capitalize">
-                                   {imageSkill.name}
-                              </p>
+                                             <p class="skill-name">{imageSkill.name}</p>
+                                        </div>
+                                   )
+                              })}
                          </div>
-                    )
-               })
+                    </div>
+               ))
           }
      </div>
 </section>
 
 <style>
+     .skills__title {
+          margin: 0 0 2rem;
+     }
+
+     .skills__groups {
+          display: grid;
+          gap: 2.25rem;
+     }
+
+     /* ---------- group header ---------- */
+
+     .skills-group__head {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+     }
+
+     .skills-group__label {
+          margin: 0;
+          font-size: 0.82rem;
+          font-weight: 600;
+          letter-spacing: 0.09em;
+          text-transform: uppercase;
+          color: var(--c-muted);
+     }
+
+     .skills-group__count {
+          padding: 0.05rem 0.5rem;
+          border: 1px solid var(--c-line);
+          border-radius: 999px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--c-blue-soft);
+     }
+
+     .skills-group__rule {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(90deg, var(--c-line), transparent);
+     }
+
+     /* ---------- tiles ---------- */
+
      .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+          gap: 1rem;
           perspective: 1000px;
      }
 
      .skill-card {
           position: relative;
-          background-color: #0e172e;
-          border: 1px solid #1f2937;
-          border-radius: 0.75rem;
-          padding: 2rem 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          padding: 1.6rem 0.75rem 1.35rem;
           overflow: hidden;
           cursor: pointer;
+          border: 1px solid var(--c-line);
+          border-radius: 1.1rem;
+          background: linear-gradient(180deg, rgba(14, 23, 46, 0.7), rgba(14, 23, 46, 0.35));
 
           opacity: 0;
           transform: translateY(30px) scale(0.9);
@@ -110,12 +185,29 @@ const getColor = (name: string) => {
           transform: translateY(0) scale(1);
      }
 
-     /* --- hover neon effect --- */
+     .skill-name {
+          position: relative;
+          z-index: 10;
+          width: 100%;
+          margin: 0.8rem 0 0;
+          text-align: center;
+          text-transform: capitalize;
+          font-size: 0.82rem;
+          font-weight: 500;
+          color: var(--c-muted);
+          transition: color 0.3s;
+     }
+
+     /* --- hover: each tile lights up with its own brand color --- */
      .skill-card:hover {
           transform: translateY(-5px) scale(1.02);
           border-color: var(--tech-color);
           box-shadow: 0 10px 30px -10px var(--tech-color-dim);
           transition-delay: 0.2s !important;
+     }
+
+     .skill-card:hover .skill-name {
+          color: #fff;
      }
 
      /* Drop shadow to the specific color SVG/PNG */
@@ -129,11 +221,7 @@ const getColor = (name: string) => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: radial-gradient(
-               circle at center,
-               var(--tech-color) 0%,
-               transparent 70%
-          );
+          background: radial-gradient(circle at center, var(--tech-color) 0%, transparent 70%);
           opacity: 0;
           transition: opacity 0.4s ease;
           z-index: 0;
@@ -141,6 +229,14 @@ const getColor = (name: string) => {
 
      .skill-card:hover .glow-bg {
           opacity: 0.15;
+     }
+
+     @media (prefers-reduced-motion: reduce) {
+          .skill-card {
+               opacity: 1;
+               transform: none;
+               transition: border-color 0.2s;
+          }
      }
 </style>
 
